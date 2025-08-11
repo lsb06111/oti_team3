@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/head.jspf" %>
-  <link href="/oti_team3/assets/css/board.css" rel="stylesheet">
+<!-- 커스텀 CSS import 존 -->
+<link href="/oti_team3/assets/css/board.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="/header.jspf" %>
