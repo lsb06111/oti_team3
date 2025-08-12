@@ -11,4 +11,4 @@
     
 <%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
 </body>
-</html>
+</html> 
