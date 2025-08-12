@@ -11,7 +11,7 @@
       <!-- Section Title -->
       <div class="container section-title">
         <h2>게시판</h2>
-        <p>리뷰를 확인해 보세요!</p>
+        <p>리뷰를 확인해 보세요! </p>
       </div><!-- End Section Title -->
 		<button class="write-button" id="write_button">글쓰기</button>
       <div class="container">
