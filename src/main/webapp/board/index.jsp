@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/head.jspf" %>
+<%@ include file="/jspf/head.jspf" %>
 <!-- 커스텀 CSS import 존 -->
 <link href="/oti_team3/assets/css/board.css" rel="stylesheet">
 </head>
 <body>
-<%@ include file="/header.jspf" %>
+<%@ include file="/jspf/header.jspf" %>
 <section id="services" class="services section">
 
       <!-- Section Title -->
@@ -130,7 +130,7 @@
     </section><!-- /Services Section -->
     
     
-    <%@ include file="/footer.jspf" %>
+    <%@ include file="/jspf/footer.jspf" %>
 
 </body>
 </html>

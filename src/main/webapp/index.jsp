@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="/head.jspf" %>
+<%@ include file="/jspf/head.jspf" %>
 </head>
 <body class="index-page">
   
-<%@ include file="/header.jspf" %>
+<%@ include file="/jspf/header.jspf" %>
   <main class="main">
 
     <!-- Hero Section -->
-    <%@ include file="/welcome.jspf" %>
+    <%@ include file="/jspf/welcome.jspf" %>
 
     <!-- Clients Section -->
     <section id="clients" class="clients section">
@@ -1624,7 +1624,7 @@
 
   </main>
 
-<%@ include file="/footer.jspf" %>
+<%@ include file="/jspf/footer.jspf" %>
 
 </body>
 
