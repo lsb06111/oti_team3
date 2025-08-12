@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!-- Faq Section -->
+    <section id="faq" class="faq section">
+
+      <!-- Section Title -->
+      <div class="container section-title" style="padding-bottom:0">
+        <h2>자주 묻는 질문</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+
+            <div class="faq-wrapper">
+
+			<%for(int i=0; i<5; i++) {%>
+              <div class="faq-item">
+                <div class="faq-header" style="padding: 20px 0 0 0;">
+                  <span class="faq-number">0<%= i+1 %></span>
+                  <h4>질문<%= i+1 %> 입니다.</h4>
+                  <div class="faq-toggle">
+                    <i class="bi bi-plus"></i>
+                    <i class="bi bi-dash"></i>
+                  </div>
+                </div>
+                <div class="faq-content">
+                  <div class="content-inner">
+                    <p>대답<%= i+1 %> 입니다.</p>
+                  </div>
+                </div>
+              </div><!-- End FAQ Item -->
+			<%} %>
+              
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->

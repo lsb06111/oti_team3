@@ -107,11 +107,6 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <div class="footer-bottom-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Cookie Policy</a>
-            </div>
             <div class="credits">
               Designed by 여행가조
             </div>
@@ -136,6 +131,5 @@
   <script src="/oti_team3/assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="/oti_team3/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="/oti_team3/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
   <!-- Main JS File -->
   <script src="/oti_team3/assets/js/main.js"></script>

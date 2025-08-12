@@ -1,0 +1,119 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<section id="features" class="features section">
+
+      <div class="container">
+
+        <div class="features-grid">
+          <div class="features-card">
+            <div class="icon-wrapper">
+              <i class="bi bi-airplane"></i>
+            </div>
+            <h3>편리한 여행 계획 세우기</h3>
+            <p>
+              여행 계획에 필요한 모든 편리한 기능이 TripNote 한 곳에 있어요.
+            </p>
+            <div class="features-list">
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>한국관광공사 데이터 기반 관광지</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>친구가 간 곳을 확인해보세요</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>드래그 앤 드롭으로 쉽게 관리하세요</span>
+              </div>
+            </div>
+            <div class="image-container">
+              <img src="assets/img/illustration/feature1.png" alt="Streamlined Workflow" class="img-fluid">
+            </div>
+          </div>
+
+          <div class="features-card">
+            <div class="icon-wrapper">
+             <i class="bi bi-journal-check"></i>
+            </div>
+            <h3>장소별 노트 기능</h3>
+            <p>
+            	각 코스의 장소별로 노트를 활용하여 계획적으로 일정을 관리하세요.
+            </p>
+            <div class="features-list">
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>노트 동시 편집 기능</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>필요한 준비물 등 필수 사항을 메모해요</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>놓치기 쉬운 것도 까먹지 않게 돼요</span>
+              </div>
+            </div>
+            <div class="image-container">
+              <img src="assets/img/illustration/feature2.png" alt="Performance Analytics" class="img-fluid">
+            </div>
+          </div>
+
+          <div class="features-card">
+            <div class="icon-wrapper">
+              <i class="bi bi-card-list"></i>
+            </div>
+            <h3>관광지별 리뷰</h3>
+            <p>
+              팔로워 혹은 다른 사람들의 관광지별 리뷰를 확인하세요.
+            </p>
+            <div class="features-list">
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>리뷰를 통해 신뢰도 있는 정보</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>신뢰도 있는 리뷰로 여행해요</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>팔로우로 친구들과 함께 공유해요</span>
+              </div>
+            </div>
+            <div class="image-container">
+              <img src="assets/img/illustration/feature3.png" alt="Security Framework" class="img-fluid">
+            </div>
+          </div>
+
+          <div class="features-card">
+            <div class="icon-wrapper">
+              <i class="bi bi-people"></i>
+            </div>
+            <h3>여행 맴버 초대</h3>
+            <p>
+              여행에 동반자가 있으신가요? 바로 추가해서 함께 계획해요!
+            </p>
+            <div class="features-list">
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>생산성 있는 여행 계획</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>실시간으로 편집해요</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>특징...</span>
+              </div>
+            </div>
+            <div class="image-container">
+              <img src="assets/img/illustration/feature4.png" alt="Team Environment" class="img-fluid">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Features Section -->

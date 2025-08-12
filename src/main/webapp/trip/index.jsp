@@ -3,11 +3,7 @@
 <%@ include file="/jspf/head.jspf"%>
 <!-- 헤드 부분 고정 -->
 <link rel="stylesheet" href="/oti_team3/assets/css/trip.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
-	crossorigin="anonymous">
+
 
 </head>
 <body class="trip-body">
@@ -82,5 +78,15 @@
 	</main>
 	<script src="/oti_team3/assets/js/trip.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	  <!-- Vendor JS Files -->
+  <script src="/oti_team3/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/oti_team3/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/oti_team3/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/oti_team3/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/oti_team3/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/oti_team3/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/oti_team3/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <!-- Main JS File -->
+  <script src="/oti_team3/assets/js/main.js"></script>
 </body>
 </html>
