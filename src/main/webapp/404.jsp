@@ -1,5 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ include file="/head.jspf" %>
+</head>
+
+<body class="page-404">
+<%@ include file="/header.jspf" %>
+
+  <main class="main">
+
+    <!-- Error 404 Section -->
+    <section id="error-404" class="error-404 section">
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+
+            <div class="error-number">
+              404
+            </div>
+
+            <h1 class="error-title">
+              페이지를 찾을 수 없습니다.
+            </h1>
+
+            <p class="error-description">
+              존재하지 않는 주소를 입력하셨거나<br>요청하신 페이지의 주소가 변경, 삭제되어 찾을 수 없습니다.
+            </p>
+
+            <div class="error-actions">
+              <a href="/" class="btn-primary">
+                <i class="bi bi-house"></i>
+                홈으로 가기
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-10">
+
+            <div class="helpful-links">
+              <h3>You might be looking for:</h3>
+              <div class="links-grid">
+                <a href="#" class="link-item">
+                  <i class="bi bi-info-circle"></i>
+                  <span>About Us</span>
+                </a>
+                <a href="#" class="link-item">
+                  <i class="bi bi-telephone"></i>
+                  <span>Contact</span>
+                </a>
+                <a href="#" class="link-item">
+                  <i class="bi bi-grid-3x3-gap"></i>
+                  <span>Services</span>
+                </a>
+                <a href="#" class="link-item">
+                  <i class="bi bi-journal-text"></i>
+                  <span>Blog</span>
+                </a>
+                <a href="#" class="link-item">
+                  <i class="bi bi-question-circle"></i>
+                  <span>Support</span>
+                </a>
+                <a href="#" class="link-item">
+                  <i class="bi bi-shield-check"></i>
+                  <span>Privacy Policy</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Error 404 Section -->
+
+  </main>
+
   <footer id="footer" class="footer position-relative light-background">
 
     <div class="container">
@@ -7,10 +88,10 @@
 
         <div class="col-lg-4">
           <div class="footer-content">
-            <a href="/oti_team3/index.jsp" class="logo d-flex align-items-center mb-4">
-              <span class="sitename">TripNote</span>
+            <a href="index.html" class="logo d-flex align-items-center mb-4">
+              <span class="sitename">Devin</span>
             </a>
-            <p class="mb-4">TripNote는 사용자에게 편리한 여행 플래너 서비스를 제공합니다.</p>
+            <p class="mb-4">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Donec velit neque auctor sit amet aliquam vel ullamcorper sit amet ligula.</p>
 
             <div class="newsletter-form">
               <h5>Stay Updated</h5>
@@ -103,7 +184,7 @@
         <div class="row align-items-center">
           <div class="col-lg-6">
             <div class="copyright">
-              <p>© <span>Copyright</span> <strong class="px-1 sitename">TripNote</strong> <span>All Rights Reserved</span></p>
+              <p>© <span>Copyright</span> <strong class="px-1 sitename">MyWebsite</strong> <span>All Rights Reserved</span></p>
             </div>
           </div>
           <div class="col-lg-6">
@@ -113,7 +194,11 @@
               <a href="#">Cookie Policy</a>
             </div>
             <div class="credits">
-              Designed by 여행가조
+              <!-- All the links in the footer should remain intact. -->
+              <!-- You can delete the links only if you've purchased the pro version. -->
+              <!-- Licensing information: https://bootstrapmade.com/license/ -->
+              <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
           </div>
         </div>
@@ -129,13 +214,17 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="/oti_team3/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/oti_team3/assets/vendor/php-email-form/validate.js"></script>
-  <script src="/oti_team3/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="/oti_team3/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="/oti_team3/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="/oti_team3/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="/oti_team3/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
   <!-- Main JS File -->
-  <script src="/oti_team3/assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
