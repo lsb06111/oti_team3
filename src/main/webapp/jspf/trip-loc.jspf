@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div class="trip-loc-card">
+	<div class="trip-loc-top">
+		<div class="sl-thumb">
+			<img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1200&auto=format&fit=crop" alt="장소 이미지">
+		</div>
+		<div>
+			<div class="sl-badge">친구추천</div>
+			<div class="sl-badge">명소</div>
+			<div class="sl-badge">月 <b>399</b>명 방문</div>
+		</div>
+		<button class="sl-add" aria-label="일정에 추가">+</button>
+	</div>
+	<!-- 하단: 상세 설명 박스 -->
+	<div class="trip-loc-info">
+		<div class="sl-cat d-flex justify-content-between">
+			<a href="#" class="sl-name">조조 대학로점</a>
+		</div>
+		<p class="sl-desc">다양한 메뉴로 즐기는 일본 미식 여행</p>
+		<div class="sl-meta">
+		</div>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="trip-timeline-event">
+	<div class="number">2</div>
+	<div class="event-info">
+	<div class="time">12:55-12:55</div>
+	<div style="color: #ff7a7a;">숙소</div>
+	<div>하얏트 플레이스 와이키키</div>
+	<span class="trip-note-toggle" onclick="toggleNote(this)">📝
+		노트작성</span>
+	<div class="trip-note-area">
+		<textarea placeholder="메모를 입력하세요..."></textarea>
+	</div>
+	</div>
+	<img
+		src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=80&h=55"
+		alt="하얏트 플레이스 와이키키" class="event-img" />
+</div>
