@@ -10,7 +10,7 @@
 	crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
-<body>
+<body class="trip-body">
 	<%@ include file="/jspf/header.jspf"%>
 	<!-- 헤더부분 고정 -->
 	<main>
@@ -41,7 +41,7 @@
 				<div class="input-group">
 					<input type="email" name="email" class="form-control"
 						placeholder="장소명을 입력하세요" required="">
-					<button type="submit" class="btn-subscribe">
+					<button type="submit" class="btn-search">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
