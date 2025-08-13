@@ -16,7 +16,7 @@
 	margin-top: 5px;
 }
 
-.note-area {
+.trip-note-area {
 	display: none;
 	margin-top: 8px;
 }
@@ -36,12 +36,16 @@
 	padding-top: 60px;
 	height: calc(100vh - 50px);
 }
+
+.trip-left-nav{
+	flex: 0.3;
+}
+
 /* 왼쪽: 제주 추천 장소 리스트 */
 .trip-sidebar-left {
 	flex: 1.2;
 	border-right: 1px solid #ddd;
 	padding: 15px;
-	padding-left: 90px;
 	overflow-y: auto;
 }
 
@@ -143,7 +147,6 @@
 /* 중간: 일정 타임라인 */
 .trip-schedule {
 	flex: 1;
-	border-right: 1px solid #ddd;
 	padding: 15px;
 	overflow-y: auto;
 }
@@ -422,59 +425,15 @@
 	transition: left .25s ease, width .25s ease;
 }
 
-/* PHP Email Form Messages
-------------------------------*/
-.trip-search-form .error-message {
-	display: none;
-	background: #df1529;
-	color: #ffffff;
-	text-align: left;
-	padding: 15px;
-	margin-bottom: 24px;
-	font-weight: 600;
-}
-
-.trip-search-form .sent-message {
-	display: none;
-	color: #ffffff;
-	background: #059652;
-	text-align: center;
-	padding: 15px;
-	margin-bottom: 24px;
-	font-weight: 600;
-}
-
-.trip-search-form .loading {
-	display: none;
-	background: var(--surface-color);
-	text-align: center;
-	padding: 15px;
-	margin-bottom: 24px;
-}
-
-.trip-search-form .loading:before {
-	content: "";
-	display: inline-block;
-	border-radius: 50%;
-	width: 24px;
-	height: 24px;
-	margin: 0 10px -6px 0;
-	border: 3px solid var(--accent-color);
-	border-top-color: var(--surface-color);
-	animation: php-email-form-loading 1s linear infinite;
-}
-
 /* 세로 스텝 네비게이션 컨테이너 */
 .step-nav {
 	display: flex;
 	flex-direction: column;
-	align-items: center; /* 가운데 정렬 */
+	align-items: start;
 	gap: 40px; /* 스텝 간 간격 */
-	padding: 20px 10px;
 	position: fixed; /* 항상 화면 왼쪽에 고정 */
 	left: 0;
-	top: 50%;
-	transform: translateY(-50%);
+	top: 80px;
 }
 
 /* 스텝 하나 */
@@ -500,5 +459,31 @@
 
 /* 활성 스텝 */
 .step-item.active {
-	color: #2dc7d1; /* 파란/청록 계열 */
+	color: #5c99ee; /* 파란/청록 계열 */
 }
+
+.trip-loc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.trip-loc-tag {
+  padding: 0.5rem 1rem;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 92%);
+  color: var(--accent-color);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.trip-loc-tag:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 85%);
+  transform: translateY(-2px);
+}
+
+ .trip-loc-tag {
+   font-size: 0.8rem;
+   padding: 0.4rem 0.8rem;
+ }

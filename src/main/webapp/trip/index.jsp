@@ -3,47 +3,56 @@
 <%@ include file="/jspf/head.jspf"%>
 <!-- 헤드 부분 고정 -->
 <link rel="stylesheet" href="/oti_team3/assets/css/trip.css">
-
-
 </head>
 <body class="trip-body">
 <%@ include file="/jspf/header.jspf"%>
 	<main class="trip-main">
-		<section>
-			<nav class="step-nav">
-				<div class="step-item">
-					<span class="step-num">STEP 1</span> <span class="step-title">날짜
-						확인</span>
-				</div>
-				<div class="step-item active">
-					<span class="step-num">STEP 2</span> <span class="step-title">장소
-						선택</span>
-				</div>
-				<div class="step-item">
-					<span class="step-num">STEP 3</span> <span class="step-title">숙소
-						설정</span>
-				</div>
+		<section class="trip-left-nav">
+			<nav class="nav step-nav" role="tablist">
+				<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#date" role="tab">
+					<span class="step-title">날짜 및 지역</span>
+				</button>
+				<button class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#loc" role="tab">
+					<span class="step-title">장소 선택</span>
+				</button>
+				<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#confirm" role="tab">
+					<span class="step-title">일정 확인</span>
+				</button>
 			</nav>
 		</section>
+		
 		<!-- 왼쪽 사이드바 -->
-		<section class="trip-sidebar-left" aria-label="장소 리스트">
-			<h2 class="sl-title">제주</h2>
-			<div class="sl-date">2025.08.12(화) - 2025.08.15(금)</div>
-			<form action="..." method="post"
-				class="trip-search-form">
-				<div class="input-group">
-					<input type="text" name="query" class="form-control"
-						placeholder="장소명을 입력하세요">
-					<button type="submit" class="btn-search">
-						<i class="fa fa-search"></i>
-					</button>
-				</div>
+		<section class="tab-pane trip-sidebar-left " id = "home" aria-label="장소 리스트">
+			<div class="d-flex justify-content-between align-items-end mb-3">
+			  <span class="fw-bold fs-2">제주</span>
+			  <span class="px-2 py-1">2025.08.12(화) - 2025.08.15(금)</span>
+			</div>
+			<div class="trip-tabs mb-2" id="trip-loc-tab" role="tablist">
+				<button class="trip-tab is-active" role="tab" aria-selected="true" onclick="toggleLoc(this)" >추천</button>
+				<button id="trip-tab-search" class="trip-tab" role="tab" aria-selected="false" onclick="toggleLoc(this)">직접 검색</button>
+				<!-- 파란 인디케이터 -->
+				<span class="trip-tab-indicator"></span>
+			</div>
+			<form action="..." method="post" id="trip-search-form" style="display:none; " class="mt-1">
+              <div class="d-flex flex-row">
+				<input type="text" name="query" class="form-control"
+					placeholder="장소명을 입력하세요">
+				<button type="submit" class="btn-search">
+					<i class="fa fa-search"></i>
+				</button>
+			  </div>
 			</form>
-			<%@ include file="/jspf/trip-loc.jspf"%>
-			<%@ include file="/jspf/trip-loc.jspf"%>
+		    <div class="trip-loc-tags my-2">
+	            <span class="trip-loc-tag">명소</span>
+	            <span class="trip-loc-tag">식당</span>
+	            <span class="trip-loc-tag">카페</span>
+	            <span class="trip-loc-tag">친구 추천</span>
+            </div>
+			<%@ include file="/jspf/trip/trip-loc.jspf"%>
+			<%@ include file="/jspf/trip/trip-loc.jspf"%>
 		</section>
 		<!-- 중간 일정 타임라인 -->
-		<section class="trip-schedule" aria-label="일정 타임라인">
+		<section class="trip-schedule" >
 			<div class="trip-schedule-header">
 				하와이 <small style="font-weight: normal; color: #999;">2025.9.6 - 2025.9.9</small>
 			</div>
@@ -57,12 +66,12 @@
 							<button class="trip-tab" role="tab" aria-selected="false" data-day="3">3일</button>
 							<button class="trip-tab" role="tab" aria-selected="false" data-day="4">4일</button>
 							<button class="trip-tab" role="tab" aria-selected="false" data-day="5">5일</button>
-
 							<!-- 파란 인디케이터 -->
 							<span class="trip-tab-indicator"></span>
 						</div>
 					</div>
-					<%@ include file="/jspf/trip-course.jspf"%>
+					<%@ include file="/jspf/trip/trip-course.jspf"%>
+					<%@ include file="/jspf/trip/trip-course.jspf"%>
 				</div>
 			</div>
 		</section>

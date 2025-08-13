@@ -9,9 +9,18 @@ function toggleNote(btn) {
 	}
 }
 
+function toggleLoc(btn){
+	const ele = document.getElementById('trip-search-form');
+	if(btn.id === 'trip-tab-search'){
+		ele.style.display = "block";
+	}else{
+		ele.style.display = "none";
+	}
+}
+ 
 // 탭 인디케이터 위치/너비 갱신
-  (function(){
-    const trip_tabs = document.getElementById('dayTabs');
+ function setTab(id){ // tabs 요소의 id
+    const trip_tabs = document.getElementById(id);
     const trip_indicator = trip_tabs.querySelector('.trip-tab-indicator');
     const items = [...trip_tabs.querySelectorAll('.trip-tab')];
 
@@ -40,4 +49,7 @@ function toggleNote(btn) {
       if(!btn) return;
       setActive(btn);
     });
-  })();
+  }
+  
+  setTab("trip-loc-tab");
+  setTab("dayTabs");
