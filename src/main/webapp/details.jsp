@@ -4,14 +4,11 @@
 <!-- 커스텀 CSS import 존 -->
 
 </head>
-<body class="portfolio-details-page">
+<body>
 <%@ include file="/jspf/header.jspf" %> <!-- 헤더부분 고정 -->
 
-
-	    <%@ include file="/board/viewcontent.jspf" %>
-
-
+<%@ include file="/jspf/details/tripdetail.jspf" %>
     
 <%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
 </body>
-</html>
+</html> 

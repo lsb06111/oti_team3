@@ -10,18 +10,18 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <%@ include file="/jspf/main/welcome.jspf" %>
+    <%@ include file="/jspf/welcome.jspf" %>
 
     <%-- <%@ include file="/jspf/serviceinfo.jspf" %> --%>
 
-    <%@ include file="/jspf/main/featureinfo.jspf" %> 
+    <%@ include file="/jspf/featureinfo.jspf" %> 
 
-	<%@ include file="/jspf/main/steps.jspf" %>
+	<%@ include file="/jspf/steps.jspf" %>
 	
-    <%@ include file="/jspf/main/preview.jspf" %> 
+    <%@ include file="/jspf/preview.jspf" %> 
 
 
-    <%@ include file="/jspf/main/faq.jspf" %> 
+    <%@ include file="/jspf/faq.jspf" %> 
 
     
 	<%-- <%@ include file="/jspf/teamcards.jspf" %> --%>
