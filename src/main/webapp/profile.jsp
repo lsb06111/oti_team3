@@ -6,97 +6,213 @@
 </head>
 <body>
 <%@ include file="/jspf/header.jspf" %> <!-- 헤더부분 고정 -->
+<%
+    String identify = request.getParameter("identify");
+    String reqName = request.getParameter("name");
+    reqName = reqName == null ? "이수빈" : reqName;
+    boolean isMe = identify != null && identify.equals("myself");
+%>
 
 <section>
   <div class="container py-5">
-    <div class="row" >
+    <div class="row">
       <div class="col">
         <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            <li class="breadcrumb-item active" aria-current="page"><%= reqName %>님의 프로필</li>
+            <% if(isMe){ %>
+              <li class="breadcrumb-item">
+                <a href="#" id="modal-changeinfo" data-bs-toggle="modal" data-bs-target="#modalChangeinfo">정보 수정</a>
+              </li>
+            <% } %>
           </ol>
         </nav>
       </div>
     </div>
 
     <div class="row">
+      <!-- LEFT -->
       <div class="col-lg-4">
         <div class="card mb-4" style="border-radius: 15px;box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);border: none;">
           <div class="card-body text-center">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">이수빈</h5>
-            <p class="text-muted mb-1">부산여행 중독자</p>
-            <p class="text-muted mb-4">주 여행 지역: 부산, 인천</p>
-            <div class="d-flex justify-content-center mb-2">
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" style="--bs-btn-bg:#5c99ee; 
-             --bs-btn-hover-bg:#447fcc; 
-             --bs-btn-border-color:#5c99ee; 
-             --bs-btn-hover-border-color:#447fcc;">팔로잉</button>
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1" style=" 
-             --bs-btn-hover-bg:#447fcc; 
-             --bs-btn-border-color:#5c99ee; 
-             --bs-btn-hover-border-color:#447fcc;">팔로우</button>
-            </div>
+                 class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="mt-3 mb-1"><%= reqName + " " + (isMe ? "@soobinlee647" : identify) %></h5>
+            <ol class="breadcrumb mb-2" style="display:flex; justify-content:center;">
+              <li class="breadcrumb-item">
+                팔로워 :
+                <a href="#" id="modal-following" data-bs-toggle="modal" data-bs-target="#modalFollowing" onclick="changeModalTitle('팔로워')">213명</a>
+              </li>
+              <li class="breadcrumb-item" id="modal-following" data-bs-toggle="modal" data-bs-target="#modalFollowing" onclick="changeModalTitle('팔로잉')">
+                팔로잉 : <a href="#">129명</a>
+              </li>
+            </ol>
+
+            <% if(!isMe) { %>
+              <div class="d-flex justify-content-center mb-2">
+                <button type="button" class="btn btn-primary"
+                        style="--bs-btn-bg:#5c99ee; --bs-btn-hover-bg:#447fcc; --bs-btn-border-color:#5c99ee; --bs-btn-hover-border-color:#447fcc;">
+                  팔로잉
+                </button>
+                <button type="button" class="btn btn-outline-primary ms-1"
+                        style="--bs-btn-hover-bg:#447fcc; --bs-btn-border-color:#5c99ee; --bs-btn-hover-border-color:#447fcc;">
+                  팔로우
+                </button>
+              </div>
+            <% } %>
           </div>
         </div>
-        
-      </div>
-      <div class="col-lg-8">
-        
-        <!--  -->
-		<section id="services" class="services section" style="padding:0">
 
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-12">
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="bi bi-palette"></i>
-              </div>
-              <h3>Creative Design</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-              <a href="service-details.html" class="service-link">
-                Learn More
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
-
-          <div class="col-12">
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="bi bi-code-slash"></i>
-              </div>
-              <h3>Web Development</h3>
-              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-              <a href="service-details.html" class="service-link">
-                Learn More
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
-        
+        <!-- Location filter card -->
+        <div class="card mb-4 mb-lg-0" style="border-radius: 15px;box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);border: none;">
+          <div class="card-header fw-semibold">지역별 보기</div>
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3" id="locList">
+				<li class="list-group-item d-flex justify-content-between align-items-center p-3 active"
+		          data-location="*" style="cursor:pointer;">
+		        <span><i class="bi bi-geo text-primary me-2"></i>전체 지역</span>
+		        <i class="bi bi-chevron-right text-muted"></i>
+		      </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3" data-location="강원도" style="cursor:pointer;">
+                <span><i class="bi bi-geo-alt text-primary me-2"></i>강원도</span>
+                <i class="bi bi-chevron-right text-muted"></i>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3" data-location="부산" style="cursor:pointer;">
+                <span><i class="bi bi-geo-alt text-primary me-2"></i>부산</span>
+                <i class="bi bi-chevron-right text-muted"></i>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3" data-location="제주도" style="cursor:pointer;">
+                <span><i class="bi bi-geo-alt text-primary me-2"></i>제주도</span>
+                <i class="bi bi-chevron-right text-muted"></i>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3" data-location="전주" style="cursor:pointer;">
+                <span><i class="bi bi-geo-alt text-primary me-2"></i>전주</span>
+                <i class="bi bi-chevron-right text-muted"></i>
+              </li>
+            </ul>
+          </div>
         </div>
-
       </div>
 
-    </section>
-        
-        
-        
-        
-        <!--  -->
+      <!-- RIGHT -->
+      <div class="col-lg-8">
+        <section id="services" class="services section" style="padding:0">
+          <div class="container">
+            <div class="row gy-4" id="tripCardsRow">
+              <%
+                String[] transport = {"bus-front", "car-front-fill", "person-walking", "car-front-fill"};
+                String[] titles = {"수빈이와 떠나는 행복여행", "부산 뿌시기 여행", "제주도 혼자 여행", "전주 맛집 탐방"};
+                String[] tripLocations = {"강원도", "부산", "제주도", "전주"};
+                for(int i=0; i<4; i++){
+              %>
+              <div class="col-12">
+                <!-- tag this card with its location -->
+               <div class="service-card"
+			     data-location="<%= tripLocations[i] %>"
+			     style="padding: 18px 24px; cursor:pointer;"
+			     onclick="location.href='/oti_team3/details.jsp?title=<%= titles[i] %>'">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px">
+                    <div class="service-icon" style="margin-bottom:0">
+                      <i class="bi bi-<%= transport[i] %>"></i>
+                    </div>
+                    <div style="margin-left: 10px;">
+                      <h3 style="margin:0;"><%= titles[i] %></h3>
+                      <ol class="breadcrumb mb-2" style="display:flex;">
+                        <li class="breadcrumb-item">3박 4일</li>
+                        <li class="breadcrumb-item">지역 :
+                          <strong style="color:#5c99ee"><%= tripLocations[i] %></strong>
+                        </li>
+                      </ol>
+                    </div>
+                    <!-- action button aligned to the right -->
+                    <a href="/oti_team3/board/"
+                       class="service-link ms-auto"
+                       onclick="event.stopPropagation();"
+                       style="width:fit-content; transition:color 0.3s; color:inherit;"
+                       onmouseover="this.style.color='#5c99ee';"
+                       onmouseout="this.style.color='inherit';">
+                      리뷰 작성하기 <i class="bi bi-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>
 </section>
-    
-    
+
+<!-- 팔로잉/팔로워 모달 -->
+<div class="modal fade" id="modalFollowing" tabindex="-1" aria-labelledby="modalFollowingLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalFollowingLabel">팔로잉</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+      </div>
+      <div class="modal-body p-4">
+        <%@ include file="/jspf/follows/followinglist.jspf" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 정보수정 모달 -->
+<div class="modal fade" id="modalChangeinfo" tabindex="-1" aria-labelledby="modalChangeinfoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-body" style="padding:0">
+        <%@ include file="/jspf/user/changeinfo.jspf" %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
+
+<script>
+  const modalTitleDom = document.querySelector('#modalFollowingLabel');
+  function changeModalTitle(titleName) {
+    modalTitleDom.textContent = titleName;
+  }
+
+  (function () {
+    const list = document.getElementById('locList');
+    if (!list) return;
+
+    const items = list.querySelectorAll('.list-group-item');
+    const cards = document.querySelectorAll('#tripCardsRow .service-card[data-location]');
+
+    function filterByLocation(loc) {
+      cards.forEach(function (card) {
+        const col = card.closest('.col-12');
+        if (!col) return;
+
+        const match = (loc === '*') || (card.getAttribute('data-location') === loc);
+        col.style.display = match ? '' : 'none';
+      });
+    }
+
+    // click handlers
+    items.forEach(function (li) {
+      li.addEventListener('click', function () {
+        // active highlight
+        items.forEach(function (x) { x.classList.remove('active'); });
+        this.classList.add('active');
+
+        // filter
+        const loc = this.getAttribute('data-location');
+        filterByLocation(loc);
+      });
+    });
+
+    // initial state: show all
+    filterByLocation('*');
+  })();
+</script>
+
 </body>
-</html> 
+</html>
