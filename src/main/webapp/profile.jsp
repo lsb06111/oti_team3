@@ -65,7 +65,7 @@
 
         <!-- Location filter card -->
         <div class="card mb-4 mb-lg-0" style="border-radius: 15px;box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);border: none;">
-          <div class="card-header fw-semibold">지역별 보기</div>
+          <div class="card-header fw-semibold" style="border-bottom:none">지역별 보기</div>
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3" id="locList">
 				<li class="list-group-item d-flex justify-content-between align-items-center p-3 active"
@@ -117,7 +117,7 @@
                     </div>
                     <div style="margin-left: 10px;">
                       <h3 style="margin:0;"><%= titles[i] %></h3>
-                      <ol class="breadcrumb mb-2" style="display:flex;">
+                      <ol class="breadcrumb mb-0" style="display:flex;">
                         <li class="breadcrumb-item">3박 4일</li>
                         <li class="breadcrumb-item">지역 :
                           <strong style="color:#5c99ee"><%= tripLocations[i] %></strong>
@@ -171,10 +171,25 @@
   </div>
 </div>
 
+<%
+	String toastTitle = "알림";
+	String toastMsg = "정보 변경에 성공하였습니다!";
+	boolean toastSuccess = true;
+%>
+<%@ include file="/jspf/toasts/toast.jspf" %>
+
+
 <%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
 
 <script>
   const modalTitleDom = document.querySelector('#modalFollowingLabel');
+  document.querySelector('.list-group-item.active > i').style
+	.setProperty('color', 'white', 'important');
+	document.querySelector('.list-group-item.active > span > i').style
+	.setProperty('color', 'white', 'important');
+	document.querySelector('.list-group-item.active').style
+	.setProperty('background', '#5c99ee', 'important');
+	
   function changeModalTitle(titleName) {
     modalTitleDom.textContent = titleName;
   }
@@ -203,15 +218,52 @@
         items.forEach(function (x) { x.classList.remove('active'); });
         this.classList.add('active');
 
+        //all 
+        document.querySelectorAll('.list-group-item > i').forEach(e => e.style
+        		.setProperty('color', 'black', 'important'));
+        
+        //active color change
+        document.querySelector('.list-group-item.active > i').style
+        		.setProperty('color', 'white', 'important');
+        
+        document.querySelectorAll('.list-group-item > span > i').forEach(e => e.style
+        		.setProperty('color', 'rgb(13,110,253)', 'important'));
+        
+        document.querySelector('.list-group-item.active > span > i').style
+				.setProperty('color', 'white', 'important');
+        
+        
+        document.querySelectorAll('.list-group-item').forEach(e => e.style
+				.setProperty('background', 'white', 'important'));
+        
+        document.querySelector('.list-group-item.active').style
+    			.setProperty('background', '#5c99ee', 'important');
+        
         // filter
         const loc = this.getAttribute('data-location');
         filterByLocation(loc);
+        
+        
+        
       });
     });
 
     // initial state: show all
     filterByLocation('*');
   })();
+  
+  
+  const toastTrigger = document.getElementById('liveToastBtn')
+  const toastLiveExample = document.getElementById('liveToast')
+
+  if (toastTrigger) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    toastTrigger.addEventListener('click', () => {
+      toastBootstrap.show()
+    })
+  }
+  
+  
 </script>
 
 </body>

@@ -71,7 +71,7 @@
                     </div>
                     
                     
-                    <button type="button" class="btn text-white change-info-button"
+                    <button type="button" class="btn text-white change-info-button" id="liveToastBtn"
 					      style="--bs-btn-bg:#5c99ee; 
 					             --bs-btn-hover-bg:#447fcc; 
 					             --bs-btn-border-color:#5c99ee; 
@@ -91,6 +91,12 @@
           </div>
         </div>
       </div>
+      
+      
+      
+
+      
+      
       
       
       
