@@ -10,7 +10,7 @@
 		<section class="trip-left-nav">
 			<nav class="nav step-nav" role="tablist">
 				<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#date" role="tab">
-					<span class="step-title">날짜 및 지역</span>
+					<span class="step-title">날짜/지역</span>
 				</button>
 				<button class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#loc" role="tab">
 					<span class="step-title">장소 선택</span>

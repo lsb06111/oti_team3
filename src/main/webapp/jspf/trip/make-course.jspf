@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>	
+		<div class="d-flex">
+			<section class="trip-sidebar-left" style="flex:1;">
+				<div class="trip-tabs mb-3" id="trip-loc-tab" role="tablist">
+					<button class="trip-tab is-active" role="tab" aria-selected="true" onclick="toggleLoc(this)" >추천</button>
+					<button id="trip-tab-search" class="trip-tab" role="tab" aria-selected="false" onclick="toggleLoc(this)">직접 검색</button>
+					<!-- 파란 인디케이터 -->
+					<span class="trip-tab-indicator"></span>
+				</div>
+				<form action="..." method="post" id="trip-search-form" style="display:none; " class="mt-1">
+					<div style="position: relative; width: 300px;">
+					  <input type="text" name="query" class="form-control"
+					         placeholder="장소명을 입력하세요"
+					         style="padding-right: 40px;"> <!-- 버튼 공간 확보 -->
+					  <button type="submit" class="btn-search"
+					          style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer;">
+					    <i class="fa fa-search"></i>
+					  </button>
+					</div>
+				</form>
+			    <div class="trip-loc-tags mt-2 mb-2">
+		            <span class="trip-loc-tag">명소</span>
+		            <span class="trip-loc-tag">식당</span>
+		            <span class="trip-loc-tag">카페</span>
+		            <span class="trip-loc-tag">친구 추천</span>
+	            </div>
+	            <div style=" max-height: 75vh; overflow-y: auto;">
+					<%@ include file="/jspf/trip/trip-loc.jspf"%>
+					<%@ include file="/jspf/trip/trip-loc.jspf"%>
+					<%@ include file="/jspf/trip/trip-loc.jspf"%>
+					<%@ include file="/jspf/trip/trip-loc.jspf"%>
+	            </div>
+			</section>
+			<!-- 중간 일정 타임라인 -->
+			<section class="trip-schedule" id="trip-loc" style="flex:1">
+				<div class="trip-schedule-header mb-3 d-flex justify-content-between">
+					<span class="fs-3">하와이</span>
+					 <small class="d-flex align-items-end" style="font-weight: normal; color: #999;">2025.9.6 - 2025.9.9</small>
+				</div>
+				<div class="trip-timeline">
+					<div class="trip-timeline-day">
+						<div class="trip-timeline-day-header mb-3">
+							<!-- Tabs: 일정 일차 선택 -->
+							<div class="trip-tabs" id="dayTabs" role="tablist" aria-label="일차 선택">
+								<button class="trip-tab is-active" role="tab" aria-selected="true" data-day="1">1일</button>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="2">2일</button>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="3">3일</button>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="4">4일</button>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="5">5일</button>
+								<!-- 파란 인디케이터 -->
+								<span class="trip-tab-indicator"></span>
+							</div>
+						</div>
+						<div style=" max-height: 80vh; overflow-y: auto;">
+							<%@ include file="/jspf/trip/trip-course.jspf"%>
+							<%@ include file="/jspf/trip/trip-course.jspf"%>
+						</div>
+					</div>
+				</div>
+			</section>
+	
+			<!-- 오른쪽: 지도 -->
+			<section class="map-container" aria-label="지도" style="flex:2.5">
+				<div id="map">
+					<!-- 실제 지도 API 삽입 시 여기 -->
+					지도 영역
+				</div>
+				<button class="btn-info">이용방법</button>
+			</section>
+		</div>

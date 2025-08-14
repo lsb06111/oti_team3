@@ -8,7 +8,7 @@
 		<div>
 			<div class="sl-badge">친구추천</div>
 			<div class="sl-badge">명소</div>
-			<div class="sl-badge">月 <b>399</b>명 방문</div>
+			<div class="sl-badge">月 <b>399</b>명</div>
 		</div>
 		<button class="sl-add" aria-label="일정에 추가">+</button>
 	</div>
