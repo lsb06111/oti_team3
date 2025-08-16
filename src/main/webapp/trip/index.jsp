@@ -14,9 +14,7 @@
 			<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="exampleHiding(1)">
 				<span class="step-title">장소 선택</span>
 			</button>
-			<button class="nav-link step-item btn btn-primary" data-bs-toggle="tab" data-bs-target="#trip-confirm" role="tab" onclick="exampleHiding(2)">
-				<span class="step-title">다음</span>
-			</button>
+			<button class= "btn btn-primary">선택 완료</button>
 		</nav>
 		<!-- 왼쪽 사이드바 -->
 		
@@ -28,22 +26,28 @@
 		<div class="example-hiding" style="display:none; flex:17;">
 			<%@ include file="/jspf/trip/make-course.jspf" %>
 		</div>
+		<!-- js 에러 임시 처리용 : main.js 고쳐야 해결됨 -->
+		<button class="scroll-top" style="display:none"></button>
+		<button id = "header" style="display:none"></button>
+		<!-- -->
 	</main>
 	<script>
-		function exampleHiding(exampleIndex){
-			let exampleDoms = document.querySelectorAll('.example-hiding'); // array
-			exampleDoms[exampleIndex].style.display = 'block';
-			for(let exD in exampleDoms){
-				if(exD != exampleIndex)
-					exampleDoms[exD].style.display = 'none';
-			}
+	
+	let scrollTop = document.querySelector('.scroll-top');
+	
+	
+	function exampleHiding(exampleIndex) {
+		  const exampleDoms = document.querySelectorAll('.example-hiding'); // NodeList
+		  exampleDoms.forEach((el, i) => {
+		    el.style.display = (i === exampleIndex ? 'block' : 'none');
+		  });
 		}
 	
 	</script>
 	
 	
-	<script src="/oti_team3/assets/js/trip.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  <script src="/oti_team3/assets/js/trip.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	  <!-- Vendor JS Files -->
   <script src="/oti_team3/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/oti_team3/assets/vendor/php-email-form/validate.js"></script>
