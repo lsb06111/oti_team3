@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div style="flex: 1">
-	<span class="fw-bold fs-2 mb-2">날짜 결정</span><br>
+<div>
+	<span class="fs-2 mb-2">날짜</span><br>
 	<p class="m-5"></p>
 	<div class="d-flex flex-row align-items-center">
 		<div class="fs-5">출발일 : </div>

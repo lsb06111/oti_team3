@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*"%>
-<div class="d-flex">
+<div class="d-flex p-2">
 	<section class="trip-sidebar-left" aria-label="장소 리스트" style="flex:0.8">
 		<%@ include file="/jspf/trip/calendar.jspf" %> 
 	</section>
 	<!-- 중간 일정 타임라인 -->
-	<div class="d-flex flex-column" style="flex:3">
+	<div class="d-flex flex-column" style="flex:3; padding:15px;">
+		<span class="fs-2 mb-2">여행지</span><br>
 		<section class="portfolio section" aria-label="일정 타임라인">
 			<div class="container">
 		        <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">

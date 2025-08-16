@@ -5,29 +5,27 @@
 <link rel="stylesheet" href="/oti_team3/assets/css/trip.css">
 </head>
 <body class="trip-body">
-<%@ include file="/jspf/header.jspf"%>
 	<main class="trip-main">
-		<section class="trip-left-nav" style="width:130px">
-			<nav class="nav step-nav" role="tablist">
-				<button class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#trip-date" role="tab" onclick="exampleHiding(0)">
-					<span class="step-title">날짜/지역</span>
-				</button>
-				<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="exampleHiding(1)">
-					<span class="step-title">장소 선택</span>
-				</button>
-				<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-confirm" role="tab" onclick="exampleHiding(2)">
-					<span class="step-title">일정 확인</span>
-				</button>
-			</nav>
-		</section>
+		<nav class="nav step-nav my-4 mx-3" role="tablist" style="flex:1;">
+	      	<a href="/oti_team3/" class="trip-sitename">TripNote</a>
+			<button class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#trip-date" role="tab" onclick="exampleHiding(0)">
+				<span class="step-title">날짜/지역</span>
+			</button>
+			<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="exampleHiding(1)">
+				<span class="step-title">장소 선택</span>
+			</button>
+			<button class="nav-link step-item btn btn-primary" data-bs-toggle="tab" data-bs-target="#trip-confirm" role="tab" onclick="exampleHiding(2)">
+				<span class="step-title">다음</span>
+			</button>
+		</nav>
 		<!-- 왼쪽 사이드바 -->
 		
 		<!-- 지우기 여기부터  -->
-		<div class="example-hiding" style="flex:1">
+		<div class="example-hiding" style="flex:11">
 			<%@ include file="/jspf/trip/pre-trip.jspf" %>
 		</div>
 		
-		<div class="example-hiding" style="display:none; flex:1;">
+		<div class="example-hiding" style="display:none; flex:17;">
 			<%@ include file="/jspf/trip/make-course.jspf" %>
 		</div>
 	</main>

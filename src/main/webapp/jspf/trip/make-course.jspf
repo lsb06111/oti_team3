@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>	
-		<div class="d-flex">
-			<section class="trip-sidebar-left" style="flex:1;">
+		<div class="d-flex p-2">
+			<section class="trip-sidebar-left" style="flex:1.2;">
 				<div class="trip-tabs mb-3" id="trip-loc-tab" role="tablist">
-					<button class="trip-tab is-active" role="tab" aria-selected="true" onclick="toggleLoc(this)" >추천</button>
-					<button id="trip-tab-search" class="trip-tab" role="tab" aria-selected="false" onclick="toggleLoc(this)">직접 검색</button>
+					<button class="trip-tab is-active fs-5" role="tab" aria-selected="true" onclick="toggleLoc(this)" >추천</button>
+					<button class="trip-tab fs-5" id="trip-tab-search" role="tab" aria-selected="false" onclick="toggleLoc(this)">직접 검색</button>
 					<!-- 파란 인디케이터 -->
 					<span class="trip-tab-indicator"></span>
 				</div>
