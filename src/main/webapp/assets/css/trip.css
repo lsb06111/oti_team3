@@ -48,7 +48,7 @@
 .trip-sidebar-left {
 	flex: 1.2;
 	border-right: 1px solid #ddd;
-	padding: 15px;
+	padding: 15px 15px 0px 15px;
 	overflow-y: auto;
 }
 
@@ -278,6 +278,7 @@
 }
 
 .sl-name {
+	font-size: 14px;
 	font-weight: 800;
 	color: #0a66c2;
 	text-decoration: none;
@@ -332,7 +333,7 @@
 	user-select: none;
 }
 
-/* 탭 버튼 */
+/* 일자별 여행코스의 탭버튼 */
 .trip-tab {
 	appearance: none;
 	border: 0;

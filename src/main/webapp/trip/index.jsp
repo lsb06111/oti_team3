@@ -8,10 +8,10 @@
 	<main class="trip-main">
 		<nav class="nav step-nav my-4 mx-3" role="tablist" style="flex:1;">
 	      	<a href="/oti_team3/" class="trip-sitename">TripNote</a>
-			<button class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#trip-date" role="tab" onclick="exampleHiding(0)">
+			<button class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#trip-date" role="tab" onclick="switchStep(0)">
 				<span class="step-title">날짜/지역</span>
 			</button>
-			<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="exampleHiding(1)">
+			<button class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="switchStep(1)">
 				<span class="step-title">장소 선택</span>
 			</button>
 			<button class= "btn btn-primary">선택 완료</button>
@@ -19,11 +19,11 @@
 		<!-- 왼쪽 사이드바 -->
 		
 		<!-- 지우기 여기부터  -->
-		<div class="example-hiding" style="flex:11">
+		<div class="trip-step" style="flex:11">
 			<%@ include file="/jspf/trip/pre-trip.jspf" %>
 		</div>
 		
-		<div class="example-hiding" style="display:none; flex:17;">
+		<div class="trip-step" style="display:none; flex:17;">
 			<%@ include file="/jspf/trip/make-course.jspf" %>
 		</div>
 		<!-- js 에러 임시 처리용 : main.js 고쳐야 해결됨 -->
@@ -31,21 +31,7 @@
 		<button id = "header" style="display:none"></button>
 		<!-- -->
 	</main>
-	<script>
-	
-	let scrollTop = document.querySelector('.scroll-top');
-	
-	
-	function exampleHiding(exampleIndex) {
-		  const exampleDoms = document.querySelectorAll('.example-hiding'); // NodeList
-		  exampleDoms.forEach((el, i) => {
-		    el.style.display = (i === exampleIndex ? 'block' : 'none');
-		  });
-		}
-	
-	</script>
-	
-	
+		
   <script src="/oti_team3/assets/js/trip.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	  <!-- Vendor JS Files -->

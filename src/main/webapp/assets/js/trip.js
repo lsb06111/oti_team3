@@ -9,20 +9,23 @@ function toggleNote(btn) {
 	}
 }
 
-function toggleLoc(btn){
-	const ele = document.getElementById('trip-search-form');
+function toggleLocTab(btn){
+	const searchE = document.getElementById('trip-search-form');
+	const recomE = document.getElementById('trip-rcmds');
 	if(btn.id === 'trip-tab-search'){
-		ele.style.display = "block";
+		searchE.style.display = "block";
+		recomE.style.display = "none";
 	}else{
-		ele.style.display = "none";
+		searchE.style.display = "none";
+		recomE.style.display = "block";
 	}
 }
  
 // 탭 인디케이터 위치/너비 갱신
- function setTab(id){ // tabs 요소의 id
-    const trip_tabs = document.getElementById(id);
-    const trip_indicator = trip_tabs.querySelector('.trip-tab-indicator');
-    const items = [...trip_tabs.querySelectorAll('.trip-tab')];
+function setTab(id){ // tabs 요소의 id
+	const trip_tabs = document.getElementById(id);
+	const trip_indicator = trip_tabs.querySelector('.trip-tab-indicator');
+	const items = [...trip_tabs.querySelectorAll('.trip-tab')];
 
     function updateIndicator(target){
       const { offsetLeft: left, offsetWidth: width } = target;
@@ -50,6 +53,23 @@ function toggleLoc(btn){
       setActive(btn);
     });
   }
+setTab("trip-loc-tab");
+setTab("dayTabs"); 
   
-  setTab("trip-loc-tab");
-  setTab("dayTabs");
+// step tab 전환  
+function switchStep(tabIndex) {
+	  const stepDoms = document.querySelectorAll('.trip-step'); // NodeList
+	  stepDoms.forEach((el, i) => {
+	    el.style.display = (i === tabIndex ? 'block' : 'none');
+	  });
+	}
+  
+
+// 일자별 여행 코스 탭 전환
+function switchDay(btn){
+	let idx = btn.getAttribute("data-day");
+	let timelineDoms = document.querySelectorAll(".trip-timelineForDay");
+	timelineDoms.forEach((el, i) => {
+		el.style.display = (i+1 == idx ? 'block' : 'none');
+	});
+}

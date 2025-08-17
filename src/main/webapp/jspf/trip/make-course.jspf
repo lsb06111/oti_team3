@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>	
-		<div class="d-flex p-2">
+		<div class="d-flex" style="height:100vh">
 			<section class="trip-sidebar-left" style="flex:1.2;">
 				<div class="trip-tabs mb-3" id="trip-loc-tab" role="tablist">
-					<button class="trip-tab is-active fs-5" role="tab" aria-selected="true" onclick="toggleLoc(this)" >추천</button>
-					<button class="trip-tab fs-5" id="trip-tab-search" role="tab" aria-selected="false" onclick="toggleLoc(this)">직접 검색</button>
+					<button class="trip-tab is-active fs-5" id="trip-tab-rcmd" role="tab" aria-selected="true" onclick="toggleLocTab(this)" >추천</button>
+					<button class="trip-tab fs-5" id="trip-tab-search" role="tab" aria-selected="false" onclick="toggleLocTab(this)">직접 검색</button>
 					<!-- 파란 인디케이터 -->
 					<span class="trip-tab-indicator"></span>
 				</div>
@@ -19,18 +19,17 @@
 					  </button>
 					</div>
 				</form>
-			    <div class="trip-loc-tags mt-2 mb-2">
-		            <span class="trip-loc-tag">명소</span>
-		            <span class="trip-loc-tag">식당</span>
-		            <span class="trip-loc-tag">카페</span>
-		            <span class="trip-loc-tag">친구 추천</span>
-	            </div>
-	            <div style=" max-height: 75vh; overflow-y: auto;">
-					<%@ include file="/jspf/trip/trip-loc.jspf"%>
-					<%@ include file="/jspf/trip/trip-loc.jspf"%>
-					<%@ include file="/jspf/trip/trip-loc.jspf"%>
-					<%@ include file="/jspf/trip/trip-loc.jspf"%>
-	            </div>
+				<div id="trip-rcmds">
+				    <div class="trip-loc-tags mt-2 mb-2">
+			            <span class="trip-loc-tag">명소</span>
+			            <span class="trip-loc-tag">식당</span>
+			            <span class="trip-loc-tag">카페</span>
+			            <span class="trip-loc-tag">친구 추천</span>
+		            </div>
+		            <div style=" max-height: calc(100vh - 140px); overflow-y: auto;">
+						<%@ include file="/jspf/trip/trip-loc.jspf"%>
+		            </div>
+				</div>
 			</section>
 			<!-- 중간 일정 타임라인 -->
 			<section class="trip-schedule" id="trip-loc" style="flex:1">
@@ -43,25 +42,35 @@
 						<div class="trip-timeline-day-header mb-3">
 							<!-- Tabs: 일정 일차 선택 -->
 							<div class="trip-tabs" id="dayTabs" role="tablist" aria-label="일차 선택">
-								<button class="trip-tab is-active" role="tab" aria-selected="true" data-day="1">1일</button>
-								<button class="trip-tab" role="tab" aria-selected="false" data-day="2">2일</button>
-								<button class="trip-tab" role="tab" aria-selected="false" data-day="3">3일</button>
-								<button class="trip-tab" role="tab" aria-selected="false" data-day="4">4일</button>
-								<button class="trip-tab" role="tab" aria-selected="false" data-day="5">5일</button>
+								<button class="trip-tab is-active" role="tab" aria-selected="true" data-day="1" onclick="switchDay(this)">1일</button>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="2" onclick="switchDay(this)">2일</button>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="3" onclick="switchDay(this)">3일</button>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="4" onclick="switchDay(this)">4일</button>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="5" onclick="switchDay(this)">5일</button>
 								<!-- 파란 인디케이터 -->
 								<span class="trip-tab-indicator"></span>
 							</div>
 						</div>
-						<div style=" max-height: 80vh; overflow-y: auto;">
-							<%@ include file="/jspf/trip/trip-course.jspf"%>
-							<%@ include file="/jspf/trip/trip-course.jspf"%>
+						<div  style=" max-height: calc(100vh - 150px); overflow-y: auto;">
+							<div class="trip-timelineForDay" data-day="1">
+								<%@ include file="/jspf/trip/trip-timeline.jspf"%>
+							</div>
+							<div class="trip-timelineForDay" data-day="2" style="display:none">
+								<%@ include file="/jspf/trip/trip-timeline.jspf"%>
+								<%@ include file="/jspf/trip/trip-timeline.jspf"%>
+							</div>
+							<div class="trip-timelineForDay" data-day="3" style="display:none">
+								<%@ include file="/jspf/trip/trip-timeline.jspf"%>
+								<%@ include file="/jspf/trip/trip-timeline.jspf"%>
+								<%@ include file="/jspf/trip/trip-timeline.jspf"%>
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 	
 			<!-- 오른쪽: 지도 -->
-			<section class="map-container" aria-label="지도" style="flex:2.5">
+			<section class="map-container p-0" aria-label="지도" style="flex:2.5">
 				<div id="map">
 					<!-- 실제 지도 API 삽입 시 여기 -->
 					지도 영역
