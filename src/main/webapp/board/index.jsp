@@ -1,285 +1,166 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*"%>
 <%@ include file="/jspf/head.jspf" %> <!-- 헤드 부분 고정 -->
 <!-- 커스텀 CSS import 존 -->
-<link href="/oti_team3/assets/css/board.css" rel="stylesheet">
+
 </head>
 <body>
 <%@ include file="/jspf/header.jspf" %> <!-- 헤더부분 고정 -->
 
-<!-- Services Section -->
-    <section id="services" class="services section">
+<section id="portfolio" class="portfolio services section mt-5">
 
       <!-- Section Title -->
-      <div class="container section-title">
-        <h2 style = "margin:50px">리뷰게시판</h2>
-        <p>리뷰를 확인해보세요!</p>
-        <div class = "write_review">
-	        <a href="write.jsp" class="service-link" id = "write_review">
-	                리뷰 작성하기
-	                <i class="bi bi-arrow-right"></i>
-	        </a>
-        </div>
-       </div>
+      <div class="container section-title" style="padding-bottom:60px;">
+        <h2>리뷰 게시판</h2>
+        <p>리뷰를 확인해보세요</p>
+      </div><!-- End Section Title -->
 
-			<!-- Navigation Section -->
-    <section id="portfolio" class="portfolio section">
-      <!-- Section Title -->
       <div class="container">
+
         <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
-          <div class="portfolio-filters-wrapper" style="display: flex; align-items: center; justify-content: space-between;">
-          	
-            <ul class="portfolio-filters isotope-filters">
-              <li data-filter="*" class="filter-active">전체</li>
-              <li data-filter=".filter-branding">수도권</li>
-              <li data-filter=".filter-branding">중부권</li>
-              <li data-filter=".filter-web">호남권</li>
-              <li data-filter=".filter-print">영남권</li>
-              
-            </ul>
-            
-            <div>
-	            <form action="index.jsp" method="get" style="display: flex; align-items: center;">
-					<input type="text" name="query" placeholder="검색어를 입력하세요" style="margin-right: 5px; border-radius : 10px;">
-					<input type="submit" value="검색" style="border-radius: 10px; border: 1px solid gray;">
-				</form>
-			</div>
-		
-          </div>
+
+<div class="portfolio-filters-wrapper position-relative d-flex align-items-center w-100" style="margin-bottom:0;width:90% !important; margin:auto;">
+
+	<a href="view.jsp" class="service-link">
+						      리뷰 쓰러가기
+						      <i class="bi bi-arrow-right"></i>
+						    </a>
+
+  <!-- Centered filters -->
+  <ul class="portfolio-filters isotope-filters mb-0 position-absolute start-50 translate-middle-x d-flex gap-3">
+    <li data-filter="*" class="filter-active">전 지역</li>
+    <li data-filter=".filter-capital">수도권</li>
+    <li data-filter=".filter-middle">중부권</li>
+    <li data-filter=".filter-honam">호남권</li>
+    <li data-filter=".filter-youngnam">영남권</li>
+  </ul>
+
+  <!-- Search bar on the right -->
+  <div class="input-group ms-auto" style="width: 250px;">
+    <input type="text" class="form-control" placeholder="검색어를 입력해주세요">
+    <button type="button" class="btn text-white"
+      style="--bs-btn-bg:#5c99ee; 
+             --bs-btn-hover-bg:#447fcc; 
+             --bs-btn-border-color:#5c99ee; 
+             --bs-btn-hover-border-color:#447fcc;">
+      검색
+    </button>
+  </div>
+
+</div>
           
-          	<select id="board_dropbox">
-				<option value="likes">추천순</option>
-				<option value="follwing">팔로잉순</option>
-			</select>
-        </div>
-      </div>
-    </section><!-- /Navigation Section -->
-    
-      <div class="container">
 
-        <div class="row gy-4">
+          <div class="row gy-4 portfolio-grid isotope-container" style="position: relative; width: 95%; height: 264px; margin: 0px auto auto;">
 
-          <div class="col-lg-3 col-md-6">
-            <div class="service-card">
-				<figure style = "display: flex; align-items: center; margin: 0; width: 100%; margin: 5px">
-            		<img style="width: 15%; border: 1px solid black; border-radius: 50%; margin-right: 10px;"
-            		 src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s">
-						<div style= "display: flex; align-items: center; width: 100%">
-							<div style="display: flex; flex-direction: column; margin-right : 20px;">
-								<h6 style="margin: 0; font-size: 12px;">닉네임</h6>
-								<h6 style="margin: 0; font-size: 10px;">2025.08.12</h6>
-							</div>
-							<i id="heart" class="bi bi-heart-fill" style="color: red;"></i>
-							<h6 style="font-size:8px">1234</h6>
+				<%
+				String[] exampleInfo = {
+					    "김민준 @minjun_kim",
+					    "이서준 @seo_jun123",
+					    "박서연 @seoyeon_park",
+					    "최지우 @jiwoo_choi",
+					    "정하준 @hajun_jung",
+					    "윤서현 @seohyun_yoon",
+					    "임도윤 @doyun_lim",
+					    "한지민 @jimin_han"
+					};
+					String[] exampleDate = {
+					    "2025.08.27",
+					    "2025.08.12",
+					    "2025.07.30",
+					    "2025.07.05",
+					    "2025.06.25",
+					    "2025.06.08",
+					    "2025.05.21",
+					    "2025.05.03"
+					};
+					String[] exampleTitle = {
+						    "제주도의 여름 바다 여행기",
+						    "부산 골목길 탐방 후기",
+						    "빗속의 경주 여행",
+						    "서울 야시장 밤 산책",
+						    "강원도 주말 힐링 여행",
+						    "대구 숨은 카페 투어",
+						    "동해안 드라이브 코스 추천",
+						    "산사에서의 템플스테이 체험"
+					};
+					String[] exampleContents = {
+						    "푸른 바다와 하얀 파도가 어우러진 제주에서 시원한 여름을 만끽하며, 바닷가 카페와 전통시장을 돌며 하루를 보냈습니다.",
+						    "부산의 골목골목을 걸으며 맛집과 사람들의 따뜻한 정을 느끼고, 자갈치 시장과 해운대에서 다양한 해산물을 맛봤습니다.",
+						    "비 오는 날 경주를 거닐며 고즈넉한 전통의 매력을 새삼 느끼고, 첨성대와 대릉원을 돌아보며 시간을 천천히 보냈습니다.",
+						    "서울 야시장에서 다양한 길거리 음식을 맛보고 즐거운 밤을 보내며, 공연과 버스킹 무대도 함께 즐길 수 있었습니다.",
+						    "강원도의 맑은 공기와 조용한 자연 속에서 완벽한 휴식을 취하고, 숲길 산책과 강가에서의 피크닉을 즐겼습니다.",
+						    "대구의 숨겨진 카페들을 찾아다니며 특별한 커피와 디저트를 즐기고, 감각적인 인테리어와 분위기에 반했습니다.",
+						    "동해안 도로를 달리며 시원한 바닷바람과 멋진 풍경을 감상하고, 해변마다 잠시 멈춰 사진을 남기는 즐거움을 느꼈습니다.",
+						    "산사에서의 하룻밤은 마음을 비우고 나를 돌아보는 소중한 시간이었으며, 스님의 말씀과 명상으로 깊은 평화를 얻었습니다."
+						};
+					Random rand = new Random();
+					String filters[] = {"capital", "middle", "honam", "youngnam"};
+					for(int i=0; i<8; i++){ 
+						String[] infoSplit = exampleInfo[i].split(" ");
+						String infoName = infoSplit[0];
+						String infoIdentify = infoSplit[1];
+						int f = rand.nextInt(4);
+						int likes = rand.nextInt(1,999);
+						int photoID = rand.nextInt(1,6);
+				%>
+						<div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-<%= filters[f] %>">
+						  <div class="service-card" style="padding: 15px 12px; cursor:pointer" onclick="location.href='/oti_team3/board/view.jsp?title=<%= exampleTitle[i] %>'">
+						
+						    <!-- 프로필/닉네임/좋아요 줄 -->
+						    <figure style="display:flex; align-items:center; margin:0; width:100%; margin:5px">
+						      <img
+						        style="width:15%; border:1px solid black; border-radius:50%; margin-right:10px; cursor:pointer"
+						        onclick="event.stopPropagation();location.href='/oti_team3/profile.jsp?identify=<%= infoIdentify %>&name=<%= infoName %>'"
+						        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s"
+						        alt="avatar"
+						      >
+						      <div style="display:flex; align-items:center; width:100%">
+						        <div style="display:flex; flex-direction:column; margin-right:20px; cursor:pointer"
+						             onclick="event.stopPropagation();location.href='/oti_team3/profile.jsp?identify=<%= infoIdentify %>&name=<%= infoName %>'">
+						          <h6 style="margin:0; font-size:12px;"><%= exampleInfo[i] %></h6>
+						          <h6 style="margin:0; font-size:10px;"><%= exampleDate[i] %></h6>
+						        </div>
+						
+						        <!-- 오른쪽 정렬된 좋아요 그룹 -->
+						        <div style="display:flex; align-items:center; margin-left:auto; margin-right:5px;">
+						          <i class="bi bi-heart-fill" style="color: var(--accent-color);"></i>
+						          <small style="margin-left:2px;"><%= likes %></small>
+						        </div>
+						      </div>
+						    </figure>
+						
+						    <!-- 메인 이미지 -->
+						    <figure>
+						      <img
+						        style="width:100%; border-radius:3px;"
+						        src="/oti_team3/assets/img/busan/busan1-<%= photoID %>.jpg"
+						        alt="cover"
+						      >
+						    </figure>
+						
+						    <!-- 제목/내용/링크 -->
+						    <h3><%= exampleTitle[i] %></h3>
+						    <p><%= exampleContents[i] %></p>
+						    <a href="view.jsp" class="service-link">
+						      자세히보기
+						      <i class="bi bi-arrow-right"></i>
+						    </a>
+						
+						  </div>
 						</div>
-				</figure>
 				
-				<figure>
-	              <img style = "width:100%" src = "https://ko.skyticket.com/guide/wp-content/uploads/2024/09/4838d156-shutterstock_2343673449.jpg">
-	            </figure>
-              <h3>서울 관광지 리뷰</h3>
-              <p>한국은 여전히 매력적인 여행지입니다. 저렴한 여행 비용, 한류 아이돌, 맛있는 음식, 그리고 합리적인 쇼핑 환경이 여전히 인기를 끌고 있습니다. 서울의 명동과 경복궁은 절대적인 인기를 자랑하는 대표적인 관광 명소입니다. 부산이나 제주도와 같은 지방 도시에는 숨겨진 관광 명소도 많이 있습니다.</p>
-              <a href="view.jsp" class="service-link">
-                자세히보기
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
+				<%
+					}
+				%>
+			
 
-          <div class="col-lg-3 col-md-6">
-            <div class="service-card">
-				<figure style = "display: flex; align-items: center; margin: 0; width: 100%; margin: 5px">
-            		<img style="width: 15%; border: 1px solid black; border-radius: 50%; margin-right: 10px;"
-            		 src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s">
-						<div style= "display: flex; align-items: center; width: 100%">
-							<div style="display: flex; flex-direction: column; margin-right : 20px;">
-								<h6 style="margin: 0; font-size: 12px;">닉네임</h6>
-								<h6 style="margin: 0; font-size: 10px;">2025.08.12</h6>
-							</div>
-							<i id="heart" class="bi bi-heart-fill" style="color: red;"></i>
-							<h6 style="font-size:8px">1233</h6>
-						</div>
-				</figure>
-				
-				<figure>
-	              <img style = "width:100%" src = "https://ko.skyticket.com/guide/wp-content/uploads/2024/09/4838d156-shutterstock_2343673449.jpg">
-	            </figure>
-              <h3>서울 관광지 리뷰</h3>
-              <p>한국은 여전히 매력적인 여행지입니다. 저렴한 여행 비용, 한류 아이돌, 맛있는 음식, 그리고 합리적인 쇼핑 환경이 여전히 인기를 끌고 있습니다. 서울의 명동과 경복궁은 절대적인 인기를 자랑하는 대표적인 관광 명소입니다. 부산이나 제주도와 같은 지방 도시에는 숨겨진 관광 명소도 많이 있습니다.</p>
-              <a href="view.jsp" class="service-link">
-                자세히보기
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="service-card">
-				<figure style = "display: flex; align-items: center; margin: 0; width: 100%; margin: 5px">
-            		<img style="width: 15%; border: 1px solid black; border-radius: 50%; margin-right: 10px;"
-            		 src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s">
-						<div style= "display: flex; align-items: center; width: 100%">
-							<div style="display: flex; flex-direction: column; margin-right : 20px;">
-								<h6 style="margin: 0; font-size: 12px;">닉네임</h6>
-								<h6 style="margin: 0; font-size: 10px;">2025.08.12</h6>
-							</div>
-							<i id="heart" class="bi bi-heart-fill" style="color: red;"></i>
-							<h6 style="font-size:8px">1230</h6>
-						</div>
-				</figure>
-				
-				<figure>
-	              <img style = "width:100%" src = "https://ko.skyticket.com/guide/wp-content/uploads/2024/09/4838d156-shutterstock_2343673449.jpg">
-	            </figure>
-              <h3>서울 관광지 리뷰</h3>
-              <p>한국은 여전히 매력적인 여행지입니다. 저렴한 여행 비용, 한류 아이돌, 맛있는 음식, 그리고 합리적인 쇼핑 환경이 여전히 인기를 끌고 있습니다. 서울의 명동과 경복궁은 절대적인 인기를 자랑하는 대표적인 관광 명소입니다. 부산이나 제주도와 같은 지방 도시에는 숨겨진 관광 명소도 많이 있습니다.</p>
-              <a href="view.jsp" class="service-link">
-                자세히보기
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="service-card">
-				<figure style = "display: flex; align-items: center; margin: 0; width: 100%; margin: 5px">
-            		<img style="width: 15%; border: 1px solid black; border-radius: 50%; margin-right: 10px;"
-            		 src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s">
-						<div style= "display: flex; align-items: center; width: 100%">
-							<div style="display: flex; flex-direction: column; margin-right : 20px;">
-								<h6 style="margin: 0; font-size: 12px;">닉네임</h6>
-								<h6 style="margin: 0; font-size: 10px;">2025.08.12</h6>
-							</div>
-							<i id="heart" class="bi bi-heart-fill" style="color: red;"></i>
-							<h6 style="font-size:8px">1229</h6>
-						</div>
-				</figure>
-				
-				<figure>
-	              <img style = "width:100%" src = "https://ko.skyticket.com/guide/wp-content/uploads/2024/09/4838d156-shutterstock_2343673449.jpg">
-	            </figure>
-              <h3>서울 관광지 리뷰</h3>
-              <p>한국은 여전히 매력적인 여행지입니다. 저렴한 여행 비용, 한류 아이돌, 맛있는 음식, 그리고 합리적인 쇼핑 환경이 여전히 인기를 끌고 있습니다. 서울의 명동과 경복궁은 절대적인 인기를 자랑하는 대표적인 관광 명소입니다. 부산이나 제주도와 같은 지방 도시에는 숨겨진 관광 명소도 많이 있습니다.</p>
-              <a href="view.jsp" class="service-link">
-                자세히보기
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="service-card">
-				<figure style = "display: flex; align-items: center; margin: 0; width: 100%; margin: 5px">
-            		<img style="width: 15%; border: 1px solid black; border-radius: 50%; margin-right: 10px;"
-            		 src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s">
-						<div style= "display: flex; align-items: center; width: 100%">
-							<div style="display: flex; flex-direction: column; margin-right : 20px;">
-								<h6 style="margin: 0; font-size: 12px;">닉네임</h6>
-								<h6 style="margin: 0; font-size: 10px;">2025.08.12</h6>
-							</div>
-							<i id="heart" class="bi bi-heart-fill" style="color: red;"></i>
-							<h6 style="font-size:8px">1220</h6>
-						</div>
-				</figure>
-				
-				<figure>
-	              <img style = "width:100%" src = "https://ko.skyticket.com/guide/wp-content/uploads/2024/09/4838d156-shutterstock_2343673449.jpg">
-	            </figure>
-              <h3>서울 관광지 리뷰</h3>
-              <p>한국은 여전히 매력적인 여행지입니다. 저렴한 여행 비용, 한류 아이돌, 맛있는 음식, 그리고 합리적인 쇼핑 환경이 여전히 인기를 끌고 있습니다. 서울의 명동과 경복궁은 절대적인 인기를 자랑하는 대표적인 관광 명소입니다. 부산이나 제주도와 같은 지방 도시에는 숨겨진 관광 명소도 많이 있습니다.</p>
-              <a href="view.jsp" class="service-link">
-                자세히보기
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="service-card">
-				<figure style = "display: flex; align-items: center; margin: 0; width: 100%; margin: 5px">
-            		<img style="width: 15%; border: 1px solid black; border-radius: 50%; margin-right: 10px;"
-            		 src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s">
-						<div style= "display: flex; align-items: center; width: 100%">
-							<div style="display: flex; flex-direction: column; margin-right : 20px;">
-								<h6 style="margin: 0; font-size: 12px;">닉네임</h6>
-								<h6 style="margin: 0; font-size: 10px;">2025.08.12</h6>
-							</div>
-							<i id="heart" class="bi bi-heart-fill" style="color: red;"></i>
-							<h6 style="font-size:8px">1199</h6>
-						</div>
-				</figure>
-				
-				<figure>
-	              <img style = "width:100%" src = "https://ko.skyticket.com/guide/wp-content/uploads/2024/09/4838d156-shutterstock_2343673449.jpg">
-	            </figure>
-              <h3>서울 관광지 리뷰</h3>
-              <p>한국은 여전히 매력적인 여행지입니다. 저렴한 여행 비용, 한류 아이돌, 맛있는 음식, 그리고 합리적인 쇼핑 환경이 여전히 인기를 끌고 있습니다. 서울의 명동과 경복궁은 절대적인 인기를 자랑하는 대표적인 관광 명소입니다. 부산이나 제주도와 같은 지방 도시에는 숨겨진 관광 명소도 많이 있습니다.</p>
-              <a href="view.jsp" class="service-link">
-                자세히보기
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
-          
-          <div class="col-lg-3 col-md-6">
-            <div class="service-card">
-				<figure style = "display: flex; align-items: center; margin: 0; width: 100%; margin: 5px">
-            		<img style="width: 15%; border: 1px solid black; border-radius: 50%; margin-right: 10px;"
-            		 src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s">
-						<div style= "display: flex; align-items: center; width: 100%">
-							<div style="display: flex; flex-direction: column; margin-right : 20px;">
-								<h6 style="margin: 0; font-size: 12px;">닉네임</h6>
-								<h6 style="margin: 0; font-size: 10px;">2025.08.12</h6>
-							</div>
-							<i id="heart" class="bi bi-heart-fill" style="color: red;"></i>
-							<h6 style="font-size:8px">1111</h6>
-						</div>
-				</figure>
-				
-				<figure>
-	              <img style = "width:100%" src = "https://ko.skyticket.com/guide/wp-content/uploads/2024/09/4838d156-shutterstock_2343673449.jpg">
-	            </figure>
-              <h3>서울 관광지 리뷰</h3>
-              <p>한국은 여전히 매력적인 여행지입니다. 저렴한 여행 비용, 한류 아이돌, 맛있는 음식, 그리고 합리적인 쇼핑 환경이 여전히 인기를 끌고 있습니다. 서울의 명동과 경복궁은 절대적인 인기를 자랑하는 대표적인 관광 명소입니다. 부산이나 제주도와 같은 지방 도시에는 숨겨진 관광 명소도 많이 있습니다.</p>
-              <a href="view.jsp" class="service-link">
-                자세히보기
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
-          
-          <div class="col-lg-3 col-md-6">
-            <div class="service-card">
-				<figure style = "display: flex; align-items: center; margin: 0; width: 100%; margin: 5px">
-            		<img style="width: 15%; border: 1px solid black; border-radius: 50%; margin-right: 10px;"
-            		 src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s">
-						<div style= "display: flex; align-items: center; width: 100%">
-							<div style="display: flex; flex-direction: column; margin-right : 20px;">
-								<h6 style="margin: 0; font-size: 12px;">닉네임</h6>
-								<h6 style="margin: 0; font-size: 10px;">2025.08.12</h6>
-							</div>
-							<i id="heart" class="bi bi-heart-fill" style="color: red;"></i>
-							<h6 style="font-size:8px">1000</h6>
-						</div>
-				</figure>
-				
-				<figure>
-	              <img style = "width:100%" src = "https://ko.skyticket.com/guide/wp-content/uploads/2024/09/4838d156-shutterstock_2343673449.jpg">
-	            </figure>
-              <h3>서울 관광지 리뷰</h3>
-              <p>한국은 여전히 매력적인 여행지입니다. 저렴한 여행 비용, 한류 아이돌, 맛있는 음식, 그리고 합리적인 쇼핑 환경이 여전히 인기를 끌고 있습니다. 서울의 명동과 경복궁은 절대적인 인기를 자랑하는 대표적인 관광 명소입니다. 부산이나 제주도와 같은 지방 도시에는 숨겨진 관광 명소도 많이 있습니다.</p>
-              <a href="view.jsp" class="service-link">
-                자세히보기
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div><!-- End Service Card -->
+          </div><!-- End Portfolio Grid -->
 
         </div>
 
       </div>
 
-    </section><!-- /Services Section -->
+    </section>    
     
     
 <%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
