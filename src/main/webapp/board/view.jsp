@@ -47,18 +47,50 @@
             <div class="meta-column">
               <div class="meta-label">팔로우</div>
               <div class="meta-value">
-				<input type="submit" class = "folling" value="팔로우 신청">
+				<input type="checkbox" class="btn-check" id="btn1" autocomplete="off" />
+				<label class="custom-toggle" for="btn1">팔로우 신청</label>
 				
 				</div>
             </div>
           </div>
         </div>
-        
+
+<style>
+.custom-toggle {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 6px 16px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-check:checked + .custom-toggle {
+    background-color: #5c99ee;
+    color: white;
+    border-color: #0d6efd;
+}
+/* 댓글 기본 숨김 */
+.default-hide-comment {
+    display: none;
+}
+
+/* 체크박스 체크 시 댓글 표시 */
+#btn2:checked ~ .default-hide-comment {
+    display: block;
+}
+</style>
+
+
+
+
+
+  
 
 <% String reqTitle = request.getParameter("title"); %>
     <section id="tabs" class="tabs section mt-5">
       <div class="container">
-
         <div class="tabs-wrapper">
           <div class="tabs-header">
             <ul class="nav nav-tabs">
@@ -132,16 +164,13 @@
   </div>
 
   <!-- NODE CONTENT PANES (unique per day) -->
-  
-
-
 
 <div id="spotPanes-<%= ii %>" class="tab-content mt-4">
     <% for (int i = 0; i < nodeNumber; i++) { %>
       <div id="spot-pane-<%= ii %>-<%= i %>" class="tab-pane fade <%= i==0 ? "show active" : "" %>" style="margin-bottom: 50px;">
         <!-- your per-node content -->
             <div class="content-area">
-				<div class="content-section">
+				<div class="content-section" style="margin-bottom:10px;">
 					<div class="row">
 						<div class="col-lg-8 offset-lg-2">
 							<div class="project-overview">
@@ -149,7 +178,12 @@
 									<p class="overview-text">부산은 대한민국 제2의 도시이자 최대의
 										무역항을 가진 해양 도시입니다. 아름다운 해변과 산, 그리고 독특한 문화와 역사가 어우러진
 										매력적인 도시입니다. 부산은 부산항을 중심으로 해상 무역과 물류 산업이 발달했으며, 다양한
-										축제와 볼거리로 활기 넘치는 도시이기도 합니다.</p>
+										축제와 볼거리로 활기 넘치는 도시이기도 합니다.
+										부산은 대한민국 제2의 도시이자 최대의
+										무역항을 가진 해양 도시입니다. 아름다운 해변과 산, 그리고 독특한 문화와 역사가 어우러진
+										매력적인 도시입니다. 부산은 부산항을 중심으로 해상 무역과 물류 산업이 발달했으며, 다양한
+										축제와 볼거리로 활기 넘치는 도시이기도 합니다.
+									</p>
 							</div>
 						</div>
 					</div>
@@ -184,21 +218,21 @@
                   }
                 }
               </script>
-              <div class="swiper-wrapper">
+              <div class="swiper-wrapper" style=text-align:center;>
                 <div class="swiper-slide">
-                  <img src="https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; height:auto;">
+                  <img src="https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; border-radius:10px;">
                 </div>
                 <div class="swiper-slide">
-                  <img src="https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; height:auto;">
+                  <img src="https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; border-radius:10px;">
                 </div>
                 <div class="swiper-slide">
-                  <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; height:auto;">
+                  <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; border-radius:10px;">
                 </div>
+                
               </div>
-              <div class="swiper-button-next"></div>
-             <div class="swiper-button-prev"></div>
-             
-             
+              <div class="swiper-button-next" style="border:1px solid black;"></div>
+             	<div class="swiper-button-prev" style="border:1px solid black;"></div>
+              
             </div>
           </div>
         </div>
@@ -206,10 +240,6 @@
       </div>
     <% } %>
 </div>
-
-
-
-      
 
           </div>
           <%} %>
@@ -282,59 +312,59 @@
           </div>
         </div>
        <hr style="color: lightgray; margin-bottom : 50px;">
-       <div class="features-intro">
-          <h3 style = "font-size: 1.5rem; font-weight: 400; color: var(--heading-color); margin-bottom: 50px;">댓글</h3>
-       </div>
-        <div class="d-flex mb-3">
-        <a href="">
-          <img src="https://mdbcdn.b-cdn.net/img/new/avatars/18.webp" class="border rounded-circle me-2"
-            alt="Avatar" style="height: 40px" />
-        </a>
-        <div data-mdb-input-init class="form-outline w-100">
-          <textarea class="form-control" id="textAreaExample" rows="2"></textarea>
-          <input type = "submit" class="text-review-send" value = "등록" style="font-size:10px;">
-        </div>
-      </div>
-      <!-- Input -->
-
-      <!-- Answers -->
-
-      <!-- Single answer -->
-      <div class="d-flex mb-3">
-        <a href="">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s" class="border rounded-circle me-2"
-            alt="Avatar" style="height: 40px; border: 1px solid black; border-radius: 50%;" />
-        </a>
-        <div>
-          <div class="bg-body-tertiary rounded-3 px-3 py-1">
-            <a href="" class="text-dark mb-0">
-              <strong>닉네임1</strong>
-            </a>
-            <a href="" class="text-muted d-block">
-              <small>부산 놀러가고 싶어요!</small>
-            </a>
-          </div>
-          <a href="" class="text-muted small me-2"><strong>답글작성</strong></a>
-        </div>
-      </div>
-      <div class="d-flex mb-3">
-        <a href="">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s" class="border rounded-circle me-2"
-            alt="Avatar" style="height: 40px; border: 1px solid black; border-radius: 50%;" />
-        </a>
-        <div>
-          <div class="bg-body-tertiary rounded-3 px-3 py-1">
-            <a href="" class="text-dark mb-0">
-              <strong>닉네임2</strong>
-            </a>
-            <a href="" class="text-muted d-block">
-              <small>리뷰글 잘 봤습니다~~</small>
-            </a>
-          </div>
-          <a href="" class="text-muted small me-2"><strong>답글작성</strong></a>
-        </div>
-      </div>
-      
+       
+		  <div class="features-intro" style="margin-bottom:50px; font-size:20px;">
+		    <input type="checkbox" class="btn-check" id="btn2" autocomplete="off" />
+		    <label class="custom-toggle" for="btn2">댓글</label>
+		
+		    <input type="checkbox" class="btn-check" id="btn3" autocomplete="off" />
+		    <label class="custom-toggle" for="btn3">좋아요</label>
+		
+		    <section class="default-hide-comment">
+		      <div class="d-flex mb-3">
+		        <a href="">
+		          <img src="https://mdbcdn.b-cdn.net/img/new/avatars/18.webp" 
+		               class="border rounded-circle me-2"
+		               alt="Avatar" style="height: 40px" />
+		        </a>
+		        <div data-mdb-input-init class="form-outline w-100">
+		          <textarea class="form-control" id="textAreaExample" rows="2"></textarea>
+		          <input type="submit" class="text-review-send" value="등록" style="font-size:10px;">
+		        </div>
+		      </div>
+		
+		      <div class="d-flex mb-3">
+		        <a href="">
+		          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s" 
+		               class="border rounded-circle me-2"
+		               alt="Avatar" style="height: 40px; border: 1px solid black; border-radius: 50%;" />
+		        </a>
+		        <div>
+		          <div class="bg-body-tertiary rounded-3 px-3 py-1">
+		            <a href="" class="text-dark mb-0"><strong>닉네임1</strong></a>
+		            <a href="" class="text-muted d-block"><small>부산 놀러가고 싶어요!</small></a>
+		          </div>
+		          <a href="" class="text-muted small me-2"><strong>답글작성</strong></a>
+		        </div>
+		      </div>
+		
+		      <div class="d-flex mb-3">
+		        <a href="">
+		          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s" 
+		               class="border rounded-circle me-2"
+		               alt="Avatar" style="height: 40px; border: 1px solid black; border-radius: 50%;" />
+		        </a>
+		        <div>
+		          <div class="bg-body-tertiary rounded-3 px-3 py-1">
+		            <a href="" class="text-dark mb-0"><strong>닉네임2</strong></a>
+		            <a href="" class="text-muted d-block"><small>리뷰글 잘 봤습니다~~</small></a>
+		          </div>
+		          <a href="" class="text-muted small me-2"><strong>답글작성</strong></a>
+		        </div>
+		      </div>
+		    </section>
+		  </div>
+		
         
         <hr style="color: lightgray; margin-bottom : 50px; margin-top : 50px;">
         
@@ -369,8 +399,6 @@
     </section><!-- /Portfolio Details Section -->
 
   </main>
-
-
     
 <%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
 </body>
