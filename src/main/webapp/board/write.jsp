@@ -9,62 +9,75 @@
 
 <main class="main">
     <!-- Page Title -->
+    <%
+    	String writeTitle = request.getParameter("title");
+    	
+    %>    
+
     <div class="page-title light-background">
       <div class="container">
-        <h1>부산 관광지 리뷰</h1>
+        <h1 id="write_title"><%= writeTitle == null ? "제목 없음" : writeTitle %></h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="/oti_team3/index.jsp">Home</a></li>
-            <li class="current">Details</li>
+            <li class="current">부산</li>
           </ol>
         </nav>
       </div>
     </div><!-- End Page Title -->
 
     <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section">
+    <section id="portfolio-details" class="portfolio-details section" style="--subtle-border: none;">
 
       <div class="container">
+        <div class="project-hero mb-0">
+          <div class="project-meta-grid" style="padding-top:0">
+			
 
-        <div class="project-hero">
-          <div class="project-meta-grid">
-            <div class="meta-column">
-              <div class="meta-label">작성자</div>
-              <div class="form-outline" data-mdb-input-init style="width:auto">
-					<input type="text" id="typeText" class="form-control" placeholder="닉네임"/>
-				</div>
-            </div>
-            <div class="meta-column">
-              <div class="meta-label">작성일</div>
-              <div class="form-outline" data-mdb-input-init style="width:auto">
-					<input type="text" id="typeText" class="form-control" placeholder="2025.08.13"/>
-				</div>
-            </div>
-            <div class="meta-column">
-              <div class="meta-label">여행코스(부산)</div>
-              <div class="form-outline" data-mdb-input-init style="width:auto">
-					<input type="text" id="typeText" class="form-control" placeholder="해운대-광안리-서면"/>
-				</div>
-            </div>
             <div class="meta-column">
               <div class="meta-label">여행일정</div>
-              <div class="form-outline" data-mdb-input-init style="width:auto">
-					<input type="text" id="typeText" class="form-control" placeholder="2025.08.09~2025.08.12"/>
-				</div>
+              <div class="meta-value">2025.08.12 ~ 2025.08.16</div>
             </div>
+            
+			<div class="meta-column position-relative">
+			  	<div class="meta-label"><strong>리뷰제목</strong></div>
+				<input type="text" id="write_title_input" 
+			           class="form-control fs-5"
+			           placeholder="제목을 입력해주세요."
+			           value='<%= writeTitle == null ? "제목 없음" : writeTitle %>'
+			           style="text-align:center;border:2px solid;" autofocus/>
+			  
+			</div>
+            
             <div class="meta-column">
-              <div class="meta-label">첨부사진</div>
-              <div class="meta-value">
-				<input class="form-control" type="file" id="formFileMultiple" multiple />
-				
-				</div>
+              <div class="meta-label">작성일</div>
+              <div class="meta-value">2025.08.12</div>
             </div>
           </div>
         </div>
         
+		<section class="d-flex justify-content-center" id="write_alert" style="padding-bottom:0">
+		  <div class="container">
+		    <div class="alert alert-dismissible fade show alert-danger mb-0" 
+		         role="alert"
+		         style="background-color: #FFF7DE; border-color: #FFEFC2;">
+		         
+		      <strong><i class="bi bi-exclamation-octagon-fill"></i> 안내 사항</strong> <br> 
+		      <ol class="mb-0 fs-5">
+		        <li>각 리뷰당 사진은 <strong>3장</strong>만 올릴 수 있어요.</li>
+		        <li>리뷰의 글 작성은 선택이에요. 다만 다른 이용자분들을 위해서 작성이 권장돼요.</li>
+		        <li>사진을 잘못 올리셨나요? 다시 드래그 앤 드롭으로 올려주세요.</li>
+		        <li>각 사진당 최대 용량은 <strong>5Mb</strong>로 제한돼요.</li>
+		      </ol>
+		      
+		      <!-- Correct dismiss button -->
+		      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		    </div>
+		  </div>
+		</section> 
+        
 
 <% String reqTitle = request.getParameter("title"); %>
-    <section id="tabs" class="tabs section mt-5">
+    <section id="tabs" class="tabs section">
     <%
     		String[] nodeIcons = {"house-door", "leaf-fill", "fork-knife", "leaf-fill", "house-door"};
     		String[] tagNames = {"관광지", "숙소", "식당"};
@@ -106,7 +119,9 @@
 			int tabNumber = 4;
 			for(int ii=0; ii < tabNumber; ii++){ %>
             <div class="tab-pane fade <%= ii==0 ? "active show" : "" %>" id="tabs-tab-<%= (ii+1) %>">
-
+		
+		
+		
   <!-- NODES BAR -->
   <div id="routeBar-<%= ii %>" data-group="<%= ii %>" class="d-flex justify-content-center my-4">
     <div class="d-flex align-items-center justify-content-center w-100 pb-2">
@@ -188,40 +203,39 @@
 
             <div class="swiper-wrapper" style="text-align:center; margin-bottom:50px;">
 
-              <div class="swiper-slide">
-                <div class="content-area" style="margin-bottom:50px;">
-                  <h2 style="margin-top:50px;">리뷰글 작성 (첫번째 사진)</h2>
-                  <textarea class="form-control" rows="5" style="width:70%; display:block; margin:0 auto; margin-top:20px; text-align:center;"></textarea>
-                </div>
-                <img src="https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL"
-                     class="img-fluid" style="width:80%; border-radius:10px;">
-              </div>
+				<%
+				int totalReviewImgIndex = 3;
+				String[] imgSrcs = {
+					"https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL",
+					"https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg",
+					"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1"
+				};
+				for(int reviewImgIndex=0; reviewImgIndex < totalReviewImgIndex; reviewImgIndex++){ %>
+				<div class="swiper-slide">
+				  <div class="content-area mb-2">
+				    <h2>리뷰 작성 (<%= reviewImgIndex+1 %>번째 사진)</h2>
+				  </div>
+				
+				  <!-- Flex container -->
+					<div class="d-flex justify-content-center align-items-stretch gap-4 mb-1">
+					  <!-- Image -->
+					  <img src="<%= imgSrcs[reviewImgIndex] %>"
+					       class="img-fluid"
+					       style="width:50%; height:50%; max-width:400px; object-fit:cover; border-radius:10px;">
+					
+					  <!-- Textarea -->
+					  <textarea class="form-control"
+					            style="width:50%; resize:none;"
+					            placeholder="리뷰 내용을 입력해주세요"></textarea>
+					</div>
+				</div>
+              <%} %>
 
-              <div class="swiper-slide">
-                <div class="content-area" style="margin-bottom:50px;">
-                  <h2 style="margin-top:50px;">리뷰글 작성 (두번째 사진)</h2>
-                  <textarea class="form-control" rows="5" style="width:70%; display:block; margin:0 auto; margin-top:20px; text-align:center;"></textarea>
-                </div>
-                <img src="https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg"
-                     class="img-fluid" style="width:80%; border-radius:10px;">
-              </div>
-
-              <div class="swiper-slide">
-                <div class="content-area" style="margin-bottom:50px;">
-                  <h2 style="margin-top:50px;">리뷰글 작성 (세번째 사진)</h2>
-                  <textarea class="form-control" rows="5" style="width:70%; display:block; margin:0 auto; margin-top:20px; text-align:center;"></textarea>
-                </div>
-                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1"
-                     class="img-fluid" style="width:80%; border-radius:10px;">
-              </div>
-              <div class="swiper-button-next" style="border:1px solid black; margin-top:10%;"></div>
-            	  <div class="swiper-button-prev" style="border:1px solid black; margin-top:10%;"></div>
+              <div class="swiper-button-next" style="right:1px;"></div>
+            	  <div class="swiper-button-prev" style="left:1px"></div>
 
             </div>
 
-            
-            
-            
             <!-- tagbutton -->
             <div class="technology-stack">
 	          <div class="row">
@@ -275,6 +289,18 @@
 </section><!-- /Tabs Section -->
 
 <script>
+
+const writeTitleInputDom = document.querySelector('#write_title_input');
+const writeTitleDom = document.querySelector('#write_title');
+writeTitleInputDom.addEventListener('keyup', ()=> {
+	
+	if(writeTitleInputDom.value == '')
+		writeTitleDom.textContent = '제목 없음';
+	else
+		writeTitleDom.textContent = writeTitleInputDom.value;
+});
+
+
 (function(){
   // initialize all day groups
   document.querySelectorAll('[id^="routeBar-"]').forEach(function(bar){
@@ -318,6 +344,9 @@
     border-color: #0d6efd;
 }
 </style>
+
+</div>
+</section>
        
   </main>
     

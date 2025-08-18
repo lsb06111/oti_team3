@@ -125,7 +125,7 @@
                       </ol>
                     </div>
                     <!-- action button aligned to the right -->
-                    <a href="/oti_team3/board/"
+                    <a href="/oti_team3/board/write.jsp?title=<%= titles[i] %>"
                        class="service-link ms-auto"
                        onclick="event.stopPropagation();"
                        style="width:fit-content; transition:color 0.3s; color:inherit;"

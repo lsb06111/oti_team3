@@ -70,7 +70,7 @@
                       <span>planning</span>
                     </div>
                     <h3>가고 싶은 여행지 고르기</h3>
-                    <p>리뷰 게시판을 활용해서 가고 싶은 곳을 둘러보아요. 이러쿵 저러쿵 얄라얄라</p>
+                    <p>리뷰 게시판을 활용해서 가고 싶은 곳을 둘러보아요 <br> TripNote 이용자들의 여행코스 및 후기들을 확인할 수 있어요</p>
 
                     <div class="highlight-stats">
                       <div class="stat-item">
@@ -86,11 +86,11 @@
                     <div class="feature-points">
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>리뷰 게시판을 활용해서 가고 싶은 곳을 둘러보아요.</span>
+                        <span>지역별 네비게이션 바로 원하는 여행지를 쉽게 탐색할 수 있어요</span>
                       </div>
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>리뷰 게시판을 활용해서 가고 싶은 곳을 둘러보아요.</span>
+                        <span>인기 게시글과 팔로잉 게시물을 통해 믿을 수 있는 여행 코스를 발견해 보세요</span>
                       </div>
                     </div>
                   </div>
@@ -134,15 +134,15 @@
                     <div class="feature-points">
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>한국 관광 공사 데이터 기반의 추천 리스트로 나만의 일정을 만들어보아요.</span>
+                        <span>관광지의 위치, 거리, 소개 등 필요한 정보를 한눈에 확인할 수 있어요</span>
                       </div>
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>한국 관광 공사 데이터 기반의 추천 리스트로 나만의 일정을 만들어보아요.</span>
+                        <span>팔로잉한 친구들의 추천 리스트를 참고해 믿을 수 있는 코스로 일정을 완성하세요</span>
                       </div>
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>한국 관광 공사 데이터 기반의 추천 리스트로 나만의 일정을 만들어보아요.</span>
+                        <span>초대한 멤버와 계획 노트를 공유하고 함께 편집하며 협업할 수 있어요</span>
                       </div>
                     </div>
 
@@ -179,15 +179,11 @@
                     <div class="feature-points">
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>같이 여행할 멤버를 추가하고 함께 일정을 짜보세요.</span>
+                        <span>팔로우한 친구들을 초대해 함께 여행을 떠나 보세요</span>
                       </div>
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>같이 여행할 멤버를 추가하고 함께 일정을 짜보세요.</span>
-                      </div>
-                      <div class="point-item">
-                        <i class="bi bi-arrow-right"></i>
-                        <span>같이 여행할 멤버를 추가하고 함께 일정을 짜보세요.</span>
+                        <span>새로운 동행자를 만나 색다른 여행을 경험할 수 있어요</span>
                       </div>
                     </div>
                   </div>
@@ -215,15 +211,15 @@
                     <div class="feature-points">
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>리뷰 작성을 통해 다녀온 장소의 정보를 공유해요.</span>
+                        <span>나만의 여행 추억을 손쉽게 기록하고 간직해요</span>
                       </div>
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>리뷰 작성을 통해 다녀온 장소의 정보를 공유해요.</span>
+                        <span>리뷰를 통해 TripNote 사용자들과 여행 코스와 후기를 공유하며 자랑할 수 있어요</span>
                       </div>
                       <div class="point-item">
                         <i class="bi bi-arrow-right"></i>
-                        <span>리뷰 작성을 통해 다녀온 장소의 정보를 공유해요.</span>
+                        <span>블로그에 길게 쓰지 않아도, 각 관광지별로 간편하게 리뷰를 남길 수 있어요</span>
                       </div>
                     </div>
 

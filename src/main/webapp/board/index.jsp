@@ -21,7 +21,7 @@
 
 <div class="portfolio-filters-wrapper position-relative d-flex align-items-center w-100" style="margin-bottom:0;width:90% !important; margin:auto;">
 
-	<a href="view.jsp" class="service-link">
+	<a href="write.jsp" class="service-link">
 						      리뷰 쓰러가기
 						      <i class="bi bi-arrow-right"></i>
 						    </a>
