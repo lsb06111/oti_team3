@@ -10,11 +10,12 @@
 			<div class="sl-badge">명소</div>
 			<div class="sl-badge">月 <b>399</b>명</div>
 		</div>
-		<button class="sl-add" aria-label="일정에 추가">+</button>
+		<button class="sl-add" aria-label="일정에 추가" onclick="insertLoc(this)">+</button>
 	</div>
 	<!-- 하단: 상세 설명 박스 -->
 	<div class="trip-loc-info">
-		<div class="sl-cat d-flex justify-content-between">
+		<div class="sl-cat d-flex justify-content-start">
+			<span class="sl-type me-1">명소</span>
 			<a href="#" class="sl-name">조조 대학로점</a>
 		</div>
 		<p class="sl-desc">다양한 메뉴로 즐기는 일본 미식 여행</p>

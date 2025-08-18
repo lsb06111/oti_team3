@@ -4,6 +4,7 @@
   font-size: 24px;
   margin: 0;
   font-weight: 700;
+  font-family: var(--heading-font);
   color: var(--heading-color);
   line-height: 1;
 }
@@ -26,7 +27,9 @@
 
 .trip-note-area {
 	display: none;
+	position:relative;
 	margin-top: 8px;
+	width: 100%;
 }
 
 .trip-note-area textarea {
@@ -36,6 +39,13 @@
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	resize: vertical;
+}
+
+.trip-note-area .save-note-btn {
+  position: absolute;
+  bottom: 1px;
+  right: 15px;
+  padding: 4px 8px;
 }
 
 /* 메인 레이아웃 - 3단 */
@@ -130,7 +140,7 @@
 .trip-timeline-event {
 	display: flex;
 	align-items: flex-start;
-	gap: 10px;
+	gap: 2px;
 	margin-bottom: 10px;
 }
 
@@ -181,12 +191,6 @@
 	font-size: 11px;
 	color: #007bff;
 	cursor: pointer;
-}
-
-/* 오른쪽: 지도 */
-.map-container {
-	flex: 2.2;
-	position: relative;
 }
 
 #map {
@@ -275,6 +279,15 @@
 	margin-top: 5px;
 	padding: 5px 12px 5px;
 	background: #fff;
+}
+
+
+
+.sl-type {
+	font-size: 14px;
+	font-weight: 400;
+	color:magenta;
+	text-decoration: none;
 }
 
 .sl-name {
@@ -394,6 +407,8 @@
 
 .step-item .step-title {
 	font-size: 15px;
+	white-space: nowrap;
+	
 }
 
 /* 활성 스텝 */

@@ -1,5 +1,14 @@
+function toggleDoneBtn(btn){
+	const id = btn.getAttribute('id');
+	if (id === "trip-loc-step"){
+		document.querySelector("#trip-done-btn").style.display= 'block';
+	}else{
+		document.querySelector("#trip-done-btn").style.display= 'none';
+	}
+}
+
 function toggleNote(btn) {
-	const note = btn.nextElementSibling;
+	const note = btn.parentElement.parentElement.nextElementSibling;
 	if (note.style.display === "block") {
 		note.style.display = "none";
 		btn.textContent = "📝 노트 작성";

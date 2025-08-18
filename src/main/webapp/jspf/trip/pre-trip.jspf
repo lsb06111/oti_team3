@@ -6,8 +6,8 @@
 	</section>
 	<!-- 중간 일정 타임라인 -->
 	<div class="d-flex flex-column" style="flex:3; padding:15px;">
-		<span class="fs-2 mb-2">여행지</span><br>
-		<section class="portfolio section" aria-label="일정 타임라인">
+		<span class="fs-2 mb-2">여행지</span>
+		<section class="portfolio section pt-3" aria-label="일정 타임라인">
 			<div class="container">
 		        <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
 
