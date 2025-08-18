@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*"%>
 <%@ include file="/jspf/head.jspf" %> <!-- 헤드 부분 고정 -->
 <!-- 커스텀 CSS import 존 -->
 
@@ -65,6 +65,20 @@
 
 <% String reqTitle = request.getParameter("title"); %>
     <section id="tabs" class="tabs section mt-5">
+    <%
+    		String[] nodeIcons = {"house-door", "leaf-fill", "fork-knife", "leaf-fill", "house-door"};
+    		String[] tagNames = {"관광지", "숙소", "식당"};
+    		HashMap<String,String> iconMap = new HashMap<>();
+    		iconMap.put("leaf-fill", "관광지");
+    		iconMap.put("house-door", "숙소");
+    		iconMap.put("fork-knife", "식당");
+    		
+    		
+    		HashMap<String,String> tagMap = new HashMap<>();
+    		tagMap.put("관광지","멋있어요,예뻐요,다양하게 볼게 많아요");
+    		tagMap.put("숙소","청결해요,방음이 잘돼요,가격이 저렴해요");
+    		tagMap.put("식당","식사가 맛있어요,가격이 저렴해요,매장이 청결해요");
+    		int num=0; %>
       <div class="container">
 
         <div class="tabs-wrapper">
@@ -100,7 +114,7 @@
         int nodeNumber = 5;
         String[] spots = {"해운대", "광안리", "서면", "남포동", "송정"};
         String[] times = {"15분", "12분", "20분", "18분"};
-        String[] nodeIcons = {"house-door", "leaf-fill", "fork-knife", "leaf-fill", "house-door"};
+        
 
         for (int i = 0; i < nodeNumber; i++) {
       %>
@@ -142,75 +156,118 @@
   <!-- NODE CONTENT PANES (unique per day) -->
 
 <div id="spotPanes-<%= ii %>" class="tab-content mt-4">
-    <% for (int i = 0; i < nodeNumber; i++) { %>
-      <div id="spot-pane-<%= ii %>-<%= i %>" class="tab-pane fade <%= i==0 ? "show active" : "" %>" style="margin-bottom: 50px;">
-        <!-- your per-node content -->
-            <div class="content-area">
-				<div class="content-section" style="margin-bottom:10px;">
-					<div class="row">
-						<div class="col-lg-8 offset-lg-2">
-							<div class="project-overview">
-								<h2 style="margin-top:50px;">리뷰글 작성</h2>
-									<p><textarea class="form-control" id="textAreaExample" rows="2" style="height:200px;"></textarea></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-	   <div class="visual-showcase">
-          <div class="main-visual">
-            <div class="portfolio-details-slider swiper init-swiper">
-              <script type="application/json" class="swiper-config">
-                {
-                  "loop": true,
-                  "speed": 600,
-                  "autoplay": {
-                    "delay": 4000
+  <% for (int i = 0; i < nodeNumber; i++) { %>
+    <div id="spot-pane-<%= ii %>-<%= i %>" class="tab-pane fade <%= i==0 ? "show active" : "" %>" style="margin-bottom: 50px;">
+
+      <div class="visual-showcase">
+        <div class="main-visual">
+          <div class="portfolio-details-slider swiper init-swiper">
+
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "effect": "creative",
+                "creativeEffect": {
+                  "prev": {
+                    "shadow": false,
+                    "translate": ["-120%", 0, -500]
                   },
-                  "effect": "creative",
-                  "creativeEffect": {
-                    "prev": {
-                      "shadow": false,
-                      "translate": ["-120%", 0, -500]
-                    },
-                    "next": {
-                      "shadow": false,
-                      "translate": ["120%", 0, -500]
-                    }
-                  },
-                  "slidesPerView": 1,
-                  "navigation": {
-                    "nextEl": ".swiper-button-next",
-                    "prevEl": ".swiper-button-prev"
+                  "next": {
+                    "shadow": false,
+                    "translate": ["120%", 0, -500]
                   }
+                },
+                "slidesPerView": 1,
+                "navigation": {
+                  "nextEl": ".swiper-button-next",
+                  "prevEl": ".swiper-button-prev"
                 }
-              </script>
-              <div class="swiper-wrapper" style=text-align:center;>
-                <div class="swiper-slide">
-                  <img src="https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; border-radius:10px;">
+              }
+            </script>
+
+            <div class="swiper-wrapper" style="text-align:center; margin-bottom:50px;">
+
+              <div class="swiper-slide">
+                <div class="content-area" style="margin-bottom:50px;">
+                  <h2 style="margin-top:50px;">리뷰글 작성 (첫번째 사진)</h2>
+                  <textarea class="form-control" rows="5" style="width:70%; display:block; margin:0 auto; margin-top:20px; text-align:center;"></textarea>
                 </div>
-                <div class="swiper-slide">
-                  <img src="https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; border-radius:10px;">
+                <img src="https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL"
+                     class="img-fluid" style="width:80%; border-radius:10px;">
+              </div>
+
+              <div class="swiper-slide">
+                <div class="content-area" style="margin-bottom:50px;">
+                  <h2 style="margin-top:50px;">리뷰글 작성 (두번째 사진)</h2>
+                  <textarea class="form-control" rows="5" style="width:70%; display:block; margin:0 auto; margin-top:20px; text-align:center;"></textarea>
                 </div>
-                <div class="swiper-slide">
-                  <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1" alt="Project showcase" class="img-fluid" loading="lazy" style="width: 80%; border-radius:10px;">
+                <img src="https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg"
+                     class="img-fluid" style="width:80%; border-radius:10px;">
+              </div>
+
+              <div class="swiper-slide">
+                <div class="content-area" style="margin-bottom:50px;">
+                  <h2 style="margin-top:50px;">리뷰글 작성 (세번째 사진)</h2>
+                  <textarea class="form-control" rows="5" style="width:70%; display:block; margin:0 auto; margin-top:20px; text-align:center;"></textarea>
+                </div>
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1"
+                     class="img-fluid" style="width:80%; border-radius:10px;">
+              </div>
+              <div class="swiper-button-next" style="border:1px solid black; margin-top:10%;"></div>
+            	  <div class="swiper-button-prev" style="border:1px solid black; margin-top:10%;"></div>
+
+            </div>
+
+            
+            
+            
+            <!-- tagbutton -->
+            <div class="technology-stack">
+	          <div class="row">
+	            <div class="col-lg-3">
+	              <h3>여행 태그</h3>
+	            </div>
+	            <div class="col-lg-9">
+	              <div class="tech-categories">
+	               <%
+	               	String currentNode = iconMap.get(nodeIcons[i]);	
+	               	String[] tagDesc = tagMap.get(currentNode).split(",");
+               		%>
+	               
+	                <div class="tech-category">
+	                  <div id="tag-buttons" class="tech-list">
+	                  	<%for(String td : tagDesc) {%>
+					    <input type="checkbox" class="btn-check" id="btn<%=num%>" autocomplete="off" />
+					    <label class="custom-toggle" for="btn<%=num++%>"><%= td %></label>
+					    <%} %>
+					    
+					</div>
+
                 </div>
                 
               </div>
-              <div class="swiper-button-next" style="border:1px solid black;"></div>
-             	<div class="swiper-button-prev" style="border:1px solid black;"></div>
-              
             </div>
           </div>
+          <button type="button" class="btn btn-primary float-end" data-mdb-ripple-init>저장</button>
         </div>
-          
-      </div>
-    <% } %>
-</div>
+            
+            
+            
+            
+            
 
           </div>
-          <%} %>
+        </div>
+      </div>
+
+    </div>
+  <% }%>
+</div>
+
+
+          </div>
+          <% } %>
         </div>
 
       </div>
@@ -242,19 +299,8 @@
 })();
 </script> 
 
-		<%-- <%@ include file="/board/numberdesc.jspf" %> --%>
 
-        <div class="technology-stack">
-          <div class="row">
-            <div class="col-lg-3">
-              <h3>여행 태그</h3>
-            </div>
-            <div class="col-lg-9">
-              <div class="tech-categories">
-                <div class="tech-category">
-                  <div class="category-title">관광지</div>
-                  <div class="tech-list">
- 
+		<%-- <%@ include file="/board/numberdesc.jspf" %> --%>
  <style>
 .custom-toggle {
     background-color: white;
@@ -272,53 +318,7 @@
     border-color: #0d6efd;
 }
 </style>
-                  
-					<input type="checkbox" class="btn-check" id="btn1" autocomplete="off" />
-					<label class="custom-toggle" for="btn1">멋있어요</label>
-					
-					<input type="checkbox" class="btn-check" id="btn2" autocomplete="off" />
-					<label class="custom-toggle" for="btn2">예뻐요</label>
-					
-					<input type="checkbox" class="btn-check" id="btn3" autocomplete="off" />
-					<label class="custom-toggle" for="btn3">다양하게 볼게 많아요</label>
-                  </div>
-                </div>
-                
-                <div class="tech-category">
-                  <div class="category-title">숙소</div>
-                  <div class="tech-list">
-                    <input type="checkbox" class="btn-check" id="btn4" autocomplete="off" />
-					<label class="custom-toggle" for="btn4">청결해요</label>
-					
-					<input type="checkbox" class="btn-check" id="btn5" autocomplete="off" />
-					<label class="custom-toggle" for="btn5">방음이 잘 돼요</label>
-					
-					<input type="checkbox" class="btn-check" id="btn6" autocomplete="off" />
-					<label class="custom-toggle" for="btn6">가격이 착해요</label>
-                  </div>
-                </div>
-                
-                <div class="tech-category">
-                  <div class="category-title">식당</div>
-                  <div class="tech-list">
-                    <input type="checkbox" class="btn-check" id="btn7" autocomplete="off" />
-					<label class="custom-toggle" for="btn7">식사가 맛있어요</label>
-					
-					<input type="checkbox" class="btn-check" id="btn8" autocomplete="off" />
-					<label class="custom-toggle" for="btn8">매장이 청결해요</label>
-					
-					<input type="checkbox" class="btn-check" id="btn9" autocomplete="off" />
-					<label class="custom-toggle" for="btn9">가격이 착해요</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button type="button" class="btn btn-primary float-end" data-mdb-ripple-init>저장</button>
-        </div>
-       <hr style="color: lightgray; margin-bottom : 50px;">
        
-
   </main>
     
 <%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
