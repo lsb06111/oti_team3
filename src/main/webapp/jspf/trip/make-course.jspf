@@ -1,130 +1,130 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>	
-		<div class="d-flex" style="height:100vh">
-			<section class="trip-sidebar-left" style="flex:1.2;">
-				<div class="trip-tabs mb-3 mt-2" id="trip-loc-tab" role="tablist">
-					<button class="trip-tab is-active fs-5" id="trip-tab-rcmd" role="tab" aria-selected="true" onclick="toggleLocTab(this)" >추천</button>
-					<button class="trip-tab fs-5" id="trip-tab-search" role="tab" aria-selected="false" onclick="toggleLocTab(this)">직접 검색</button>
-					<!-- 파란 인디케이터 -->
-					<span class="trip-tab-indicator"></span>
-				</div>
-				<form action="..." method="post" id="trip-search-form" style="display:none; " class="mt-1">
-					<div style="position: relative; width: 300px;">
-					  <input type="text" name="query" class="form-control"
-					         placeholder="장소명을 입력하세요"
-					         style="padding-right: 40px;"> <!-- 버튼 공간 확보 -->
-					  <button type="submit" class="btn-search"
-					          style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer;">
-					    <i class="fa fa-search"></i>
-					  </button>
-					</div>
-				</form>
-				<div id="trip-rcmds">
-				    <div class="trip-loc-tags mt-2 mb-2">
-			            <span class="trip-loc-tag">명소</span>
-			            <span class="trip-loc-tag">식당</span>
-			            <span class="trip-loc-tag">카페</span>
-			            <span class="trip-loc-tag">친구 추천</span>
-		            </div>
-		            <div style=" max-height: calc(100vh - 140px); overflow-y: auto;">
-						<%@ include file="/jspf/trip/trip-loc.jspf"%>
-		            </div>
-				</div>
-			</section>
-			<!-- 중간 일정 타임라인 -->
-			<section class="trip-schedule" id="trip-loc" style="flex:1; overflow: hidden;">
-				<div class="trip-schedule-header mb-3 d-flex justify-content-between">
-					<span class="fs-3">하와이</span>
-					 <small class="d-flex align-items-end" style="font-weight: normal; color: #999;">2025.9.6 - 2025.9.9</small>
-				</div>
-				<div class="trip-timeline">
-					<div class="trip-timeline-day">
-						<div class="trip-timeline-day-header mb-3">
-							<!-- Tabs: 일정 일차 선택 -->
-							<% 
-							int[] timelines = {1,3,2,4,0};
-							int tripLen = timelines.length;
-							%>
-							<div class="trip-tabs" id="dayTabs" role="tablist" aria-label="일차 선택">
-								<%
-								for (int i=1; i<=tripLen; i++){
-									if (i==1){%>
-										<button class="trip-tab is-active" role="tab" aria-selected="true" data-day="1" onclick="switchDay(this)"><%= i%>일</button>
-									<%}else{%>
-										<button class="trip-tab" role="tab" aria-selected="false" data-day="<%= i%>" onclick="switchDay(this)"><%= i%>일</button>
-									<%}
-								}%>
-							
-								<span class="trip-tab-indicator"></span>
-							</div>
-						</div>
-						<div  style=" max-height: calc(100vh - 150px); overflow-y: auto;">
-							
-							<div class="trip-timelineForDay" data-day="1">
-								<%@ include file="/jspf/trip/trip-timeline.jspf"%>
-							</div>
-							<div class="trip-timelineForDay" data-day="2" style="display:none">
-							</div>
-							<div class="trip-timelineForDay" data-day="3" style="display:none">
-							</div>
-							<div class="trip-timelineForDay" data-day="4" style="display:none">
-							</div>
-							<div class="trip-timelineForDay" data-day="5" style="display:none">
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-	
-			<!-- 오른쪽: 지도 -->
-			<section class="map-container p-0" aria-label="지도" style="flex:2.5; height:100vh;">
-				<div id="rcmd-map" style="width:100%;height:100%;">
-
-				</div>
-				<button class="btn-info">이용방법</button>
-			</section>
+<div class="d-flex" style="height:100vh">
+	<section class="trip-sidebar-left" style="flex:1.2;">
+		<div class="trip-tabs mb-3 mt-2" id="trip-loc-tab" role="tablist">
+			<button class="trip-tab is-active fs-5" id="trip-tab-rcmd" role="tab" aria-selected="true" onclick="toggleLocTab(this)" >추천</button>
+			<button class="trip-tab fs-5" id="trip-tab-search" role="tab" aria-selected="false" onclick="toggleLocTab(this)">직접 검색</button>
+			<!-- 파란 인디케이터 -->
+			<span class="trip-tab-indicator"></span>
 		</div>
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=460e38b5e2a79f0329a7652a9b1836dd"></script>
-		<script>
-			function insertLoc(btn) {
-				  const $btn   = $(btn);
-				  const $next  = $btn.parent().next();              // 부모의 다음 형제
-				  const title  = $.trim($next.find('.sl-name').text());
-				  const type   = $.trim($next.find('.sl-type').text());
-	
-				  // 표시 중인 타임라인(보이는 것) 선택 — 한 개만 있다고 가정
-				  const $target = $('.trip-timelineForDay:visible').first();
-				  $target
-				  // 필요 시 이미지 소스가 있다면 이렇게 가져오세요 (예시)
-				  const img = $btn.parent().find('img').attr('src');
-				  const order = $target.children().length;
-	
-				  if ($target.length) {
-				    $target.append(getTimelineEvent(title, type, img, order+1));
-				  }
-				};
-			
-			function getTimelineEvent(title, type, img, order){
-				let text = `
-				<div class="trip-timeline-event d-flex flex-column">
-					<div class="d-flex w-100">
-						<div class="number m-1">\${order}</div>
-						<div class="event-info mx-2">
-							<div class="time">12:55-12:55</div>
-							<div style="color: #ff7a7a;">\${type}</div>
-							<div style="white-space: nowrap">\${title}</div>
-							<span class="trip-note-toggle" onclick="toggleNote(this)">📝노트작성</span>
-						</div>
-						<img src="\${img}"
-							alt="하얏트 플레이스 와이키키" class="event-img" />
+		<form action="..." method="post" id="trip-search-form" style="display:none; " class="mt-1">
+			<div style="position: relative; width: 300px;">
+			  <input type="text" name="query" class="form-control"
+			         placeholder="장소명을 입력하세요"
+			         style="padding-right: 40px;"> <!-- 버튼 공간 확보 -->
+			  <button type="submit" class="btn-search"
+			          style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer;">
+			    <i class="fa fa-search"></i>
+			  </button>
+			</div>
+		</form>
+		<div id="trip-rcmds">
+		    <div class="trip-loc-tags mt-2 mb-2">
+	            <span class="trip-loc-tag">명소</span>
+	            <span class="trip-loc-tag">식당</span>
+	            <span class="trip-loc-tag">카페</span>
+	            <span class="trip-loc-tag">친구 추천</span>
+            </div>
+            <div style=" max-height: calc(100vh - 140px); overflow-y: auto;">
+				<%@ include file="/jspf/trip/trip-loc.jspf"%>
+            </div>
+		</div>
+	</section>
+	<!-- 중간 일정 타임라인 -->
+	<section class="trip-schedule" id="trip-loc" style="flex:1; overflow: hidden;">
+		<div class="trip-schedule-header mb-3 d-flex justify-content-between">
+			<span class="fs-3">하와이</span>
+			 <small class="d-flex align-items-end" style="font-weight: normal; color: #999;">2025.9.6 - 2025.9.9</small>
+		</div>
+		<div class="trip-timeline">
+			<div class="trip-timeline-day">
+				<div class="trip-timeline-day-header mb-3">
+					<!-- Tabs: 일정 일차 선택 -->
+					<% 
+					int[] timelines = {1,3,2,4,0};
+					int tripLen = timelines.length;
+					%>
+					<div class="trip-tabs" id="dayTabs" role="tablist" aria-label="일차 선택">
+						<%
+						for (int i=1; i<=tripLen; i++){
+							if (i==1){%>
+								<button class="trip-tab is-active" role="tab" aria-selected="true" data-day="1" onclick="switchDay(this)"><%= i%>일</button>
+							<%}else{%>
+								<button class="trip-tab" role="tab" aria-selected="false" data-day="<%= i%>" onclick="switchDay(this)"><%= i%>일</button>
+							<%}
+						}%>
+					
+						<span class="trip-tab-indicator"></span>
 					</div>
-					<div class="trip-note-area">
-						<textarea class="pe-5" placeholder="메모를 입력하세요..."></textarea>
-						<button class="btn btn-light save-note-btn">완료</button>
+				</div>
+				<div  style=" max-height: calc(100vh - 150px); overflow-y: auto;">
+					
+					<div class="trip-timelineForDay" data-day="1">
+						<%@ include file="/jspf/trip/trip-timeline.jspf"%>
 					</div>
-				</div>`;
-				return text;
-			}
+					<div class="trip-timelineForDay" data-day="2" style="display:none">
+					</div>
+					<div class="trip-timelineForDay" data-day="3" style="display:none">
+					</div>
+					<div class="trip-timelineForDay" data-day="4" style="display:none">
+					</div>
+					<div class="trip-timelineForDay" data-day="5" style="display:none">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-		</script>
+	<!-- 오른쪽: 지도 -->
+	<section class="map-container p-0" aria-label="지도" style="flex:2.5; height:100vh;">
+		<div id="rcmd-map" style="width:100%;height:100%;">
+
+		</div>
+		<button class="btn-info">이용방법</button>
+	</section>
+</div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=460e38b5e2a79f0329a7652a9b1836dd"></script>
+<script>
+	function insertLoc(btn) {
+		  const $btn   = $(btn);
+		  const $next  = $btn.parent().next();              // 부모의 다음 형제
+		  const title  = $.trim($next.find('.sl-name').text());
+		  const type   = $.trim($next.find('.sl-type').text());
+
+		  // 표시 중인 타임라인(보이는 것) 선택 — 한 개만 있다고 가정
+		  const $target = $('.trip-timelineForDay:visible').first();
+		  $target
+		  // 필요 시 이미지 소스가 있다면 이렇게 가져오세요 (예시)
+		  const img = $btn.parent().find('img').attr('src');
+		  const order = $target.children().length;
+
+		  if ($target.length) {
+		    $target.append(getTimelineEvent(title, type, img, order+1));
+		  }
+		};
+	
+	function getTimelineEvent(title, type, img, order){
+		let text = `
+		<div class="trip-timeline-event d-flex flex-column ">
+			<div class="d-flex w-100">
+				<div class="number m-1">\${order}</div>
+				<div class="event-info mx-2">
+					<div class="time">12:55-12:55</div>
+					<div style="color: #ff7a7a;">\${type}</div>
+					<div style="white-space: nowrap">\${title}</div>
+					<span class="trip-note-toggle" onclick="toggleNote(this)">📝노트작성</span>
+				</div>
+				<img src="\${img}"
+					alt="하얏트 플레이스 와이키키" class="event-img" />
+			</div>
+			<div class="trip-note-area">
+				<textarea class="pe-5" placeholder="메모를 입력하세요..."></textarea>
+				<button class="btn btn-light save-note-btn">완료</button>
+			</div>
+		</div>`;
+		return text;
+	}
+
+</script>
 		

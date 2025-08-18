@@ -7,6 +7,7 @@
 
 
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body class="trip-body">
 
 	<main class="trip-main">
@@ -16,7 +17,7 @@
 			<button id = "trip-pre-step" class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#trip-date" role="tab" onclick="switchStep(0); toggleDoneBtn(this);">
 				<span class="step-title">날짜/지역</span>
 			</button>
-			<button id = "trip-loc-step" class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="switchStep(1); toggleDoneBtn(this); resizeMap()">
+			<button id = "trip-loc-step" class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="switchStep(1); toggleDoneBtn(this);">
 				<span class="step-title">장소 선택</span>
 			</button>
 			<button id="trip-done-btn" class= "btn btn-primary" style="display:none; background: #5c99ee" 
@@ -31,10 +32,8 @@
 			<%@ include file="/jspf/trip/make-course.jspf" %>
 		</div>
 	</main>
-		
   <script src="/oti_team3/assets/js/trip.js"></script>
   <script src="/oti_team3/assets/js/map.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	  <!-- Vendor JS Files -->
   <script src="/oti_team3/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

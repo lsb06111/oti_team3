@@ -1,3 +1,5 @@
+
+
 function toggleDoneBtn(btn){
 	const id = btn.getAttribute('id');
 	if (id === "trip-loc-step"){
@@ -81,4 +83,5 @@ function switchDay(btn){
 	timelineDoms.forEach((el, i) => {
 		el.style.display = (i+1 == idx ? 'block' : 'none');
 	});
-}
+};
+
