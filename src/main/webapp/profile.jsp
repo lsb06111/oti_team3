@@ -101,8 +101,8 @@
             <div class="row gy-4" id="tripCardsRow">
               <%
                 String[] transport = {"bus-front", "car-front-fill", "person-walking", "car-front-fill"};
-                String[] titles = {"수빈이와 떠나는 행복여행", "부산 뿌시기 여행", "제주도 혼자 여행", "전주 맛집 탐방"};
-                String[] tripLocations = {"강원도", "부산", "제주도", "전주"};
+                String[] titles = {reqName.substring(1,3)+"이와 떠나는 행복여행", "강원도 뿌시기 여행", "제주도 혼자 여행", "전주 맛집 탐방"};
+                String[] tripLocations = {"부산", "강원도", "제주도", "전주"};
                 for(int i=0; i<4; i++){
               %>
               <div class="col-12">
@@ -110,7 +110,7 @@
                <div class="service-card"
 			     data-location="<%= tripLocations[i] %>"
 			     style="padding: 18px 24px; cursor:pointer;"
-			     onclick="location.href='/oti_team3/details.jsp?title=<%= titles[i] %>'">
+			     onclick="location.href='/oti_team3/<%= isMe? "details.jsp" : "board/view.jsp" %>?title=<%= titles[i] %>'">
                   <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px">
                     <div class="service-icon" style="margin-bottom:0">
                       <i class="bi bi-<%= transport[i] %>"></i>
@@ -125,6 +125,17 @@
                       </ol>
                     </div>
                     <!-- action button aligned to the right -->
+                    
+                    <%if(isMe){ %>
+                    <a href="/oti_team3/trip/"
+                       class="service-link ms-auto"
+                       onclick="event.stopPropagation();"
+                       style="width:fit-content; transition:color 0.3s; color:inherit;"
+                       onmouseover="this.style.color='#5c99ee';"
+                       onmouseout="this.style.color='inherit';">
+                      일정 편집하기
+                    </a> / 
+                    <div>
                     <a href="/oti_team3/board/write.jsp?title=<%= titles[i] %>"
                        class="service-link ms-auto"
                        onclick="event.stopPropagation();"
@@ -132,7 +143,8 @@
                        onmouseover="this.style.color='#5c99ee';"
                        onmouseout="this.style.color='inherit';">
                       리뷰 작성하기 <i class="bi bi-arrow-right"></i>
-                    </a>
+                    </a></div>
+                    <%} %>
                   </div>
                 </div>
               </div>
