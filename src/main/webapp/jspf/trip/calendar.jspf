@@ -5,11 +5,11 @@
 	<p class="m-5"></p>
 	<div class="d-flex flex-row align-items-center">
 		<div class="fs-5">출발일 : </div>
-		<input type="date" class="form-control m-1 w-auto"/>
+		<input id = "trip-start-date" type="date" class="form-control m-1 w-auto"/>
 	</div>
 	<br>
 	<div class="d-flex flex-row align-items-center">
 		<div class="fs-5">도착일 : </div>
-		<input type="date" class="form-control m-1 w-auto"/>
+		<input id = "trip-end-date" type="date" class="form-control m-1 w-auto"/>
 	</div>
 </div>
