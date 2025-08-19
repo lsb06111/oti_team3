@@ -24,7 +24,7 @@
     </div><!-- End Page Title -->
 
     <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section" style="--subtle-border: none;">
+    <section id="portfolio-details" class="portfolio-details section" style="--subtle-border: none; padding-bottom:0px;">
 
       <div class="container">
 
@@ -84,11 +84,6 @@
 }
 </style>
 
-
-
-
-
-  
 
 <% String reqTitle = request.getParameter("title"); %>
     <section id="tabs" class="tabs section mt-5">
@@ -330,18 +325,35 @@ function setReviewContent(tIndex, nIndex){
 </script> 
 
 		<%-- <%@ include file="/board/numberdesc.jspf" %> --%>
-
-        <input type="checkbox" class="btn-check" id="btn3" autocomplete="off" />
-		    <label class="custom-toggle" for="btn3">좋아요</label>
-       <hr style="color: lightgray; margin-bottom : 50px;">
-<%-- <%@ include file="/jspf/board/reply.jspf" %> --%>
-
-
-   
-		  <div class="features-intro" style="margin-bottom:50px; font-size:20px;">
-		    <label class="custom-toggle">댓글</label>
+		<div style="text-align:center;">
+		<i id="heartIcon" class="bi bi-heart" 
+		 style="font-size: 2.5rem; cursor: pointer; margin-left:5px;"></i>
+		<p>좋아요</p>
+		</div>
+       <hr style="color: lightgray; margin-bottom : 50px; margin-top: 50px;">
+		<%-- <%@ include file="/jspf/board/reply.jspf" %> --%>
 		
-		    
+		<!-- Bootstrap Icons CDN -->
+		<link rel="stylesheet" 
+		      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+	
+ 		
+		<script>
+		heartIcon.addEventListener("click", () => {
+			  heartIcon.classList.toggle("bi-heart");
+			  heartIcon.classList.toggle("bi-heart-fill");
+
+			  if (heartIcon.classList.contains("bi-heart-fill")) {
+			    heartIcon.style.color = "#5c99ee"; // 채워졌을 때
+			  } else {
+			    heartIcon.style.color = "black";   // 다시 빈 하트일 때
+			  }
+			});
+
+		</script>
+
+		    <div style = "display : inline-block;">
+	          <h3>댓글</h3>
 		
 		    <section>
 		    <% 
@@ -416,23 +428,6 @@ function setReviewContent(tIndex, nIndex){
 		       </a>
 	    </div>
 	    <%@ include file="/board/teamcards.jspf" %>
-
-        <div class="project-footer">
-          <div class="footer-navigation">
-            <a href="#" class="nav-link prev-project">
-              <span class="nav-direction">Previous</span>
-              <span class="nav-title">Digital Banking App</span>
-            </a>
-            <a href="#" class="nav-link all-projects">
-              <i class="bi bi-grid-3x3-gap"></i>
-              <span>All Projects</span>
-            </a>
-            <a href="#" class="nav-link next-project">
-              <span class="nav-direction">Next</span>
-              <span class="nav-title">Healthcare Dashboard</span>
-            </a>
-          </div>
-        </div>
         
       </div>
 
