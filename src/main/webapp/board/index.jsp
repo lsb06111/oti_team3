@@ -18,7 +18,7 @@
 
       <div class="container section-title" style="padding-bottom:60px;">
         <h2>리뷰 게시판</h2>
-        <a href="write.jsp">리뷰 쓰러가기<i class="bi bi-arrow-right"></i></a>
+        <a href="#" id="modal-reviewSelection" data-bs-toggle="modal" data-bs-target="#modalReviewSelection">리뷰 쓰러가기<i class="bi bi-arrow-right"></i></a>
       </div><div class="container">
 
         <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
@@ -63,7 +63,7 @@
           <div class="row gy-4 portfolio-grid isotope-container" style="position: relative; width: 95%; height: 264px; margin: 0px auto auto;">
 
 				<%
-				String[] exampleInfo = {
+					String[] exampleInfo = {
 					    "김민준 @minjun_kim",
 					    "이서준 @seo_jun123",
 					    "박서연 @seoyeon_park",
@@ -116,15 +116,15 @@
 					};
 					
 
-					Random rand = new Random();
+					Random rand2 = new Random();
 					String filters[] = {"capital", "middle", "honam", "youngnam"};
 					for(int i=0; i<8; i++){ 
 						String[] infoSplit = exampleInfo[i].split(" ");
 						String infoName = infoSplit[0];
 						String infoIdentify = infoSplit[1];
 						String[] locInfo = exampleLoc[i].split(":");
-						int likes = rand.nextInt(1,999);
-						int photoID = rand.nextInt(1,6);
+						int likes = rand2.nextInt(1,999);
+						int photoID = rand2.nextInt(1,6);
 				%>
 						
 						<div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-<%= locInfo[0] %>"
@@ -182,6 +182,21 @@
       </div>
 
     </section>    
+    
+<div class="modal fade" id="modalReviewSelection" tabindex="-1" aria-labelledby="modalReviewSelectionLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalReviewSelectionLabel">여행 선택</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+      </div>
+      <div class="modal-body p-4">
+        <%@ include file="/jspf/board/reviewselection.jspf" %>
+      </div>
+    </div>
+  </div>
+</div>
+    
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   var grid = document.querySelector('.isotope-container');

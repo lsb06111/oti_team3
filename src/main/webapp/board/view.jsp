@@ -2,7 +2,36 @@
     pageEncoding="UTF-8" import="java.util.*"%>
 <%@ include file="/jspf/head.jspf" %> <!-- 헤드 부분 고정 -->
 <!-- 커스텀 CSS import 존 -->
+<link rel="stylesheet" 
+		      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
+<style>
+.custom-toggle {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 6px 16px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-check:checked + .custom-toggle {
+    background-color: #5c99ee;
+    color: white;
+    border-color: #0d6efd;
+}
+/* 댓글 기본 숨김 */
+.default-hide-comment {
+    display: none;
+}
+
+/* 체크박스 체크 시 댓글 표시 */
+#btn2:checked ~ .default-hide-comment {
+    display: block;
+}
+</style>
+		      
 </head>
 <body class="portfolio-details-page">
 <%@ include file="/jspf/header.jspf" %> <!-- 헤더부분 고정 -->
@@ -57,32 +86,7 @@
           </div>
         </div>
 
-<style>
-.custom-toggle {
-    background-color: white;
-    color: black;
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    padding: 6px 16px;
-    display: inline-block;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.btn-check:checked + .custom-toggle {
-    background-color: #5c99ee;
-    color: white;
-    border-color: #0d6efd;
-}
-/* 댓글 기본 숨김 */
-.default-hide-comment {
-    display: none;
-}
 
-/* 체크박스 체크 시 댓글 표시 */
-#btn2:checked ~ .default-hide-comment {
-    display: block;
-}
-</style>
 
 
 <% String reqTitle = request.getParameter("title"); %>
@@ -324,36 +328,32 @@ function setReviewContent(tIndex, nIndex){
 })();
 </script> 
 
-		<%-- <%@ include file="/board/numberdesc.jspf" %> --%>
-		<div style="text-align:center;">
-		<i id="heartIcon" class="bi bi-heart" 
-		 style="font-size: 2.5rem; cursor: pointer; margin-left:5px;"></i>
-		<p>좋아요</p>
-		</div>
-       <hr style="color: lightgray; margin-bottom : 50px; margin-top: 50px;">
-		<%-- <%@ include file="/jspf/board/reply.jspf" %> --%>
+<%-- <%@ include file="/board/numberdesc.jspf" %> --%>
+<div style="text-align:center;">
+<i id="heartIcon" class="bi bi-heart" 
+ style="font-size: 2.5rem; cursor: pointer; margin-left:5px;"></i>
+<p>좋아요</p>
+</div>
+     <hr style="color: lightgray; margin-bottom : 50px; margin-top: 50px;">
+<%-- <%@ include file="/jspf/board/reply.jspf" %> --%>
 		
-		<!-- Bootstrap Icons CDN -->
-		<link rel="stylesheet" 
-		      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-	
- 		
-		<script>
-		heartIcon.addEventListener("click", () => {
-			  heartIcon.classList.toggle("bi-heart");
-			  heartIcon.classList.toggle("bi-heart-fill");
 
-			  if (heartIcon.classList.contains("bi-heart-fill")) {
-			    heartIcon.style.color = "#5c99ee"; // 채워졌을 때
-			  } else {
-			    heartIcon.style.color = "black";   // 다시 빈 하트일 때
-			  }
-			});
+<script>
+heartIcon.addEventListener("click", () => {
+	  heartIcon.classList.toggle("bi-heart");
+	  heartIcon.classList.toggle("bi-heart-fill");
 
-		</script>
+	  if (heartIcon.classList.contains("bi-heart-fill")) {
+	    heartIcon.style.color = "#5c99ee"; // 채워졌을 때
+	  } else {
+	    heartIcon.style.color = "black";   // 다시 빈 하트일 때
+	  }
+	});
 
-		    <div style = "display : inline-block;">
-	          <h3>댓글</h3>
+</script>
+
+ <div class="features-intro">
+      <h3>댓글</h3>
 		
 		    <section>
 		    <% 
@@ -427,7 +427,7 @@ function setReviewContent(tIndex, nIndex){
 		          <i class="bi bi-arrow-right"></i>
 		       </a>
 	    </div>
-	    <%@ include file="/board/teamcards.jspf" %>
+	    <%@ include file="/jspf/board/others.jspf" %>
         
       </div>
 
