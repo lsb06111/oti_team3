@@ -28,29 +28,45 @@
           	map.put("youngnam", new String[]{"부산", "대구", "울산", "경상북도", "경상남도"});
           %>
 
-          <div class="row gy-4 portfolio-grid isotope-container" style="position: relative;width: 80%;height: 256px;margin: auto;margin-top:0">
+          <div class="row gy-4 portfolio-grid isotope-container"
+     style="position:relative;width:80%;height:256px;margin:auto;margin-top:0">
 
-			<%for(String category : map.keySet()) {
-				String[] locations = map.get(category);
-				for(String location : locations){
-			%>
-					<div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-<%= category %>">
-					  <div class="location-card">
-					    <div
-						   class="btn text-white fw-semibold w-100 shadow-sm py-2 rounded"
-						   style="--bs-btn-bg: #5c99ee; --bs-btn-hover-bg: #447fcc; --bs-btn-border-color: #5c99ee; --bs-btn-hover-border-color: #447fcc;">
-						  <%= location %>
-						</div>
-					  </div>
-					</div>
-            <%
-				}
-			} 
-			%>
-
-            
-
-          </div><!-- End Portfolio Grid -->
+  <%
+    int idx = 0; // id 중복 방지를 위해 인덱스
+    for(String category : map.keySet()) {
+      String[] locations = map.get(category);
+      for(String location : locations){
+        idx++;
+  %>
+	    <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-<%= category %>">
+	      <div class="location-card">
+	        
+	        <!-- 숨겨진 라디오 버튼 -->
+	        <input type="radio"
+	               class="btn-check"
+	               name="locationRadio"
+	               id="loc-<%= idx %>"
+	               autocomplete="off">
+	
+	        <label class="btn text-white fw-semibold w-100 shadow-sm py-2 rounded"
+	               for="loc-<%= idx %>"
+	               style="--bs-btn-bg:#5c99ee;
+	                      --bs-btn-hover-bg:#447fcc;
+	                      --bs-btn-border-color:#5c99ee;
+	                      --bs-btn-hover-border-color:#447fcc;
+	                      --bs-btn-active-bg:#2f6fb8;
+	                      --bs-btn-active-border-color:#2f6fb8;">
+	          <%= location %>
+	        </label>
+	
+	      </div>
+	    </div>
+	  <%
+	      }
+	    } 
+	  %>
+	
+	</div><!-- End Portfolio Grid -->
 
         </div>
 			</div>

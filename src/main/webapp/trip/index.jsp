@@ -12,16 +12,17 @@
 
 	<main class="trip-main">
 		<!-- 왼쪽 네비 -->
-		<nav class="nav step-nav my-4 mx-3" role="tablist" style="flex:1;">
-	      	<a href="/oti_team3/" class="trip-sitename">TripNote</a>
-			<button id = "trip-pre-step" class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#trip-date" role="tab" onclick="switchStep(0); toggleDoneBtn(this);">
-				<span class="step-title">날짜/지역</span>
-			</button>
-			<button id = "trip-loc-step" class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="switchStep(1); toggleDoneBtn(this);">
-				<span class="step-title">장소 선택</span>
-			</button>
-			<button id="trip-done-btn" class= "btn btn-primary" style="display:none; background: #5c99ee" 
-					onclick="">일정 저장</button>
+		<nav class="nav my-4 mx-3 d-flex flex-column justify-content-between" role="tablist" style="flex:1;">
+			<div class="step-nav">
+	      		<a href="/oti_team3/" class="trip-sitename">TripNote</a>
+				<button id = "trip-pre-step" class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#trip-date" role="tab" onclick="switchStep(0); toggleDoneBtn(this);">
+					<span class="step-title">날짜/지역</span>
+				</button>
+				<button id = "trip-loc-step" class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="switchStep(1); toggleDoneBtn(this);">
+					<span class="step-title">장소 선택</span>
+				</button>
+			</div>
+			<button id="trip-done-btn" class= "btn btn-primary" style="display:none; background: #5c99ee; margin-bottom: 10px;">일정 저장</button>
 		</nav>
 		<!-- 추천 관광지 창 -->
 		<div class="trip-step" style="flex:11">
