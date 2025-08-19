@@ -37,29 +37,45 @@
       style="--bs-btn-bg:#5c99ee; 
              --bs-btn-hover-bg:#447fcc; 
              --bs-btn-border-color:#5c99ee; 
-             --bs-btn-hover-border-color:#447fcc;">
+             --bs-btn-hover-border-color:#447fcc;"
+      onclick="showCert();">
       인증요청
     </button>
   </div>
   <div class="invalid-feedback">유효한 이메일을 입력해주세요.</div>
 </div>
- 
 
-    <div class="mb-2">
+ <div class="mb-2 cert-number" style="display:none;">
+  <label for="regCertNumber" class="form-label">인증코드</label>
+  <div class="input-group">
+    <input type="text" class="form-control" id="regCertNumber" name="certNumber" required placeholder="인증번호">
+    <button type="button" class="btn text-white"
+      style="--bs-btn-bg:#5c99ee; 
+             --bs-btn-hover-bg:#447fcc; 
+             --bs-btn-border-color:#5c99ee; 
+             --bs-btn-hover-border-color:#447fcc;">
+      인증
+    </button>
+  </div>
+  <div class="invalid-feedback">유효한 이메일을 입력해주세요.</div>
+</div>
+ 
+<div class="row g-3 mb-2">
+    <div class="col-md-6">
       <label for="regPassword" class="form-label">비밀번호</label>
       <input type="password" class="form-control" id="regPassword" name="password" required placeholder="최소 8자">
       <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
     </div>
-    <div class="mb-2">
+    <div class="col-md-6">
       <label for="regPassword2" class="form-label">비밀번호 확인</label>
       <input type="password" class="form-control" id="regPassword2" name="passwordConfirm" required placeholder="다시 입력">
       <div class="invalid-feedback">비밀번호 확인을 입력해주세요.</div>
     </div>
-
+</div>
   <div class="form-check mt-3">
     <input class="form-check-input" type="checkbox" value="true" id="terms" required>
     <label class="form-check-label" for="terms">
-      <a href="/oti_team3/terms" class="text-decoration-none">이용약관</a>에 동의합니다.
+      <a href="#" class="text-decoration-none">이용약관</a>에 동의합니다.
     </label>
     <div class="invalid-feedback">약관에 동의해주세요.</div>
   </div>
@@ -71,7 +87,13 @@
 </form>
 
 <script>
-  // Basic match check (optional)
+
+	const certDom = document.querySelector(".cert-number");
+	function showCert(){
+			certDom.style.display = 'block';
+	}  
+
+
   (function () {
     const form = document.currentScript?.previousElementSibling;
     if (!form) return;
