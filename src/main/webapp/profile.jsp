@@ -172,12 +172,12 @@
 </div>
 
 <%
-	String toastTitle = "알림";
-	String toastMsg = "정보 변경에 성공하였습니다!";
-	boolean toastSuccess = true;
+	toastTitle = "알림";
+	toastMsg = "정보 변경에 성공하였습니다!";
+	toastSuccess = true;
 %>
-<%@ include file="/jspf/toasts/toast.jspf" %>
 
+<%@ include file="/jspf/toasts/toast.jspf" %>
 
 <%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
 

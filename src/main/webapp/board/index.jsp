@@ -1,54 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*"%>
-<%@ include file="/jspf/head.jspf" %> <!-- 헤드 부분 고정 -->
-<!-- 커스텀 CSS import 존 -->
-
-</head>
+<%@ include file="/jspf/head.jspf" %> </head>
 <body>
-<%@ include file="/jspf/header.jspf" %> <!-- 헤더부분 고정 -->
-
+<%@ include file="/jspf/header.jspf" %>
+<%
+	String boardSearchValue = request.getParameter("search");
+	boardSearchValue = boardSearchValue == null ? "" : boardSearchValue;
+	
+	HashMap<String,String[]> map = new HashMap<>();
+	map.put("capital", new String[]{"서울", "인천", "경기도"});
+	map.put("middle", new String[]{"대전", "세종", "충청북도", "충청남도", "강원도"});
+	map.put("honam", new String[]{"광주", "전라북도", "전라남도"});
+	map.put("youngnam", new String[]{"부산", "대구", "울산", "경상북도", "경상남도"});
+	map.put("jeju", new String[]{"제주"});
+%>
 <section id="portfolio" class="portfolio services section mt-5">
 
-      <!-- Section Title -->
       <div class="container section-title" style="padding-bottom:60px;">
         <h2>리뷰 게시판</h2>
-        <p>리뷰를 확인해보세요</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
+        <a href="write.jsp">리뷰 쓰러가기<i class="bi bi-arrow-right"></i></a>
+      </div><div class="container">
 
         <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
 
-<div class="portfolio-filters-wrapper position-relative d-flex align-items-center w-100" style="margin-bottom:0;width:90% !important; margin:auto;">
+	<div class="portfolio-filters-wrapper position-relative d-flex align-items-center w-100" style="margin-bottom:0;width:90% !important; margin:auto;">
+		  
+		<div class="dropdown dropend">
+		  <a class="dropdown-toggle text-decoration-none text-dark fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		    최신순
+		  </a>
+		  <ul class="dropdown-menu">
+		    <li><a class="dropdown-item" href="#">최신순</a></li>
+		    <li><a class="dropdown-item" href="#">추천순</a></li>
+		    <li><a class="dropdown-item" href="#">팔로워만</a></li>
+		  </ul>
+		</div>
+		
+		  <ul class="portfolio-filters isotope-filters mb-0 position-absolute start-50 translate-middle-x d-flex gap-3">
+		    <li data-filter="*" class="filter-active">전 지역</li>
+		    <li data-filter=".filter-capital">수도권</li>
+		    <li data-filter=".filter-middle">중부권</li>
+		    <li data-filter=".filter-honam">호남권</li>
+		    <li data-filter=".filter-youngnam">영남권</li>
+		    <li data-filter=".filter-jeju">제주</li>
+		  </ul>
 
-	<a href="write.jsp" class="service-link">
-						      리뷰 쓰러가기
-						      <i class="bi bi-arrow-right"></i>
-						    </a>
+		  <div class="input-group ms-auto" style="width: 250px;">
+		    <input type="text" id="search-input" class="form-control" placeholder="검색어를 입력해주세요" value="<%= boardSearchValue %>">
+		    <button type="button" id="search-button" class="btn text-white"
+		      style="--bs-btn-bg:#5c99ee; 
+		             --bs-btn-hover-bg:#447fcc; 
+		             --bs-btn-border-color:#5c99ee; 
+		             --bs-btn-hover-border-color:#447fcc;">
+		      검색
+		    </button>
+		  </div>
 
-  <!-- Centered filters -->
-  <ul class="portfolio-filters isotope-filters mb-0 position-absolute start-50 translate-middle-x d-flex gap-3">
-    <li data-filter="*" class="filter-active">전 지역</li>
-    <li data-filter=".filter-capital">수도권</li>
-    <li data-filter=".filter-middle">중부권</li>
-    <li data-filter=".filter-honam">호남권</li>
-    <li data-filter=".filter-youngnam">영남권</li>
-  </ul>
+	</div>
 
-  <!-- Search bar on the right -->
-  <div class="input-group ms-auto" style="width: 250px;">
-    <input type="text" class="form-control" placeholder="검색어를 입력해주세요">
-    <button type="button" class="btn text-white"
-      style="--bs-btn-bg:#5c99ee; 
-             --bs-btn-hover-bg:#447fcc; 
-             --bs-btn-border-color:#5c99ee; 
-             --bs-btn-hover-border-color:#447fcc;">
-      검색
-    </button>
-  </div>
 
-</div>
-          
 
           <div class="row gy-4 portfolio-grid isotope-container" style="position: relative; width: 95%; height: 264px; margin: 0px auto auto;">
 
@@ -73,40 +83,55 @@
 					    "2025.05.21",
 					    "2025.05.03"
 					};
+					//"capital", "middle", "honam", "youngnam"
+					String[] exampleLoc = {
+						"jeju:제주도",
+						"youngnam:부산",
+						"honam:광주",
+						"capital:서울",
+						"middle:강원도",
+						"honam:전라북도",
+						"middle:강원도",
+						"capital:인천"
+					};
 					String[] exampleTitle = {
-						    "제주도의 여름 바다 여행기",
-						    "부산 골목길 탐방 후기",
-						    "빗속의 경주 여행",
-						    "서울 야시장 밤 산책",
-						    "강원도 주말 힐링 여행",
-						    "대구 숨은 카페 투어",
-						    "동해안 드라이브 코스 추천",
-						    "산사에서의 템플스테이 체험"
+					    "제주도의 여름 바다 여행기",
+					    "부산 골목길 탐방 후기",
+					    "빗속의 광주 여행",
+					    "서울 야시장 밤 산책",
+					    "강원도 주말 힐링 여행",
+					    "전주 숨은 카페 투어",
+					    "동해안 드라이브 코스 추천",
+					    "인천에서의 템플스테이 체험"
 					};
 					String[] exampleContents = {
-						    "푸른 바다와 하얀 파도가 어우러진 제주에서 시원한 여름을 만끽하며, 바닷가 카페와 전통시장을 돌며 하루를 보냈습니다.",
-						    "부산의 골목골목을 걸으며 맛집과 사람들의 따뜻한 정을 느끼고, 자갈치 시장과 해운대에서 다양한 해산물을 맛봤습니다.",
-						    "비 오는 날 경주를 거닐며 고즈넉한 전통의 매력을 새삼 느끼고, 첨성대와 대릉원을 돌아보며 시간을 천천히 보냈습니다.",
-						    "서울 야시장에서 다양한 길거리 음식을 맛보고 즐거운 밤을 보내며, 공연과 버스킹 무대도 함께 즐길 수 있었습니다.",
-						    "강원도의 맑은 공기와 조용한 자연 속에서 완벽한 휴식을 취하고, 숲길 산책과 강가에서의 피크닉을 즐겼습니다.",
-						    "대구의 숨겨진 카페들을 찾아다니며 특별한 커피와 디저트를 즐기고, 감각적인 인테리어와 분위기에 반했습니다.",
-						    "동해안 도로를 달리며 시원한 바닷바람과 멋진 풍경을 감상하고, 해변마다 잠시 멈춰 사진을 남기는 즐거움을 느꼈습니다.",
-						    "산사에서의 하룻밤은 마음을 비우고 나를 돌아보는 소중한 시간이었으며, 스님의 말씀과 명상으로 깊은 평화를 얻었습니다."
-						};
+					    "푸른 바다와 하얀 파도가 어우러진 제주에서 시원한 여름을 만끽하며, 바닷가 카페와 전통시장을 돌며 하루를 보냈습니다.",
+					    "부산의 골목골목을 걸으며 맛집과 사람들의 따뜻한 정을 느끼고, 자갈치 시장과 해운대에서 다양한 해산물을 맛봤습니다.",
+					    "비 오는 날 경주를 거닐며 고즈넉한 전통의 매력을 새삼 느끼고, 첨성대와 대릉원을 돌아보며 시간을 천천히 보냈습니다.",
+					    "서울 야시장에서 다양한 길거리 음식을 맛보고 즐거운 밤을 보내며, 공연과 버스킹 무대도 함께 즐길 수 있었습니다.",
+					    "강원도의 맑은 공기와 조용한 자연 속에서 완벽한 휴식을 취하고, 숲길 산책과 강가에서의 피크닉을 즐겼습니다.",
+					    "대구의 숨겨진 카페들을 찾아다니며 특별한 커피와 디저트를 즐기고, 감각적인 인테리어와 분위기에 반했습니다.",
+					    "동해안 도로를 달리며 시원한 바닷바람과 멋진 풍경을 감상하고, 해변마다 잠시 멈춰 사진을 남기는 즐거움을 느꼈습니다.",
+					    "산사에서의 하룻밤은 마음을 비우고 나를 돌아보는 소중한 시간이었으며, 스님의 말씀과 명상으로 깊은 평화를 얻었습니다."
+					};
+					
+
 					Random rand = new Random();
 					String filters[] = {"capital", "middle", "honam", "youngnam"};
 					for(int i=0; i<8; i++){ 
 						String[] infoSplit = exampleInfo[i].split(" ");
 						String infoName = infoSplit[0];
 						String infoIdentify = infoSplit[1];
-						int f = rand.nextInt(4);
+						String[] locInfo = exampleLoc[i].split(":");
 						int likes = rand.nextInt(1,999);
 						int photoID = rand.nextInt(1,6);
 				%>
-						<div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-<%= filters[f] %>">
+						
+						<div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-<%= locInfo[0] %>"
+							 data-date="<%= exampleDate[i] %>"
+							 data-likes="<%= likes %>">
 						  <div class="service-card" style="padding: 15px 12px; cursor:pointer" onclick="location.href='/oti_team3/board/view.jsp?title=<%= exampleTitle[i] %>'">
 						
-						    <!-- 프로필/닉네임/좋아요 줄 -->
 						    <figure style="display:flex; align-items:center; margin:0; width:100%; margin:5px">
 						      <img
 						        style="width:15%; border:1px solid black; border-radius:50%; margin-right:10px; cursor:pointer"
@@ -121,7 +146,6 @@
 						          <h6 style="margin:0; font-size:10px;"><%= exampleDate[i] %></h6>
 						        </div>
 						
-						        <!-- 오른쪽 정렬된 좋아요 그룹 -->
 						        <div style="display:flex; align-items:center; margin-left:auto; margin-right:5px;">
 						          <i class="bi bi-heart-fill" style="color: var(--accent-color);"></i>
 						          <small style="margin-left:2px;"><%= likes %></small>
@@ -129,7 +153,6 @@
 						      </div>
 						    </figure>
 						
-						    <!-- 메인 이미지 -->
 						    <figure>
 						      <img
 						        style="width:100%; border-radius:3px;"
@@ -138,8 +161,8 @@
 						      >
 						    </figure>
 						
-						    <!-- 제목/내용/링크 -->
-						    <h3><%= exampleTitle[i] %></h3>
+						    <h3 class="mb-1"><%= exampleTitle[i] %></h3>
+						    <small style="color:#5c99ee;"><%= locInfo[1] %></small>
 						    <p><%= exampleContents[i] %></p>
 						    <a href="view.jsp" class="service-link">
 						      자세히보기
@@ -154,15 +177,98 @@
 				%>
 			
 
-          </div><!-- End Portfolio Grid -->
-
-        </div>
+          </div></div>
 
       </div>
 
     </section>    
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var grid = document.querySelector('.isotope-container');
+  var iso = new Isotope(grid, {
+    itemSelector: '.portfolio-item',
+    layoutMode: 'fitRows',
+    getSortData: {
+      date: function (itemElem) {
+        var dateStr = itemElem.getAttribute('data-date');
+        return Date.parse(dateStr.replace(/\./g, '-'));
+      },
+      likes: '[data-likes] parseInt'
+    },
+    sortAscending: {
+      date: false, 
+      likes: false 
+    }
+  });
+
+  // === Dropdown handling ===
+  document.querySelectorAll('.dropdown-menu a').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      let choice = this.textContent.trim();
+      let currentFilter = iso.options.filter;
+
+      if(choice === "최신순"){
+        iso.arrange({ filter: currentFilter, sortBy: 'date' });
+      }
+      else if(choice === "추천순"){
+        iso.arrange({ filter: currentFilter, sortBy: 'likes' });
+      }
+      else if(choice === "팔로워만"){
+        // do nothing for now
+      }
+
+      document.querySelector('.dropdown-toggle').textContent = choice;
+    });
+  });
+
+  // === Region filters handling ===
+  document.querySelectorAll('.portfolio-filters li').forEach(function(el){
+    el.addEventListener('click', function(){
+      let filterValue = this.getAttribute('data-filter');
+      iso.arrange({ filter: filterValue, sortBy: 'date' }); 
+
+      document.querySelectorAll('.portfolio-filters li').forEach(li => li.classList.remove('filter-active'));
+      this.classList.add('filter-active');
+      
+      document.getElementById('search-input').value = '';
+
+      document.querySelector('.dropdown-toggle').textContent = "최신순";
+    });
+  });
+  
+  // === Search handling ===
+  const searchButton = document.getElementById('search-button');
+  const searchInput = document.getElementById('search-input');
+
+  function performSearch() {
+    var searchValue = searchInput.value.toLowerCase();
     
+    iso.arrange({
+      filter: function(itemElem) {
+        var itemText = itemElem.textContent.toLowerCase();
+        return itemText.includes(searchValue);
+      }
+    });
+
+    document.querySelectorAll('.portfolio-filters li').forEach(li => li.classList.remove('filter-active'));
+  }
+
+  searchButton.addEventListener('click', performSearch);
+  
+  searchInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      performSearch();
+    }
+  });
+  
+  // === Initial search on page load ===
+  // If the search input has a value from the URL parameter, trigger the search function.
+  if (searchInput.value.trim() !== '') {
+    performSearch();
+  }
+});
+</script>
     
-<%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
-</body>
-</html> 
+<%@ include file="/jspf/footer.jspf" %> </body>
+</html>

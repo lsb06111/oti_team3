@@ -19,6 +19,7 @@
               <li data-filter=".filter-middle">중부권</li>
               <li data-filter=".filter-honam">호남권</li>
               <li data-filter=".filter-youngnam">영남권</li>
+              <li data-filter=".filter-jeju">제주</li>
             </ul>
           </div>
           <%
@@ -27,6 +28,7 @@
           	map.put("middle", new String[]{"대전", "세종", "충청북도", "충청남도", "강원도"});
           	map.put("honam", new String[]{"광주", "전라북도", "전라남도"});
           	map.put("youngnam", new String[]{"부산", "대구", "울산", "경상북도", "경상남도"});
+          	map.put("jeju", new String[]{"제주"});
           %>
 
           <div class="row gy-4 portfolio-grid isotope-container" style="position: relative;width: 80%;height: 256px;margin: auto;margin-top:0">
@@ -37,7 +39,7 @@
 			%>
 					<div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-<%= category %>">
 					  <div class="location-card">
-					    <a href="portfolio-details.html" 
+					    <a href="/oti_team3/board/?search=<%= location %>" 
 						   class="btn text-white fw-semibold w-100 shadow-sm py-2 rounded"
 						   style="--bs-btn-bg: #5c99ee; --bs-btn-hover-bg: #447fcc; --bs-btn-border-color: #5c99ee; --bs-btn-hover-border-color: #447fcc;">
 						  <%= location %>
