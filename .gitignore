@@ -6,7 +6,6 @@
 # Build artifacts
 bin/
 target/
-*.jar
 *.war
 *.zip
 *.log

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*"%>
-<%@ include file="/jspf/head.jspf" %> <!-- 헤드 부분 고정 -->
-<!-- 커스텀 CSS import 존 -->
-<link rel="stylesheet" 
+<%@ include file="/jspf/head.jspf" %> <link rel="stylesheet" 
 		      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
 <style>
@@ -30,14 +28,34 @@
 #btn2:checked ~ .default-hide-comment {
     display: block;
 }
+
+/* ▼▼▼ CSS FOR "READ MORE" ▼▼▼ */
+#replyContainer {
+    /* Smooth transition for height change */
+    transition: max-height 0.5s ease-in-out;
+    position: relative; /* Needed for the gradient overlay */
+}
+
+#replyContainer.collapsed {
+    max-height: 300px; /* Your desired initial height */
+    overflow: hidden;
+}
+
+/* Optional: Adds a fade-out effect at the bottom to indicate more content */
+#replyContainer.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, white);
+}
 </style>
 		      
 </head>
 <body class="portfolio-details-page">
-<%@ include file="/jspf/header.jspf" %> <!-- 헤더부분 고정 -->
-
-<main class="main">
-    <!-- Page Title -->
+<%@ include file="/jspf/header.jspf" %> <main class="main">
     <%
     	String viewTitle = request.getParameter("title");
     %>
@@ -50,10 +68,7 @@
           </ol>
         </nav>
       </div>
-    </div><!-- End Page Title -->
-
-    <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section" style="--subtle-border: none; padding-bottom:0px;">
+    </div><section id="portfolio-details" class="portfolio-details section" style="--subtle-border: none; padding-bottom:0px;">
 
       <div class="container">
 
@@ -122,8 +137,7 @@
 			for(int ii=0; ii < tabNumber; ii++){ %>
             <div class="tab-pane fade <%= ii==0 ? "active show" : "" %>" id="tabs-tab-<%= (ii+1) %>">
 
-  <!-- NODES BAR -->
-			  <div id="routeBar-<%= ii %>" data-group="<%= ii %>" class="d-flex justify-content-center my-4">
+  <div id="routeBar-<%= ii %>" data-group="<%= ii %>" class="d-flex justify-content-center my-4">
 			    <div class="d-flex align-items-center justify-content-center w-100 pb-2">
 			      <%
 			        
@@ -138,7 +152,6 @@
 			        
 			        for (int i = 0; i < nodeNumber; i++) {
 			      %>
-			        <!-- Node + label -->
 			        <div class="d-flex flex-column align-items-center">
 			          <button type="button"
 			                  class="route-node btn btn-outline-primary rounded-circle fw-bold d-flex align-items-center justify-content-center p-0 <%= i==0 ? "active" : "" %>"
@@ -159,7 +172,6 @@
 			        </div>
 			
 			        <% if (i < nodeNumber - 1) { %>
-			          <!-- Connector + pill time -->
 			          <div class="d-flex flex-column align-items-center mx-2 flex-grow-1">
 			            <div class="border-top border-2 w-100"></div>
 			            <span class="badge rounded-pill text-primary bg-primary-subtle fw-semibold mt-1 px-3 py-2" style="font-size:0.85em">
@@ -173,9 +185,7 @@
 			    </div>
 			  </div>
 
-  <!-- NODE CONTENT PANES (unique per day) -->
-
-<div id="spotPanes-<%= ii %>" class="tab-content mt-4">
+  <div id="spotPanes-<%= ii %>" class="tab-content mt-4">
 		  <% 
 		  
 		  for (int i = 0; i < nodeNumber; i++) { 
@@ -199,7 +209,6 @@
 		      <div class="row" style="position: relative;">
 		        
 		
-		        <!-- Left side: Slider -->
 		        <div class="col-lg-6 col-md-12 mt-4">
 		          <div class="visual-showcase mb-0">
 		            <div class="main-visual">
@@ -240,7 +249,6 @@
 		          </div>
 		        </div>
 		        
-		        <!-- Right side: 리뷰글 -->
 		        <div class="col-lg-6 col-md-12 mt-4">
 		        <%
 		        	String[] reviewContents = {
@@ -276,9 +284,7 @@
 
       </div>
 	</div>
-</section><!-- /Tabs Section -->
-
-<script>
+</section><script>
 
 let sliderImageIndices = Array.from({ length: <%= tabNumber %> }, () => new Array(<%= nodeNumber %>).fill(0));
 
@@ -357,10 +363,10 @@ heartIcon.addEventListener("click", () => {
 		
 		    <section>
 		    <% 
-		    	int totalReply = 3;
-		    	String[] replyIdentify = {"jdy19823", "lsb112323", "ksb234"};
-		    	String[] replyName = {"정동윤", "이수빈", "김성배"};
-		       	String[] replyContents = {"부산 놀러가고 싶어요!", "리뷰글 잘 봤습니다!", "저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용" };
+		    	int totalReply = 6;
+		    	String[] replyIdentify = {"jdy19823", "lsb112323", "ksb234", "jdy19823", "lsb112323", "ksb234"};
+		    	String[] replyName = {"정동윤", "이수빈", "김성배", "정동윤", "이수빈", "김성배"};
+		       	String[] replyContents = {"부산 놀러가고 싶어요!", "리뷰글 잘 봤습니다!", "저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용","부산 놀러가고 싶어요!", "리뷰글 잘 봤습니다!", "저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용" };
 	    	%>
 		    
 		      <div class="d-flex mb-3">
@@ -379,40 +385,45 @@ heartIcon.addEventListener("click", () => {
 		        </div>
 		      </div>
 		
-				<%for(int i=0; i < totalReply; i++){ %>
-			      <div class="d-flex mb-3" id="replies-<%= i %>">
-			        <a href="/oti_team3/profile.jsp?identify=<%= replyIdentify[i] %>&name=<%= replyName[i] %>">
-			          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s" 
-			               class="border rounded-circle me-2"
-			               alt="Avatar" style="height: 40px; border: 1px solid black; border-radius: 50%;" />
-			        </a>
-			        <div>
-			          <div class="bg-body-tertiary rounded-3 px-3 py-1" style="width:400px;">
-			            <strong class="text-dark mb-0"><%= replyName[i] %></strong>
-			            <small class="text-muted d-block"><%= replyContents[i] %></small>
-			          </div>
-			          <button type="button" class="text-muted small me-2"
-			          		  style="border:none;background:none;"
-			          		  onclick="showReReplyDiv(<%= i %>)">
-			          	<strong>댓글달기</strong>
-			          </button>
-			          <div id="re_reply-<%= i %>" style="display:none;">
-			          	<textarea class="form-control" rows="2" style="width:400px;"></textarea>
-			          	<div class="d-flex my-2" style="justify-content:right">
-			                <button type="button" class="btn btn-primary" style="--bs-btn-bg:#5c99ee; --bs-btn-hover-bg:#447fcc; --bs-btn-border-color:#5c99ee; --bs-btn-hover-border-color:#447fcc;">
-			                  등록
-			                </button>
-			                <button type="button" class="btn btn-outline-primary ms-1" 
-			                		style="--bs-btn-hover-bg:#447fcc; --bs-btn-border-color:#5c99ee; --bs-btn-hover-border-color:#447fcc;"
-			                		onclick="disableReReplyDiv(<%= i %>)">
-			                  취소
-			                </button>
-			              </div>
-			          </div>
-			          
-			        </div>
-			      </div>
-		      <%} %>
+                <div id="replyContainer">
+                    <%for(int i=0; i < totalReply; i++){ %>
+                    <div class="d-flex mb-3" id="replies-<%= i %>">
+                        <a href="/oti_team3/profile.jsp?identify=<%= replyIdentify[i] %>&name=<%= replyName[i] %>">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5gLM6Ory_xq5m06Wz-ClWzfw9Yhpst-gDRA&s" 
+                                class="border rounded-circle me-2"
+                                alt="Avatar" style="height: 40px; border: 1px solid black; border-radius: 50%;" />
+                        </a>
+                        <div>
+                        <div class="bg-body-tertiary rounded-3 px-3 py-1" style="width:400px;">
+                            <strong class="text-dark mb-0"><%= replyName[i] %></strong>
+                            <small class="text-muted d-block"><%= replyContents[i] %></small>
+                        </div>
+                        <button type="button" class="text-muted small me-2"
+                                style="border:none;background:none;"
+                                onclick="showReReplyDiv(<%= i %>)">
+                            <strong>댓글달기</strong>
+                        </button>
+                        <div id="re_reply-<%= i %>" style="display:none;">
+                            <textarea class="form-control" rows="2" style="width:400px;"></textarea>
+                            <div class="d-flex my-2" style="justify-content:right">
+                                <button type="button" class="btn btn-primary" style="--bs-btn-bg:#5c99ee; --bs-btn-hover-bg:#447fcc; --bs-btn-border-color:#5c99ee; --bs-btn-hover-border-color:#447fcc;">
+                                등록
+                                </button>
+                                <button type="button" class="btn btn-outline-primary ms-1" 
+                                        style="--bs-btn-hover-bg:#447fcc; --bs-btn-border-color:#5c99ee; --bs-btn-hover-border-color:#447fcc;"
+                                        onclick="disableReReplyDiv(<%= i %>)">
+                                취소
+                                </button>
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                <%} %>
+                </div>
+                <button id="loadMoreRepliesBtn" class="btn btn-outline-secondary w-100 mt-2">
+                    댓글 더보기
+                </button>
 		
 		    </section>
 		  </div>
@@ -431,9 +442,7 @@ heartIcon.addEventListener("click", () => {
         
       </div>
 
-    </section><!-- /Portfolio Details Section -->
-
-  </main>
+    </section></main>
 
 <script>
 function showReReplyDiv(replyIndex){
@@ -443,9 +452,29 @@ function disableReReplyDiv(replyIndex){
 	document.querySelector('#re_reply-'+replyIndex).style.display = 'none';
 }
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const replyContainer = document.getElementById('replyContainer');
+    const loadMoreBtn = document.getElementById('loadMoreRepliesBtn');
+
+    if (replyContainer) {
+        replyContainer.classList.add('collapsed');
+    }
+
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            if (replyContainer.classList.contains('collapsed')) {
+                replyContainer.classList.remove('collapsed');
+                loadMoreBtn.textContent = '댓글 접기';
+            } else {
+                replyContainer.classList.add('collapsed');
+                loadMoreBtn.textContent = '댓글 더보기';
+            }
+        });
+    }
+});
 </script>
   
     
-<%@ include file="/jspf/footer.jspf" %> <!-- 푸터 부분 고정 -->
-</body>
+<%@ include file="/jspf/footer.jspf" %> </body>
 </html>
