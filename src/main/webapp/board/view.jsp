@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.*"%>
 <%@ include file="/jspf/head.jspf" %> <link rel="stylesheet" 
 		      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 .custom-toggle {
     background-color: white;
@@ -64,7 +64,7 @@
         <h1><%= viewTitle %></h1>
         <nav class="breadcrumbs">
           <ol>
-            <li class="current">부산</li>
+            <li class="current">4박 5일</li>
           </ol>
         </nav>
       </div>
@@ -76,22 +76,24 @@
           <div class="project-meta-grid" style="padding-top:0">
             <div class="meta-column">
               <div class="meta-label">작성자(닉네임)</div>
-              <div class="meta-value">정동윤</div>
+              <div class="meta-value">
+              정동윤
+              </div>
             </div>
+            
             <div class="meta-column">
-              <div class="meta-label">작성일</div>
-              <div class="meta-value">2025.08.12</div>
-            </div>
-            <div class="meta-column">
-              <div class="meta-label">여행코스(부산)</div>
-              <div class="meta-value">해운대-광안리-서면</div>
+              <div class="meta-label">여행 지역</div>
+              <div class="meta-value">부산</div>
             </div>
             <div class="meta-column">
               <div class="meta-label">여행일정</div>
               <div class="meta-value">2025.08.12 ~ 2025.08.16</div>
             </div>
             <div class="meta-column">
-              
+              <div class="meta-label">작성일</div>
+              <div class="meta-value">2025.08.12</div>
+            </div>
+            <div class="meta-column">
               <div class="meta-value">
 				<input type="checkbox" class="btn-check" id="btn1" autocomplete="off" />
 				<label class="custom-toggle" for="btn1">팔로우 신청</label>
@@ -226,23 +228,28 @@
 }
 						</script>
 		
-		                <div class="swiper-wrapper" style="text-align:center;">
-		                <%
-		                	String[] sliderImgs = {
-		                		"https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL",		
-	                			"https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg",
-	                			"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1"
-		                	};
-		                	for(int sliderIndex=0; sliderIndex<totalReviewNumber; sliderIndex++){ %>
-			                  <div class="swiper-slide" style="display: flex; align-items: center; justify-content: center;margin-top:auto !important;">
-			                    <img src="<%= sliderImgs[sliderIndex] %>" 
-			                         alt="Project showcase" 
-			                         class="img-fluid" loading="lazy" 
-			                         style="width: 80%; border-radius:10px; height:auto;">
-			                  </div>
-		                  <%} %>
-		                  
-		                </div>
+
+						<div class="swiper-wrapper" style="text-align:center;">
+						    
+						    <%
+						        String[] sliderImgs = {
+						            "https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL",		
+						            "https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg",
+						            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1"
+						        };
+						        pageContext.setAttribute("imageList", sliderImgs);
+						    %>
+						
+						    <c:forEach items="${imageList}" var="imageUrl">
+						        <div class="swiper-slide" style="display: flex; align-items: center; justify-content: center;margin-top:auto !important;">
+						            <img src="${imageUrl}" 
+						                    alt="Project showcase" 
+						                    class="img-fluid" loading="lazy" 
+						                    style="width: 80%; border-radius:10px; height:auto;">
+						        </div>
+						    </c:forEach>
+						    
+						</div>
 		
 		              </div>
 		            </div>
@@ -337,8 +344,8 @@ function setReviewContent(tIndex, nIndex){
 <%-- <%@ include file="/board/numberdesc.jspf" %> --%>
 <div style="text-align:center;">
 <i id="heartIcon" class="bi bi-heart" 
- style="font-size: 2.5rem; cursor: pointer; margin-left:5px;"></i>
-<p>좋아요</p>
+ style="font-size: 2.5rem; cursor: pointer; color:#5c99ee"></i>
+ <p class="mb-0" style="color:#5c99ee"><strong>253</strong></p>
 </div>
      <hr style="color: lightgray; margin-bottom : 50px; margin-top: 50px;">
 <%-- <%@ include file="/jspf/board/reply.jspf" %> --%>
@@ -349,11 +356,7 @@ heartIcon.addEventListener("click", () => {
 	  heartIcon.classList.toggle("bi-heart");
 	  heartIcon.classList.toggle("bi-heart-fill");
 
-	  if (heartIcon.classList.contains("bi-heart-fill")) {
-	    heartIcon.style.color = "#5c99ee"; // 채워졌을 때
-	  } else {
-	    heartIcon.style.color = "black";   // 다시 빈 하트일 때
-	  }
+	  
 	});
 
 </script>
@@ -421,9 +424,15 @@ heartIcon.addEventListener("click", () => {
                     </div>
                 <%} %>
                 </div>
-                <button id="loadMoreRepliesBtn" class="btn btn-outline-secondary w-100 mt-2">
-                    댓글 더보기
-                </button>
+                <button id="loadMoreRepliesBtn"
+				        class="btn btn-outline-secondary w-100 mt-2"
+				        style="--bs-btn-color:#5c99ee; 
+				               --bs-btn-border-color:#5c99ee;
+				               --bs-btn-hover-bg:#5c99ee;
+				               --bs-btn-hover-border-color:#5c99ee;
+				               --bs-btn-hover-color:#fff;">
+				    댓글 더보기
+				</button>
 		
 		    </section>
 		  </div>
