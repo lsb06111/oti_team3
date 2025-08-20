@@ -77,7 +77,7 @@
             <div class="meta-column">
               <div class="meta-label">작성자(닉네임)</div>
               <div class="meta-value">
-              정동윤
+              장태현
               </div>
             </div>
             
@@ -91,7 +91,7 @@
             </div>
             <div class="meta-column">
               <div class="meta-label">작성일</div>
-              <div class="meta-value">2025.08.12</div>
+              <div class="meta-value">2025.08.22</div>
             </div>
             <div class="meta-column">
               <div class="meta-value">
@@ -143,9 +143,15 @@
 			    <div class="d-flex align-items-center justify-content-center w-100 pb-2">
 			      <%
 			        
-			        String[] spots = {"해운대", "광안리", "서면", "남포동", "송정"};
+			      String[] spots = {
+			    		    "게스트하우스 감천",              // 시작 숙소
+			    		    "감천문화마을",          // 메인 관광지
+			    		    "할매 가야밀면",           // 관광지
+			    		    "자갈치 시장",      // 관광지
+			    		    "부산타워"               // 마지막 숙소 (처음과 동일)
+			    		};
 			        String[] times = {"15분", "12분", "20분", "18분"};
-			        String[] nodeIcons = {"house-door", "leaf-fill", "fork-knife", "leaf-fill", "house-door"};
+			        String[] nodeIcons = {"house-door", "leaf-fill", "fork-knife", "leaf-fill", "leaf-fill"};
 					
 			        HashMap<String, String> tagContents = new HashMap<>();
 			        tagContents.put("leaf-fill","멋있어요,예뻐요,다양하게 볼게 많아요");
@@ -188,9 +194,37 @@
 			  </div>
 
   <div id="spotPanes-<%= ii %>" class="tab-content mt-4">
-		  <% 
+		  <%
+		  String[][] siss = {
+				  {
+			            "https://mblogthumb-phinf.pstatic.net/MjAyMjA2MDNfMjYy/MDAxNjU0MjMyOTg0NTkx.kIqrLQrqlYdhhh3XZtl7ken5X6oy7szgXX-AHEJyvsgg.8ivrbQqaQ-o_xCIVgj9cvAx0Odbr8YEfbgZOvluagH8g.JPEG.ttener/2.jpg?type=w800",		
+			            "https://imgtour.gmarket.co.kr/KR/K03/100459747/100459747_1119006_20240924141209.png",
+			            "https://imgtour.gmarket.co.kr/KR/K03/100459747/100459747_1459060_20240924141209.jpg"
+			      },
+				  {
+			    	  "https://mblogthumb-phinf.pstatic.net/MjAyNDA4MTRfMTU1/MDAxNzIzNjAxODY1Mjgw.Ef7BpML4ekE8ZE7JgvMh-CiDOM0IC6O_DM7U75H3UYYg.d3HeyPWzCfEQXNOBwwGdrNfJSn3YBU10UetJaIyBoR8g.JPEG/%EA%B0%90%EC%B2%9C%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84_(23).jpg?type=w800",
+			    	  "https://www.telltrip.com/wp-content/uploads/2025/05/Gamcheon-Culture-Village1.jpg",
+			    	  "https://minio.nculture.org/amsweb-opt/multimedia_assets/16/22661/22088/c/22661-medium-size.jpg"
+				  },
+				  {
+					  "https://live.staticflickr.com/3770/9880590526_d5318bc182_b.jpg",
+					  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsvDb_1Xugi7xc0jRxl7nb_q-faCY6PuRqZQ&s",
+					  "https://www.visitbusan.net/uploadImgs/files/cntnts/20230605153301079_wufrotr"
+				  },
+				  {
+					  "https://www.visitbusan.net/uploadImgs/files/cntnts/20191230201109126_oen",
+					  "https://i.namu.wiki/i/Mkdwa_V9-mUkjI4vPv0bxkeBwCzjAotv8EL6-m_9yUd0fDGIlcUgxxc8ghPFUrDy3yHzCKyqRFEzo4UfhO6iqw.webp",
+					  "https://www.visitbusan.net/uploadImgs/files/cntnts/20191230201112861_wufrotr"
+				  },
+				  {
+					  "https://blog-static.kkday.com/ko/blog/wp-content/uploads/busan_tower_6.jpg",
+					  "https://i.namu.wiki/i/AUpk8QHygUJremQinbr7w6YT4BochQWlBBJ-UwY-WWjZ4_5l6-jjIkT7GT-Xd_EtMjzVdpus3HBemhyNlbEH4w.webp",
+					  "https://blog-static.kkday.com/ko/blog/wp-content/uploads/busan_tower_2.jpg"
+				  }
+		  };
 		  
 		  for (int i = 0; i < nodeNumber; i++) { 
+			  String[] sliderImgs = siss[i];
 		  	String[] tagContent = tagContents.get(nodeIcons[i]).split(",");
 		  %>
 		    <div id="spot-pane-<%= ii %>-<%= i %>" 
@@ -231,23 +265,16 @@
 
 						<div class="swiper-wrapper" style="text-align:center;">
 						    
-						    <%
-						        String[] sliderImgs = {
-						            "https://www.visitbusan.net/uploadImgs/files/hqimgfiles/20200827182018444_thumbL",		
-						            "https://cdn.epnc.co.kr/news/photo/202001/93682_85075_3859.jpg",
-						            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/a2/3a/caption.jpg?w=1200&h=-1&s=1"
-						        };
-						        pageContext.setAttribute("imageList", sliderImgs);
-						    %>
+						    
 						
-						    <c:forEach items="${imageList}" var="imageUrl">
+						    <%for(int imgIndex = 0; imgIndex < 3; imgIndex++) {%>
 						        <div class="swiper-slide" style="display: flex; align-items: center; justify-content: center;margin-top:auto !important;">
-						            <img src="${imageUrl}" 
+						            <img src="<%= sliderImgs[imgIndex] %>" 
 						                    alt="Project showcase" 
 						                    class="img-fluid" loading="lazy" 
 						                    style="width: 80%; border-radius:10px; height:auto;">
 						        </div>
-						    </c:forEach>
+					        <%} %>
 						    
 						</div>
 		
@@ -368,8 +395,15 @@ heartIcon.addEventListener("click", () => {
 		    <% 
 		    	int totalReply = 6;
 		    	String[] replyIdentify = {"jdy19823", "lsb112323", "ksb234", "jdy19823", "lsb112323", "ksb234"};
-		    	String[] replyName = {"정동윤", "이수빈", "김성배", "정동윤", "이수빈", "김성배"};
-		       	String[] replyContents = {"부산 놀러가고 싶어요!", "리뷰글 잘 봤습니다!", "저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용","부산 놀러가고 싶어요!", "리뷰글 잘 봤습니다!", "저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용저도 저번에 갔는데 제껏도 한번 보러오세용" };
+		    	String[] replyName = {"정동윤", "이수빈", "김성배", "박지원", "오상민", "최은영"};
+		    	String[] replyContents = {
+		    		    "사진 보니까 당장이라도 가고 싶네요 ㅎㅎ",
+		    		    "감천문화마을 진짜 알록달록해서 사진 맛집이죠!",
+		    		    "여기 가면 꼭 벽화 앞에서 사진 찍어야 합니다 👍",
+		    		    "저도 지난달에 다녀왔는데 분위기가 너무 좋았어요",
+		    		    "부산 가면 무조건 들르는 코스 중 하나에요 ^^",
+		    		    "와 설명이 자세해서 참고 많이 됐습니다~ 감사합니다!"
+		    		};
 	    	%>
 		    
 		      <div class="d-flex mb-3">

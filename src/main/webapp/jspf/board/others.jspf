@@ -54,6 +54,12 @@ String[] exampleInfo = {
 	    "동해안 도로를 달리며 시원한 바닷바람과 멋진 풍경을 감상하고, 해변마다 잠시 멈춰 사진을 남기는 즐거움을 느꼈습니다.",
 	    "산사에서의 하룻밤은 마음을 비우고 나를 돌아보는 소중한 시간이었으며, 스님의 말씀과 명상으로 깊은 평화를 얻었습니다."
 	};
+	String[] exampleImgs = {
+			"https://file2.nocutnews.co.kr/newsroom/image/2017/06/30/20170630092629152012.jpg",
+			"https://www.visitbusan.net/uploadImgs/files/cntnts/20211013164044502_wufrotr",
+			"https://lh4.googleusercontent.com/proxy/DiXDXGbkqPN0nVLF3WPeSR_Qv450u4nft_FPLf8tJMRif3ue2S7SPy-r_7Bphb0_Ze_s4fLyWYgR1PSyXLwEB2m1btPcuxKJK-eq_AuSPqLu65Tx_ojVOOi32EwTTqIi4TTqxkuaIZBHCK2yG0c",
+			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP8fQh-nvvSP8og-rP89AR1cilaob3Ib1dhg&s"
+	};
 
 %>
     <section id="team" class="team section" style="padding:0">
@@ -75,7 +81,7 @@ String[] exampleInfo = {
 	          <div class="col-lg-6">
 	            <div class="team-member d-flex" style="cursor:pointer" onclick="location.href='/oti_team3/board/view.jsp?title=<%= exampleTitle[i] %>'">
 	              <div class="member-img">
-	                <img src="https://media.istockphoto.com/id/1141275856/ko/%EC%82%AC%EC%A7%84/%EB%B6%80%EC%82%B0-%EA%B4%91%EC%95%88%EB%A6%AC-%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5.jpg?s=612x612&w=0&k=20&c=7j0P-ufzGrBi7xHf_UnIitufEhYejLzitVngetQY6sY="
+	                <img src="<%= exampleImgs[i] %>"
 	                 class="img-fluid" alt="" loading="lazy">
 	              </div>
 	              <div class="member-info flex-grow-1">
