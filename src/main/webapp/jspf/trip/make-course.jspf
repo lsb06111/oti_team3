@@ -15,7 +15,7 @@
 			  		 id = "trip-search-input"
 			         placeholder="장소명을 입력하세요"
 			         style="padding-right: 40px;"> <!-- 버튼 공간 확보 -->
-			  <button type="button" class="btn-search" 
+			  <button class="btn-search" 
 			          style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer;">
 			    <i class="fa fa-search"></i>
 			  </button>
