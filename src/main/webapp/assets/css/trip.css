@@ -324,6 +324,11 @@
 	font-size: 13px;
 	color: #444;
 	line-height: 1.35;
+	display: -webkit-box;          /* Flexbox 기반의 박스 모델 */
+	-webkit-line-clamp: 2;         /* 최대 2줄까지만 표시 */
+	-webkit-box-orient: vertical;  /* 세로 방향으로 텍스트 제한 */
+	overflow: hidden;              /* 넘치는 텍스트 숨기기 */
+	text-overflow: ellipsis;       /* (…) 말줄임표 표시 */
 }
 
 .sl-meta {

@@ -1,7 +1,6 @@
 
 // step tab 전환  
 function switchStep(tabIndex) {
-	  
 	  const stepDoms = document.querySelectorAll('.trip-step'); // NodeList
 	  stepDoms.forEach((el, i) => {
 	    el.style.display = (i === tabIndex ? 'block' : 'none');
@@ -29,16 +28,21 @@ function toggleNote(btn) {
 	}
 }
 
+// 직접 검색 or 추천 선택 탭
 function toggleLocTab(btn){
-	const searchE = document.getElementById('trip-search-form');
+	const searchFormE = document.getElementById('trip-search-form');
 	const recomE = document.getElementById('trip-rcmds');
+	const searchResult = document.getElementById('trip-search-result');
 	if(btn.id === 'trip-tab-search'){
-		searchE.style.display = "block";
+		searchFormE.style.display = "block";
+		searchResult.style.display = "block";
 		recomE.style.display = "none";
 	}else{
-		searchE.style.display = "none";
+		searchFormE.style.display = "none";
+		searchResult.style.display = "none";
 		recomE.style.display = "block";
 	}
+	removeMarker();
 }
  
 // 탭 인디케이터 위치/너비 갱신
@@ -139,7 +143,6 @@ function insertToTimeline(btn) {
 
 	  // 표시 중인 타임라인(보이는 것) 선택
 	  const $target = $('.trip-timelineForDay:visible').first();
-	  $target
 	  const img = $btn.parent().find('img').attr('src');
 	  const order = $target.children().length;
 
@@ -175,7 +178,6 @@ document.querySelector('#trip-loc-step').addEventListener('shown.bs.tab', () => 
 	requestAnimationFrame(() => requestAnimationFrame(() => { // 코드 실행 타이밍을 한 프레임정도 늦춘다 * 2 , 레이아웃 안정화·성능 최적화에 널리 쓰임
 		relayoutKeepCenter(map);
 		$('#trip-dest').text(tripDest);
-		console.log("tripDest : " + tripDest);
 		$('#trip-dates').text(tripStartDate + " - "  + tripEndDate);
 	}, { once: true })); // 해당 탭을 최초로 열 때 한 번만 실행하고 싶다면 once 옵션
 });

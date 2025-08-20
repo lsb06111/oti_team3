@@ -13,7 +13,7 @@
 			src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=80&h=55"
 			alt="하얏트 플레이스 와이키키" class="event-img" />
 	</div>
-	<div class="trip-note-area">
+	<div class="trip-note-area" onclick="editTripNote(this)">
 		<textarea class="pe-5" placeholder="메모를 입력하세요..."></textarea>
 		<button class="btn btn-light save-note-btn">완료</button>
 	</div>

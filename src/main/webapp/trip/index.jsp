@@ -1,40 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/jspf/head.jspf"%>
-
+<%@ include file="/jspf/head.jspf"%>  
+  
 <!-- 헤드 부분 고정 -->
 <link rel="stylesheet" href="/oti_team3/assets/css/trip.css">
-
+<link rel="stylesheet" href="/oti_team3/assets/css/map.css">
 
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<body class="trip-body">
+<body class="trip-body"> 
 
-	<main class="trip-main">
+	<main class="trip-main">        
 		<!-- 왼쪽 네비 -->
 		<nav class="nav my-4 mx-3 d-flex flex-column justify-content-between" role="tablist" style="flex:1;">
-			<div class="step-nav">
+			<div class="step-nav">  
 	      		<a href="/oti_team3/" class="trip-sitename">TripNote</a>
 				<button id = "trip-pre-step" class="nav-link step-item active" data-bs-toggle="tab" data-bs-target="#trip-date" role="tab" onclick="switchStep(0); toggleDoneBtn(this);">
-					<span class="step-title">날짜/지역</span>
-				</button>
+					<span class="step-title">날짜/지역</span> 
+				</button> 
 				<button id = "trip-loc-step" class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="switchStep(1); toggleDoneBtn(this);">
 					<span class="step-title">장소 선택</span>
-				</button>
+				</button> 
 			</div>
 			<button id="trip-done-btn" class= "btn btn-primary" style="display:none; background: #5c99ee; margin-bottom: 10px;">일정 저장</button>
 		</nav>
 		<!-- 추천 관광지 창 -->
 		<div class="trip-step" style="flex:11">
-			<%@ include file="/jspf/trip/pre-trip.jspf" %>
-		</div>
-		
+			<%@ include file="/jspf/trip/pre-trip.jspf" %> 
+		</div> 
+		  
 		<div class="trip-step" style="display:none; flex:17;">
 			<%@ include file="/jspf/trip/make-course.jspf" %>
 		</div>
-	</main>
-  <script src="/oti_team3/assets/js/trip.js"></script>
+	</main> 
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=460e38b5e2a79f0329a7652a9b1836dd&libraries=services"></script>
   <script src="/oti_team3/assets/js/map.js"></script>
+  <script src="/oti_team3/assets/js/trip.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	  <!-- Vendor JS Files -->
   <script src="/oti_team3/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
