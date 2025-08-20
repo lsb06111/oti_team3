@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body class="trip-body"> 
 
-	<main class="trip-main">        
+	<main class="trip-main">              
 		<!-- 왼쪽 네비 -->
 		<nav class="nav my-4 mx-3 d-flex flex-column justify-content-between" role="tablist" style="flex:1;">
 			<div class="step-nav">  

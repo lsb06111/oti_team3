@@ -120,10 +120,6 @@ function setTab(id){
   init();
 }
 
-// 호출
-setTab("trip-loc-tab");
-setTab("dayTabs");
-  
 
 // 일자별 여행 코스 탭 전환
 function switchDay(btn){
@@ -179,5 +175,7 @@ document.querySelector('#trip-loc-step').addEventListener('shown.bs.tab', () => 
 		relayoutKeepCenter(map);
 		$('#trip-dest').text(tripDest);
 		$('#trip-dates').text(tripStartDate + " - "  + tripEndDate);
+		setTab("trip-loc-tab");
+		setTab("dayTabs");
 	}, { once: true })); // 해당 탭을 최초로 열 때 한 번만 실행하고 싶다면 once 옵션
 });

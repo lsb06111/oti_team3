@@ -49,12 +49,12 @@
 				<div class="trip-timeline-day-header mb-3">
 					<!-- Tabs: 일정 일차 선택 -->
 					<% 
-					int[] timelines = {0,0,0,0,0};
+					int[] timelines = {0,0,0,0};
 					int tripLen = timelines.length;
 					request.setAttribute("timelines", timelines);
 			        request.setAttribute("tripLen", tripLen);
 					%>
-					<div class="trip-tabs" id="dayTabs" role="tablist" aria-label="일차 선택">
+					<div class="trip-tabs w-100 d-flex justify-content-around" id="dayTabs" role="tablist" aria-label="일차 선택">
 						<c:forEach var="i" begin="1" end="${tripLen}" varStatus="st">
 						<button class="trip-tab${st.first ? ' is-active' : ''}"
 						       role="tab"

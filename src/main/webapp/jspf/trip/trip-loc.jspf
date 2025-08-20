@@ -69,3 +69,24 @@
 		</div>
 	</div>
 </div>
+<div class="trip-loc-card" onclick="drawRcmdMarker(this)"> 
+	<div class="trip-loc-top">
+		<div class="sl-thumb">
+			<img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150925_56%2F1443161115812slsBW_JPEG%2F166875553533979_0.jpg">
+		</div>
+		<div>
+			<div class="sl-badge">식당</div>
+		</div>
+		<button class="sl-add" aria-label="일정에 추가" onclick="insertToTimeline(this)">+</button>
+	</div>
+	<!-- 하단: 상세 설명 박스 -->
+	<div class="trip-loc-info">
+		<div class="sl-cat d-flex justify-content-start">
+			<a href="#" class="sl-name">춘하추동밀면 서면본점</a>
+			<div class="trip-sl-address" style="display:none">부산 부산진구 서면문화로 48-1</div>
+		</div>
+		<p class="sl-desc">입에서 입으로! 최고의 맛을 아는 미식가들의 강력 추전 춘하추동.춘하추동은 미식가들의 최고 추천을 자랑하는 맛 집 중의 맛집이다.</p>
+		<div class="sl-meta">
+		</div>
+	</div>
+</div>
