@@ -188,10 +188,20 @@ document.querySelector('#trip-loc-step').addEventListener('shown.bs.tab', () => 
 	}, { once: true })); // 해당 탭을 최초로 열 때 한 번만 실행하고 싶다면 once 옵션
 });
 
-// tripnote 관광지 순서 매기기
+// tripnote 관광지의 순서번호 부여
 function assignLocIndex(){
 	$list = $('.trip-timelineForDay:visible');
 	$list.children().each(function(idx, el){
 		$(el).find('.trip-idx').text(idx+1);
 	});
 }
+
+// tripnote의 관광지 드래그 가능하도록 만들기 - jquery ui api
+$( function() {
+	$tripNote = $( ".trip-timelineForDay" );
+  	$tripNote.sortable({
+		update: function() { // sorting 되었을 때
+			assignLocIndex();
+		}
+	});
+} );

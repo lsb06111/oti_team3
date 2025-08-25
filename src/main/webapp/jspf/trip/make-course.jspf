@@ -80,7 +80,6 @@
 		          <c:forEach begin="1" end="${count}">
 		            <%@ include file="/jspf/trip/trip-timeline.jspf" %>
 		          </c:forEach>
-		
 		        </div>
 		      </c:forEach>
 		    </div>

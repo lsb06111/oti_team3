@@ -5,10 +5,10 @@
 <!-- 헤드 부분 고정 -->
 <link rel="stylesheet" href="/oti_team3/assets/css/trip.css">
 <link rel="stylesheet" href="/oti_team3/assets/css/map.css">
+<link  href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css" rel="stylesheet">
 
 </head>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<link  href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css" rel="stylesheet">
 <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
 
 <body class="trip-body">
