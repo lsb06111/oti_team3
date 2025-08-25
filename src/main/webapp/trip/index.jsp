@@ -7,9 +7,12 @@
 <link rel="stylesheet" href="/oti_team3/assets/css/map.css">
 
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<body class="trip-body"> 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link  href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
 
+<body class="trip-body">
+ 
 	<main class="trip-main">              
 		<!-- 왼쪽 네비 -->
 		<nav class="nav my-4 mx-3 d-flex flex-column justify-content-between" role="tablist" style="flex:1;">
@@ -20,14 +23,14 @@
 				</button> 
 				<button id = "trip-loc-step" class="nav-link step-item" data-bs-toggle="tab" data-bs-target="#trip-loc" role="tab" onclick="switchStep(1); toggleDoneBtn(this);">
 					<span class="step-title">장소 선택</span>
-				</button> 
+				</button>
 			</div>
 			<button id="trip-done-btn" class= "btn btn-primary" style="display:none; background: #5c99ee; margin-bottom: 10px;">일정 저장</button>
 		</nav>
 		<!-- 추천 관광지 창 -->
 		<div class="trip-step" style="flex:11">
 			<%@ include file="/jspf/trip/pre-trip.jspf" %> 
-		</div> 
+		</div>  
 		  
 		<div class="trip-step" style="display:none; flex:17;">
 			<%@ include file="/jspf/trip/make-course.jspf" %>

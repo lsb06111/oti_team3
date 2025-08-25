@@ -62,7 +62,7 @@
 						       data-day="${i}"
 						       onclick="switchDay(this)">
 						 ${i}일
-						</button>
+						</button> 
 						</c:forEach>
 						<span class="trip-tab-indicator"></span>
 					</div>

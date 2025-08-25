@@ -18,14 +18,19 @@ function toggleDoneBtn(btn){
 }
 
 function toggleNote(btn) {
+	btn.classList.toggle("active");
 	const note = btn.parentElement.parentElement.nextElementSibling;
 	if (note.style.display === "block") {
 		note.style.display = "none";
-		btn.textContent = "📝 노트 작성";
 	} else {
 		note.style.display = "block";
-		btn.textContent = "📝 노트 닫기";
 	}
+}
+
+function deleteNote(btn){
+	$card = $(btn).closest('.trip-timeline-event');
+	$card.remove();
+	assignLocIndex();
 }
 
 // 직접 검색 or 추천 선택 탭
@@ -118,7 +123,7 @@ function setTab(id){
 
   // 즉시 한 번 시도
   init();
-}
+} //setTab 함수 종료
 
 
 // 일자별 여행 코스 탭 전환
@@ -149,17 +154,20 @@ function insertToTimeline(btn) {
 
 function getTimelineEvent(title, type, img, order){
 	let text = `
-	<div class="trip-timeline-event d-flex flex-column ">
+	<div class="trip-timeline-event d-flex flex-column p-2">
 		<div class="d-flex w-100">
-			<div class="number m-1">${order}</div>
+			<div class="trip-idx m-1">${order}</div>
 			<div class="event-info mx-2">
 				<div class="time">12:55-12:55</div>
 				<div style="color: #ff7a7a;">${type}</div>
 				<div style="white-space: nowrap">${title}</div>
-				<span class="trip-note-toggle" onclick="toggleNote(this)">📝노트작성</span>
 			</div>
-			<img src="${img}"
-				alt="하얏트 플레이스 와이키키" class="event-img" />
+			<img src="${img}" alt="이미지 없음" class="event-img" />
+			<div class="d-flex flex-column justify-content-around">
+			    <i class="trip-note-toggle bi bi-pencil-square ms-2" onclick="toggleNote(this)" style="font-size:1.4em"></i>
+			    <i class="bi bi-trash ms-2" style="font-size:1.4em; cursor:pointer;"  onclick="deleteNote(this)"></i>
+			</div>
+			
 		</div>
 		<div class="trip-note-area">
 			<textarea class="pe-5" placeholder="메모를 입력하세요..."></textarea>
@@ -179,3 +187,11 @@ document.querySelector('#trip-loc-step').addEventListener('shown.bs.tab', () => 
 		setTab("dayTabs");
 	}, { once: true })); // 해당 탭을 최초로 열 때 한 번만 실행하고 싶다면 once 옵션
 });
+
+// tripnote 관광지 순서 매기기
+function assignLocIndex(){
+	$list = $('.trip-timelineForDay:visible');
+	$list.children().each(function(idx, el){
+		$(el).find('.trip-idx').text(idx+1);
+	});
+}

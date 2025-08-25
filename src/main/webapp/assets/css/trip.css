@@ -17,13 +17,6 @@
 	background: #fff;
 }
 
-.trip-note-toggle {
-	font-size: 12px;
-	color: #007bff;
-	cursor: pointer;
-	display: inline-block;
-	margin-top: 5px;
-}
 
 .trip-note-area {
 	display: none;
@@ -142,9 +135,11 @@
 	align-items: flex-start;
 	gap: 2px;
 	margin-bottom: 10px;
+	border : 1px solid #ececec;
+	border-radius : 12px;
 }
 
-.trip-timeline-event .number {
+.trip-timeline-event .trip-idx {
 	background: #71aef0;
 	color: white;
 	border-radius: 50%;
@@ -155,6 +150,7 @@
 	text-align: center;
 	line-height: 22px;
 	flex-shrink: 0;
+	align-self: center;
 }
 
 .trip-timeline-event .time {
@@ -458,7 +454,6 @@
   box-shadow:
     0 8px 24px rgba(0,0,0,.08),
     0 2px 6px rgba(0,0,0,.04);
-  border-color: var(--accent);
 }
 
 /* 클릭(활성) 시 살짝 눌리는 느낌 */
@@ -467,4 +462,16 @@
   box-shadow:
     0 4px 12px rgba(0,0,0,.08),
     0 1px 3px rgba(0,0,0,.04);
+}
+
+/* 토글 전 기본 스타일 */
+.trip-note-toggle {
+  color: #6c757d; /* 회색 */
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+/* 눌렀을 때 (토글 상태) */
+.trip-note-toggle.active {
+  color: #0d6efd; /* 파란색 */
 }
