@@ -77,31 +77,4 @@
 
 	</div>
 </div>
-<script>
-const tripStartDateInput = document.getElementById("trip-start-date");
-const tripEndDateInput = document.getElementById("trip-end-date");
-let tripStartDate = "";
-let tripEndDate = "";
-
-// 출발일, 도착일 읽기
-tripStartDateInput.addEventListener("change", () => {
-	tripStartDate = tripStartDateInput.value;
-});
-
-tripEndDateInput.addEventListener("change", () => {
-	tripEndDate = tripEndDateInput.value;
-});
-
-// 여행 지역
-let tripDest = "";
-function checkForNextStep(){
-	tripDest = $('input[name="locationRadio"]:checked').next().text().trim();
- 	if (tripStartDate && tripEndDate && tripDest){
- 		$('#trip-loc-step').trigger('click');
- 	}else{
- 		alert("여행 날짜와 여행지를 먼저 선택하세요.");
- 	}
-}
-	
-</script>
 

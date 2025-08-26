@@ -1,4 +1,20 @@
 
+const tripStartDateInput = document.getElementById("trip-start-date");
+const tripEndDateInput = document.getElementById("trip-end-date");
+let tripStartDate = "";
+let tripEndDate = "";
+
+// 여행 지역
+let tripDest = "";
+function checkForNextStep(){
+	tripDest = $('input[name="locationRadio"]:checked').next().text().trim();
+ 	if (tripStartDate && tripEndDate && tripDest){
+ 		$('#trip-loc-step').trigger('click');
+ 	}else{
+ 		alert("여행 날짜와 여행지를 먼저 선택하세요.");
+ 	}
+}
+
 // step tab 전환  
 function switchStep(tabIndex) {
 	  const stepDoms = document.querySelectorAll('.trip-step'); // NodeList
@@ -182,7 +198,7 @@ document.querySelector('#trip-loc-step').addEventListener('shown.bs.tab', () => 
 	requestAnimationFrame(() => requestAnimationFrame(() => { // 코드 실행 타이밍을 한 프레임정도 늦춘다 * 2 , 레이아웃 안정화·성능 최적화에 널리 쓰임
 		relayoutKeepCenter(map);
 		$('#trip-dest').text(tripDest);
-		$('#trip-dates').text(tripStartDate + " - "  + tripEndDate);
+		$('#trip-dates').text(tripStartDate + "  -  "  + tripEndDate);
 		setTab("trip-loc-tab");
 		setTab("dayTabs");
 	}, { once: true })); // 해당 탭을 최초로 열 때 한 번만 실행하고 싶다면 once 옵션
@@ -205,3 +221,10 @@ $( function() {
 		}
 	});
 } );
+
+function formatDate(date) {
+  const y = date.getFullYear() - 2000;
+  const m = String(date.getMonth() + 1).padStart(2);
+  const d = String(date.getDate()).padStart(2);
+  return `${y}.${m}.${d}`;
+}
