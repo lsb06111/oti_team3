@@ -195,8 +195,8 @@ $( function() {
 } );
 
 function formatDate(date) {
-  const y = date.getFullYear() - 2000;
-  const m = String(date.getMonth() + 1).padStart(2);
-  const d = String(date.getDate()).padStart(2);
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1);
+  const d = String(date.getDate());
   return `${y}.${m}.${d}`;
 }
