@@ -15,24 +15,6 @@ function checkForNextStep(){
  	}
 }
 
-// step tab 전환  
-function switchStep(tabIndex) {
-	  const stepDoms = document.querySelectorAll('.trip-step'); // NodeList
-	  stepDoms.forEach((el, i) => {
-	    el.style.display = (i === tabIndex ? 'block' : 'none');
-	  });
-}
-
-// 일정 저장버튼 표시/숨기기 처리
-function toggleDoneBtn(btn){
-	const id = btn.getAttribute('id');
-	if (id === "trip-loc-step"){
-		document.querySelector("#trip-done-btn").style.display= 'block';
-	}else{
-		document.querySelector("#trip-done-btn").style.display= 'none';
-	}
-}
-
 function toggleNote(btn) {
 	btn.classList.toggle("active");
 	const note = btn.parentElement.parentElement.nextElementSibling;
@@ -140,7 +122,8 @@ function setTab(id){
   // 즉시 한 번 시도
   init();
 } //setTab 함수 종료
-
+setTab("trip-loc-tab");
+setTab("dayTabs");
 
 // 일자별 여행 코스 탭 전환
 function switchDay(btn){
@@ -192,17 +175,6 @@ function getTimelineEvent(title, type, img, order){
 	</div>`;
 	return text;
 }
-
-// 장소 선택 탭 랜더링 후 세팅
-document.querySelector('#trip-loc-step').addEventListener('shown.bs.tab', () => { //새로운 탭 콘텐츠가 완전히 보여진 후 실행되는 이벤트
-	requestAnimationFrame(() => requestAnimationFrame(() => { // 코드 실행 타이밍을 한 프레임정도 늦춘다 * 2 , 레이아웃 안정화·성능 최적화에 널리 쓰임
-		relayoutKeepCenter(map);
-		$('#trip-dest').text(tripDest);
-		$('#trip-dates').text(tripStartDate + "  -  "  + tripEndDate);
-		setTab("trip-loc-tab");
-		setTab("dayTabs");
-	}, { once: true })); // 해당 탭을 최초로 열 때 한 번만 실행하고 싶다면 once 옵션
-});
 
 // tripnote 관광지의 순서번호 부여
 function assignLocIndex(){
