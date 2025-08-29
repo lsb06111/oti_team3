@@ -11,6 +11,28 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
 
+<!-- Modal -->
+<div class="modal fade" id="trip-inviteModal" tabindex="-1" aria-labelledby="trip-inviteModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="trip-inviteModalLabel">공유</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+		    <input readonly type="text" class="form-control" id="trip-url" value ="http://localhost:8088/oti_team3/trip/index2.jsp">
+		    <button id = "trip-copy-btn" type="button" class="btn text-white" data-bs-dismiss="modal" style="--bs-btn-bg:#5c99ee; 
+		             --bs-btn-hover-bg:#447fcc; 
+		             --bs-btn-border-color:#5c99ee; 
+		             --bs-btn-hover-border-color:#447fcc;">복사
+		    </button>
+  		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <body class="trip-body">
 	<main class="trip-main">              
 		<!-- 왼쪽 네비 -->
@@ -24,7 +46,10 @@
 					<span class="step-title">장소 선택</span>
 				</button>
 			</div>
-			<button id="trip-done-btn" class= "btn btn-primary" style="background: #5c99ee; margin-bottom: 10px;">일정 저장</button>
+			<div>
+				<button id="trip-invite-btn" class= "btn btn-primary" data-bs-toggle="modal" data-bs-target="#trip-inviteModal" style="background: #5c99ee; margin-bottom: 10px;">일정 공유</button>
+				<button id="trip-done-btn" class= "btn btn-primary" style="background: #5c99ee; margin-bottom: 10px;">일정 저장</button>
+			</div>
 		</nav>  
 		<div class="trip-step" style="flex:17;">
 			<%@ include file="/jspf/trip/make-course.jspf" %>

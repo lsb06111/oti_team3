@@ -200,3 +200,16 @@ function formatDate(date) {
   const d = String(date.getDate());
   return `${y}.${m}.${d}`;
 }
+
+document.getElementById("trip-copy-btn").addEventListener("click", async () => {
+  const input = document.getElementById("trip-url");
+  try {
+    await navigator.clipboard.writeText(input.value);
+    alert("복사되었습니다!");
+  } catch (err) {
+    // 구형 브라우저 fallback
+    input.select();
+    document.execCommand("copy");
+    alert("복사되었습니다!(fallback)");
+  }
+});
