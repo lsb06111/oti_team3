@@ -201,9 +201,9 @@ function formatDate(date) {
   return `${y}.${m}.${d}`;
 }
 
-document.getElementById("trip-copy-btn").addEventListener("click", async () => {
-  const input = document.getElementById("trip-url");
-  try {
+async function copy(btn){
+	const input = btn.previousElementSibling;
+	  try {
     await navigator.clipboard.writeText(input.value);
     alert("복사되었습니다!");
   } catch (err) {
@@ -212,4 +212,6 @@ document.getElementById("trip-copy-btn").addEventListener("click", async () => {
     document.execCommand("copy");
     alert("복사되었습니다!(fallback)");
   }
-});
+	
+}
+
