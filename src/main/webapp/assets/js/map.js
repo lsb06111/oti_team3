@@ -122,9 +122,9 @@ function displayPlaces(places) {
 function getListItem(index, places) {
 
     var el = document.createElement('li'),
-    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
+    itemStr = '<div><span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+                '   <span class="sl-name">' + places.place_name + '</span>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
@@ -134,10 +134,10 @@ function getListItem(index, places) {
     }
                  
       itemStr += '  <span class="tel">' + places.phone  + '</span>' +
-                '</div>';  
+                '</div></div><button class="sl-searched-add" onclick="insertToTimeline(this)">+</button>';  
 
     el.innerHTML = itemStr;
-    el.className = 'item';
+    el.className = 'item trip-searchedItem trip-loc-card align-items-center';
 
     return el;
 }

@@ -173,21 +173,20 @@ function switchDay(btn){
 	});
 }; 
 
-// 추천 관광지를 타임라인에 추가
+// 장소를 타임라인에 추가
 function insertToTimeline(btn) {
-	  const $btn   = $(btn);
-	  const $next  = $btn.parent().next();// 부모의 다음 형제
-	  const title  = $.trim($next.find('.sl-name').text());
-	  const type   = $.trim($next.find('.sl-type').text());
-
+	  const container = $(btn).closest(".trip-loc-card");
+	  const title = container.find('.sl-name').text();
+	  const type = container.find('.sl-type').text();
+	  let img = container.find('img');
+	  if (img){
+		 img =  img.attr('src')
+	  }
+	  
 	  // 표시 중인 타임라인(보이는 것) 선택
 	  const $target = $('.trip-timelineForDay:visible').first();
-	  const img = $btn.parent().find('img').attr('src');
 	  const order = $target.children().length;
-
-	  if ($target.length) {
-	    $target.append(getTimelineEvent(title, type, img, order+1));
-	  }
+      $target.append(getTimelineEvent(title, type, img, order+1));
 	};
 
 function getTimelineEvent(title, type, img, order){

@@ -66,6 +66,7 @@
 		<div class="trip-step" style="flex:17;">
 			<%@ include file="/jspf/trip/make-course.jspf" %>
 		</div>
+		
 	</main> 
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=460e38b5e2a79f0329a7652a9b1836dd&libraries=services"></script>
   <script src="/oti_team3/assets/js/map.js"></script>
