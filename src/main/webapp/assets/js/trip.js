@@ -1,11 +1,65 @@
+//Calendar
+function formatDate(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1);
+  const d = String(date.getDate());
+  return `${y}.${m}.${d}`;
+}
 
-const tripStartDateInput = document.getElementById("trip-start-date");
-const tripEndDateInput = document.getElementById("trip-end-date");
+(function(factory) {
+    "use strict";
+    if (typeof define === "function" && define.amd) {
+        // AMD. Register as an anonymous module.
+        define([ "../widgets/datepicker" ], factory);
+    } else {
+        // Browser globals
+        factory(jQuery.datepicker);
+    }
+})(function(datepicker) {
+    "use strict";
+    datepicker.regional.ko = {
+        closeText : "닫기",
+        prevText : "이전달",
+        nextText : "다음달",
+        currentText : "오늘",
+        monthNames : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ],
+        monthNamesShort : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ],
+        dayNames : [ "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일" ],
+        dayNamesShort : [ "일", "월", "화", "수", "목", "금", "토" ],
+        dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
+        weekHeader : "주",
+        dateFormat : "yy. m. d.",
+        firstDay : 0,
+        isRTL : false,
+        showMonthAfterYear : true,
+        yearSuffix : "년"
+    };
+    datepicker.setDefaults(datepicker.regional.ko);
+    return datepicker.regional.ko;
+});
+
+$("#trip-start-date").datepicker({
+	minDate: new Date(),
+    onSelect : function(dateText) {
+        const start = $(this).datepicker("getDate");
+        const end = new Date(start);
+        end.setDate(end.getDate() + 5);
+        $("#trip-end-date").datepicker("option", "minDate", start);
+        $("#trip-end-date").datepicker("option", "maxDate", end);
+        tripStartDate = formatDate($("#trip-start-date").datepicker("getDate"));
+    },
+
+});
+
+$("#trip-end-date").datepicker({
+	onSelect : function(dateText) {
+		tripEndDate = formatDate($("#trip-end-date").datepicker("getDate"));
+	}
+});
+
 let tripStartDate = "";
 let tripEndDate = "";
-
-// 여행 지역
-let tripDest = "";
+let tripDest = ""; // 여행 지역
 function checkForNextStep(){
 	tripDest = $('input[name="locationRadio"]:checked').next().text().trim();
  	if (tripStartDate && tripEndDate && tripDest){
@@ -15,39 +69,7 @@ function checkForNextStep(){
  	}
 }
 
-function toggleNote(btn) {
-	btn.classList.toggle("active");
-	const note = btn.parentElement.parentElement.nextElementSibling;
-	if (note.style.display === "block") {
-		note.style.display = "none";
-	} else {
-		note.style.display = "block";
-	}
-}
 
-function deleteNote(btn){
-	$card = $(btn).closest('.trip-timeline-event');
-	$card.remove();
-	assignLocIndex();
-}
-
-// 직접 검색 or 추천 선택 탭
-function toggleLocTab(btn){
-	const searchFormE = document.getElementById('trip-search-form');
-	const recomE = document.getElementById('trip-rcmds');
-	const searchResult = document.getElementById('trip-search-result');
-	if(btn.id === 'trip-tab-search'){
-		searchFormE.style.display = "block";
-		searchResult.style.display = "block";
-		recomE.style.display = "none";
-	}else{
-		searchFormE.style.display = "none";
-		searchResult.style.display = "none";
-		recomE.style.display = "block";
-	}
-	removeMarker();
-}
- 
 // 탭 인디케이터 위치/너비 갱신
 function setTab(id){
   const tabs = document.getElementById(id);
@@ -118,12 +140,29 @@ function setTab(id){
   // 동적 추가 대응: 자식 변화를 감지해 다시 초기화
   new MutationObserver(() => init())
     .observe(tabs, { childList: true, subtree: true });
-
   // 즉시 한 번 시도
   init();
 } //setTab 함수 종료
 setTab("trip-loc-tab");
 setTab("dayTabs");
+
+// 직접 검색 or 추천 선택 탭
+function toggleLocTab(btn){
+	const searchFormE = document.getElementById('trip-search-form');
+	const recomE = document.getElementById('trip-rcmds');
+	const searchResult = document.getElementById('trip-search-result');
+	if(btn.id === 'trip-tab-search'){
+		searchFormE.style.display = "block";
+		searchResult.style.display = "block";
+		recomE.style.display = "none";
+	}else{
+		searchFormE.style.display = "none";
+		searchResult.style.display = "none";
+		recomE.style.display = "block";
+	}
+	removeMarker();
+}
+
 
 // 일자별 여행 코스 탭 전환
 function switchDay(btn){
@@ -132,7 +171,7 @@ function switchDay(btn){
 	timelineDoms.forEach((el, i) => {
 		el.style.display = (i+1 == idx ? 'block' : 'none');
 	});
-};
+}; 
 
 // 추천 관광지를 타임라인에 추가
 function insertToTimeline(btn) {
@@ -184,6 +223,23 @@ function assignLocIndex(){
 	});
 }
 
+function toggleNote(btn) {
+	btn.classList.toggle("active");
+	const note = btn.parentElement.parentElement.nextElementSibling;
+	if (note.style.display === "block") {
+		note.style.display = "none";
+	} else {
+		note.style.display = "block";
+	}
+}
+
+function deleteNote(btn){
+	$card = $(btn).closest('.trip-timeline-event');
+	$card.remove();
+	assignLocIndex();
+}
+
+
 // tripnote의 관광지 드래그 가능하도록 만들기 - jquery ui api
 $( function() {
 	$tripNote = $( ".trip-timelineForDay" );
@@ -194,13 +250,7 @@ $( function() {
 	});
 } );
 
-function formatDate(date) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1);
-  const d = String(date.getDate());
-  return `${y}.${m}.${d}`;
-}
-
+// url 복사 버튼
 async function copy(btn){
 	const input = btn.previousElementSibling;
 	  try {
@@ -214,4 +264,3 @@ async function copy(btn){
   }
 	
 }
-
