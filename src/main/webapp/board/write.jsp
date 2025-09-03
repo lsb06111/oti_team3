@@ -26,7 +26,7 @@
     </div><!-- End Page Title -->
 
     <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section" style="--subtle-border: none;">
+    <section id="portfolio-details" class="portfolio-details section" style="--subtle-border: none; padding-bottom:0px;">
 
       <div class="container">
         <div class="project-hero mb-0">
@@ -237,7 +237,7 @@
             </div>
 
             <!-- tagbutton -->
-            <div class="technology-stack">
+            <div class="technology-stack" style="margin-bottom:10px;">
 	          <div class="row">
 	            <div class="col-lg-3">
 	              <h3>여행 태그</h3>
@@ -263,14 +263,32 @@
               </div>
             </div>
           </div>
-          <button type="button" class="btn btn-primary float-end" data-mdb-ripple-init>저장</button>
         </div>
-            
-            
-            
-            
-            
-
+        
+        <!-- recommendation button -->
+        <div class="technology-stack">
+	          <div class="row">
+	            <div class="col-lg-3">
+	              <h3>관광지 추천</h3>
+	            </div>
+	            <div class="col-lg-9">
+	              <div class="tech-categories">
+	                <div class="tech-category">
+	                  <div id="tag-buttons" class="tech-list">
+	                  	<!-- 각 관광지/일정 아이템 내부 -->
+						<i class="recommendation-btn bi bi-hand-thumbs-up"
+						   data-place-id="123"
+						   style="font-size:2.5rem; cursor:pointer; color:#5c99ee; position:relative; top:-10px;"></i>
+					  </div>
+                		</div>
+              	  </div>
+            		</div>
+          	 </div>
+        </div>
+        
+	    <button type="button" class="btn btn-primary float-end" data-mdb-ripple-init style="background-color:#5c99ee; margin-left:10px;"  >업로드</button>
+	    <button type="button" class="btn btn-primary float-end" data-mdb-ripple-init style="background-color:#5c99ee">임시저장</button>
+    
           </div>
         </div>
       </div>
@@ -287,6 +305,30 @@
       </div>
 	</div>
 </section><!-- /Tabs Section -->
+
+
+<!-- recommendation button -->
+<script>
+  const root = document.getElementById('itineraryRoot') || document;
+
+  root.addEventListener('click', (e) => {
+    const btn = e.target.closest('.recommendation-btn');
+    if (!btn || !root.contains(btn)) return;
+
+    if (btn.classList.contains('bi-hand-thumbs-up')) {
+      btn.classList.remove('bi-hand-thumbs-up');
+      btn.classList.add('bi-hand-thumbs-up-fill');
+      btn.style.color = '#5c99ee';
+      
+    } else {
+      btn.classList.remove('bi-hand-thumbs-up-fill');
+      btn.classList.add('bi-hand-thumbs-up');
+      btn.style.color = '#5c99ee';
+    }
+  });
+</script>
+
+
 
 <script>
 
